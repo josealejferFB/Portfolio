@@ -3,15 +3,16 @@ import Icon from "./Icon.astro";
 
 interface Props {
   items: readonly string[];
+  label?: string;
 }
 
-const { items } = Astro.props;
+const { items, label = "HERRAMIENTAS" } = Astro.props;
 const loop = [...items, ...items];
 ---
 
 <div class="marquee" data-marquee>
   <div class="wrap marquee__head">
-    <p class="label">EN USO</p>
+    <p class="label">{label}</p>
     <button
       class="marquee__toggle"
       type="button"

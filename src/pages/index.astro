@@ -9,6 +9,7 @@ import TimelineItem from "../components/TimelineItem.astro";
 import Marquee from "../components/Marquee.astro";
 import CaseCard from "../components/CaseCard.astro";
 import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
 import { site, mailto } from "../content/site";
 
 const { hero, criterion, trajectory, craft, work, contact } = site;
@@ -25,7 +26,7 @@ const person = {
     "@type": "PostalAddress",
     addressLocality: site.location.city,
     addressRegion: site.location.region,
-    addressCountry: "VE",
+    addressCountry: site.location.country,
   },
   knowsLanguage: site.languages.map((language) => language.name),
   knowsAbout: craft.strengths,
@@ -44,7 +45,7 @@ const person = {
           <p class="label label--on-dark hero__panel-label">{hero.panelKicker}</p>
           <p class="hero__tesis">{site.tesis}</p>
           <div class="hero__panel-foot">
-            <p class="label label--on-dark">IDIOMAS</p>
+            <p class="label label--on-dark">{hero.languagesLabel}</p>
             <ul class="hero__langs">
               {site.languages.map((language) => (
                 <li>
@@ -81,7 +82,10 @@ const person = {
               </Button>
             </div>
 
-            <p class="hero__meta"><span>{hero.meta}</span></p>
+            <p class="hero__meta">
+              <span>{site.location.short}</span>
+              <span class="hero__meta-tz"><span aria-hidden="true">·</span> {site.location.timezone}</span>
+            </p>
           </div>
         </div>
       </div>
@@ -134,7 +138,7 @@ const person = {
                 <span class="trajectory__current" data-traj-current>01</span>
                 <span class="trajectory__total mono">/ 05</span>
               </div>
-              <p class="label trajectory__hint">Hitos · experiencia y formación</p>
+              <p class="label trajectory__hint">{trajectory.counterHint}</p>
             </div>
           </div>
 
@@ -176,11 +180,11 @@ const person = {
         </div>
       </div>
 
-      <Marquee items={craft.marquee} />
+      <Marquee items={craft.marquee} label={craft.marqueeLabel} />
 
       <div class="wrap">
         <div class="strengths" data-reveal>
-          <p class="label strengths__label">Fortalezas</p>
+          <p class="label strengths__label">{craft.strengthsLabel}</p>
           <ul class="strengths__list">
             {craft.strengths.map((strength) => <li>{strength}</li>)}
           </ul>
@@ -219,22 +223,38 @@ const person = {
           <div class="contact__row">
             <p class="contact__line" data-reveal>{contact.line}</p>
             <div class="contact__action" data-reveal>
-              <Button
+              <a
+                class="btn btn--cream btn--lg"
                 href={mailto}
-                variant="cream"
-                size="lg"
-                icon="copy"
-                aria-label={`${contact.action}: ${site.email}`}
+                data-copy-fallback
+                aria-label={`Escribir a ${site.name}: ${site.email}`}
+              >
+                <span class="btn__label">{site.email}</span>
+                <Icon name="mail" size={20} />
+              </a>
+              <button
+                class="btn btn--cream btn--lg"
+                type="button"
+                hidden
+                data-copy-button
                 data-copy-email={site.email}
                 data-copy-confirm={contact.copied}
+                aria-label={`${contact.action}: ${site.email}`}
               >
-                <span data-copy-label>{site.email}</span>
-              </Button>
+                <span class="btn__label">{site.email}</span>
+                <Icon name="copy" size={20} />
+              </button>
               <p class="contact__status" role="status" aria-live="polite" data-copy-status></p>
             </div>
           </div>
 
-          <p class="contact__meta" data-reveal>{contact.meta}</p>
+          <p class="contact__meta" data-reveal>
+            <span>{site.phone}</span>
+            <span class="contact__sep" aria-hidden="true">·</span>
+            <span class="contact__handle">{site.handle}</span>
+            <span class="contact__sep" aria-hidden="true">·</span>
+            <span>{site.location.short}</span>
+          </p>
         </div>
       </div>
     </section>

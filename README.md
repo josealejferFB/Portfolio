@@ -54,7 +54,8 @@ El preview del entregable está levantado como job en segundo plano en
 ├── public/                    # favicon.svg, og.png, fonts/
 ├── scripts/                   # shots, og, auditorías y captura de exploraciones
 ├── shots/                     # 320, 390, 768, 1024, 1440, 1920, reduced-motion,
-│                              # no-js y un acto por sección a 1440
+│                              # no-js, un acto por sección a 1440 y dos estados
+│                              # intermedios del scroll (hero y El criterio)
 ├── DESIGN.md                  # las seis leyes, tokens y decisiones
 ├── CONTENT_TODO.md            # lo que José debe enviar para cerrar los casos reales
 └── README.md
@@ -89,6 +90,14 @@ El preview del entregable está levantado como job en segundo plano en
   en las cinco; la diferencia la hace el contenido, no el padding.
 - **Sin selector de idioma ni modo oscuro a medias.** No hay segunda versión que traducir
   ni tema oscuro que mantener; añadirlos a medias sería peor que no tenerlos.
+- **El copy de Trabajo dice «categoría, estado y el stack confirmado», no «rol».** El
+  brief pedía «rol» en el párrafo pero las tarjetas muestran estado; se alineó la promesa
+  con lo que la tarjeta enseña, sin inventar roles ni stacks. El caso 01 no muestra stack
+  porque no está confirmado.
+- **Alcaraván aparece como «Empresa: …» en el caso 01, no como cliente.** Es el empleador
+  del CV; el nombre del proyecto/cliente queda pendiente de permiso en `CONTENT_TODO.md`.
+- **El email es un botón real de copiar cuando existe Clipboard API.** Sin JavaScript (o si
+  la API falla) el mismo hueco vuelve a ser un enlace `mailto:` real, no un botón inerte.
 - **El sitio se queda en local.** No hay dominio de producción todavía; `astro.config.mjs`
   usa `http://localhost:4321` como origen canónico y OG. El dominio real está en
   `CONTENT_TODO.md`.
@@ -99,33 +108,46 @@ Con el build de producción servido en local:
 
 | Comprobación | Resultado | Límite |
 |---|---|---|
-| JS inicial gzip | **49.4 KB** | ≤ 110 KB |
-| CSS gzip | **8.5 KB** | ≤ 45 KB |
+| JS inicial gzip | **49.5 KB** | ≤ 110 KB |
+| CSS gzip | **8.6 KB** | ≤ 45 KB |
 | Fuentes | **1 archivo, 37.1 KB** | ≤ 2 archivos, ≤ 70 KB |
-| HTML gzip | 4.6 KB | — |
-| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.75 s** | ≤ 2.0 s |
+| HTML gzip | 4.7 KB | — |
+| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.76 s** | ≤ 2.0 s |
 | CLS | **0.0009** | ≤ 0.02 |
 | Tareas largas durante el scroll | **ninguna** | ninguna > 80 ms |
 | Frames durante scroll programático | **p50 16.7 ms · p95 16.8 ms** | 60 fps |
 | Contraste | **18/18 pares pasan** (coral-700/blanco 4.89, tinta/coral 6.62, verde-900/coral 5.18…) | AA 2.2 |
 | Scroll horizontal | **0 px a 320/390/768/1024/1440/1920** | 0 |
+| Zoom de texto 200 % | **0 px de desborde a 390/720/1440** | sin pérdida |
 | Errores de consola / red | **0** | 0 |
 | `prefers-reduced-motion` | sin marquesina, sin pinning, 0 revelados ocultos | — |
 | Sin JavaScript | nombre, contacto, experiencia y `mailto:` presentes | — |
 
-El detalle reproducible está en `scripts/audit-contrast.mjs` y
-`scripts/audit-runtime.mjs`.
+El detalle reproducible está en `scripts/audit-contrast.mjs`,
+`scripts/audit-runtime.mjs` y `scripts/audit-zoom.mjs`. Dos matices honestos: el LCP
+mide el nombre aún recortado por su entrada de 720 ms (el nombre completo se pinta a
+~1.25 s bajo 4G + CPU ×4, dentro del límite), y el arranque deja dos tareas de
+135–285 ms (≈35–70 ms en tiempo real). El presupuesto de §6 solo acota las tareas
+largas durante el scroll, donde no queda ninguna. Deuda conocida: con movimiento
+reducido el bundle de GSAP/Lenis (≈50 KB gzip) se descarga igualmente, aunque no se
+inicia ni anima nada.
 
 ## Accesibilidad
 
 - Un solo `h1`, un `h2` por acto, `h3` en hitos y tarjetas; `main`, `nav` y `footer`.
-- Skip-link que aparece al primer Tab, mueve el foco a `main` y no se queda invisible.
+- Skip-link que aparece al primer Tab, mueve el foco a `main` y usa un anillo doble
+  (blanco + coral) legible tanto sobre el blanco como sobre el panel verde.
 - Foco visible en el 100 % de los interactivos: coral-700 sobre claro, verde-900 sobre
-  coral, blanco sobre verde.
+  coral, blanco sobre verde. Los enlaces del riel miden 24×24 px y, cuando el riel cae
+  sobre el coral del cierre, invierten sus tintas y su anillo a verde-900.
+- Zoom de texto 200 %: los nombres, HABLEMOS, las tarjetas y el email se reajustan sin
+  scroll horizontal ni texto cortado.
 - La marquesina tiene botón real de pausa con `aria-pressed`; se detiene en hover y
   desaparece por completo con movimiento reducido.
-- El copiado del email conserva el `mailto:` como fallback y anuncia «Copiado» en una
-  región `aria-live="polite"` durante 1.2 s.
+- El copiado del email es un `<button>` real con nombre «Copiar email»; anuncia «Copiado»
+  en una región `aria-live="polite"` durante 1.2 s. Sin JavaScript (o sin Clipboard API)
+  se renderiza un enlace `mailto:` con el nombre «Escribir a José Fernández», de modo que
+  rol, nombre y acción coinciden en ambos modos.
 - Los números de los discos pasan AA después del cambio a coral-700; los puntos
   decorativos no comunican información por sí solos.
 - Cero texto blanco sobre coral. Sobre coral, tinta (6.62:1) o verde-900 (5.18:1).

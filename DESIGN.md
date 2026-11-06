@@ -77,7 +77,11 @@ blanco al 72 % sobre verde queda en 4.90:1 para las etiquetas de 11 px. **Los di
 capítulo bajaron de `--coral-600` a `--coral-700`**: el numeral blanco de 12 px sobre
 coral-600 daba 3.64:1 y no pasaba AA; sobre coral-700 da 4.89:1. `--coral-600` queda
 reservado para puntos gráficos de 4–7 px (separadores, hitos), donde el requisito es
-3:1. Medición reproducible: `node scripts/audit-contrast.mjs` (18/18 pares).
+3:1. Medición reproducible: `node scripts/audit-contrast.mjs` (18/18 pares). El riel mide
+24×24 px, invierte sus tintas sobre el coral del cierre y su anillo de foco pasa a
+verde-900; el skip-link usa un anillo doble (blanco + coral) para no perderse ni sobre
+blanco ni sobre el panel verde. El email del cierre es un botón de copiar con nombre y
+rol correctos, y conserva un `mailto:` real como fallback sin JavaScript.
 
 ## Tres decisiones explicadas
 
@@ -91,7 +95,8 @@ reservado para puntos gráficos de 4–7 px (separadores, hitos), donde el requi
    huecos ni texto invisible: la página se lee completa. Esto también protege el LCP y
    permite que el scroll sea siempre nativo.
 3. **Los cinco casos son slots honestos.** No hay capturas falsas ni nombres inventados:
-   la tarjeta muestra categoría, estado y stack reales del CV, con una portada abstracta
+   la tarjeta muestra categoría, estado y el stack confirmado del CV —el del caso 01 sigue
+pendiente—, con una portada abstracta
    compuesta en CSS. El CTA pide el caso completo por email y `CONTENT_TODO.md` dice
    exactamente qué material falta. Prefiero cinco tarjetas honestas a cinco ficciones
    bien maquetadas.

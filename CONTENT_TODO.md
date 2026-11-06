@@ -2,7 +2,7 @@
 
 El sitio no inventa proyectos, clientes, métricas ni capturas. Los cinco casos de
 **Trabajo** son slots honestos marcados `draft: true` en `src/content/site.ts`; muestran
-categoría, estado y stack reales del CV. Para convertirlos en casos reales, José debe
+categoría, estado y el stack confirmado del CV. Para convertirlos en casos reales, José debe
 enviar lo siguiente. Todo lo marcado como «confirmar» es un dato que hoy no está en el
 CV y que no se ha rellenado por suposición.
 
@@ -31,7 +31,7 @@ Estado actual de cada slot y lo que falta:
 
 | # | Categoría | Estado actual | Stack actual | Falta |
 |---|---|---|---|---|
-| 01 | App multiplataforma | En producción | **Por confirmar** | Nombre, stack, descripción, permiso para nombrar a Alcaraván, capturas |
+| 01 | App multiplataforma | En producción | **Por confirmar** | Nombre, stack, descripción; confirmar la publicación de «Empresa: Sistemas Tecnológicos Alcaraván»; capturas |
 | 02 | App móvil nativa | En producción | Kotlin · Jetpack Compose · XML | Nombre, descripción, capturas |
 | 03 | Apps educativas | En desarrollo | React Native · IoT | Nombre, descripción, estado real, capturas |
 | 04 | Aplicación IoT | En desarrollo | Arduino · C++ | Nombre, descripción, estado real, capturas |
@@ -39,7 +39,8 @@ Estado actual de cada slot y lo que falta:
 
 > **Caso 01:** el CV solo dice «Sistemas Tecnológicos Alcaraván · 7 meses». No hay stack,
 > nombre de producto ni descripción. Se dejó el stack vacío a propósito; no se inventó.
-> Si no se puede nombrar al cliente, se cambia la nota por una categoría neutra.
+> La tarjeta lo presenta como «Empresa: …» (dato del CV), no como cliente del proyecto.
+> Si no se puede publicar el nombre, se retira la nota.
 
 **Capturas:** si no hay capturas usables, se conserva la portada abstracta en CSS. Nunca
 se simulan pantallas de apps reales. Si hay capturas, que sean propias, sin datos de
@@ -102,6 +103,12 @@ No se añadirán fechas, cargos ni empresas que no estén confirmados.
       y cita textual; no se inventarán.
 - [ ] ¿Métricas de impacto? Solo si son demostrables y con contexto. Hoy no hay ninguna
       y no se muestran contadores de humo.
+- [ ] ¿Son exactamente cinco proyectos o «+5»? El CV dice «+5 proyectos trabajados»; el
+      brief usa «5» y la página titula «Cinco proyectos. Dos en producción.». Si son más,
+      se corrige el titular y el stat.
+- [ ] ¿Las tutorías de matemática fueron parte del rol en Alcaraván o una actividad
+      independiente? El CV las agrupa en el mismo bloque; hoy se leen como parte del rol.
+      Si fueron independientes, se etiquetan aparte sin inventar fechas ni empresa.
 
 ---
 

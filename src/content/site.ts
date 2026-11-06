@@ -1,8 +1,8 @@
 /**
- * FUENTE ÚNICA DE COPY Y DATOS.
- * Todo lo que aparece en el sitio nace aquí. Nada inventado: el texto proviene
- * del brief aprobado y de reference/jose-cv.txt. Lo que falta se marca en
- * CONTENT_TODO.md, no se rellena.
+ * FUENTE ÚNICA DE COPY Y DATOS DE CONTENIDO.
+ * Nada inventado: el texto proviene del brief aprobado y de reference/jose-cv.txt.
+ * Lo que falta se marca en CONTENT_TODO.md, no se rellena. Las etiquetas de
+ * control (saltar, capítulos, pausar) viven con su componente, no aquí.
  */
 
 export interface Stat {
@@ -77,8 +77,8 @@ export const site = {
       "Apps nativas y multiplataforma. Interfaces que se sienten antes de entenderse.",
     ctaPrimary: { label: "Ver el trabajo", href: "#trabajo" },
     ctaSecondary: { label: "Hablemos", href: "#contacto" },
-    meta: "San Juan de los Morros, VE · UTC−4",
     panelKicker: "TESIS",
+    languagesLabel: "IDIOMAS",
   },
 
   criterion: {
@@ -97,6 +97,7 @@ export const site = {
   trajectory: {
     kicker: "TRAYECTORIA",
     title: "Lo que he hecho, sin adornos.",
+    counterHint: "Hitos · experiencia y formación",
     experience: [
       {
         index: "01",
@@ -151,6 +152,8 @@ export const site = {
     kicker: "CRAFT",
     title: "La caja de herramientas, en orden.",
     line: "No colecciono frameworks. Elijo la herramienta que el problema pide.",
+    strengthsLabel: "Fortalezas",
+    marqueeLabel: "HERRAMIENTAS",
     groups: [
       { label: "Móvil", skills: ["Kotlin", "Jetpack Compose", "React Native", "XML"] },
       { label: "Web", skills: ["HTML", "Tailwind", "JavaScript", "React"] },
@@ -186,7 +189,7 @@ export const site = {
   work: {
     kicker: "TRABAJO",
     title: "Cinco proyectos. Dos en producción.",
-    body: "Cinco proyectos trabajados, dos ya viven en producción. Lo que sigue es el mapa: categoría, rol y stack. Sin métricas que no pueda demostrar.",
+    body: "Cinco proyectos trabajados, dos ya viven en producción. Lo que sigue es el mapa: categoría, estado y el stack confirmado. Sin métricas que no pueda demostrar.",
     cta: "Pedir el caso completo",
     cases: [
       {
@@ -194,7 +197,7 @@ export const site = {
         category: "App multiplataforma",
         status: "En producción",
         stack: [],
-        note: "Sistemas Tecnológicos Alcaraván",
+        note: "Empresa: Sistemas Tecnológicos Alcaraván",
         cover: "plataforma",
         draft: true,
       },
@@ -239,7 +242,6 @@ export const site = {
     line: "¿Tienes una app que merece sentirse bien? Escríbeme.",
     action: "Copiar email",
     copied: "Copiado",
-    meta: "0412-442-0728 · @josealejfer · San Juan de los Morros, VE",
   },
 
   footer: {
@@ -257,8 +259,6 @@ export const site = {
 } as const;
 
 export type Site = typeof site;
-
-export const chapterHref = (id: string): string => `#${id}`;
 
 /** mailto honesto: el asunto identifica el caso sin inventar su contenido. */
 export const caseMailto = (category: string): string =>

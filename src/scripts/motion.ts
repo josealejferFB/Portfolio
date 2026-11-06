@@ -23,6 +23,7 @@ const sections = railLinks
   })
   .filter((section): section is HTMLElement => section !== null);
 
+const rail = document.querySelector<HTMLElement>(".rail");
 const railFill = document.querySelector<HTMLElement>("[data-rail-fill]");
 const trajectoryCurrent = document.querySelector<HTMLElement>("[data-traj-current]");
 const milestones = Array.from(document.querySelectorAll<HTMLElement>("[data-milestone]"));
@@ -45,6 +46,7 @@ function updateScrollUi(): void {
       if (index === active) link.setAttribute("aria-current", "true");
       else link.removeAttribute("aria-current");
     });
+    rail?.classList.toggle("rail--on-coral", active === sections.length - 1);
   }
 
   if (railFill && sections.length > 0) {
@@ -79,17 +81,19 @@ window.addEventListener("scroll", requestScrollUi, { passive: true });
 window.addEventListener("resize", requestScrollUi);
 requestScrollUi();
 
-/* Copiar el email: el ancla conserva el mailto como fallback sin JavaScript. */
-const copyLink = document.querySelector<HTMLAnchorElement>("[data-copy-email]");
+/* Copiar el email: el ancla mailto es el fallback sin JavaScript; si la
+   Clipboard API existe, se muestra un botón real para copiar. */
+const copyFallback = document.querySelector<HTMLAnchorElement>("[data-copy-fallback]");
+const copyButton = document.querySelector<HTMLButtonElement>("[data-copy-button]");
 const copyStatus = document.querySelector<HTMLElement>("[data-copy-status]");
-const copyEmail = copyLink?.dataset.copyEmail;
-const copyConfirm = copyLink?.dataset.copyConfirm ?? "Copiado";
+const copyEmail = copyButton?.dataset.copyEmail;
+const copyConfirm = copyButton?.dataset.copyConfirm ?? "Copiado";
 let copyTimer = 0;
 
-if (copyLink && copyStatus && copyEmail) {
-  copyLink.addEventListener("click", (event) => {
-    if (!navigator.clipboard?.writeText) return;
-    event.preventDefault();
+if (copyFallback && copyButton && copyStatus && copyEmail && navigator.clipboard?.writeText) {
+  copyFallback.hidden = true;
+  copyButton.hidden = false;
+  copyButton.addEventListener("click", () => {
     navigator.clipboard
       .writeText(copyEmail)
       .then(() => {
@@ -100,7 +104,8 @@ if (copyLink && copyStatus && copyEmail) {
         }, 1200);
       })
       .catch(() => {
-        window.location.href = copyLink.href;
+        copyFallback.hidden = false;
+        copyButton.hidden = true;
       });
   });
 }
@@ -124,6 +129,10 @@ function initMotion(): void {
   /* Anclas: scroll suave con Lenis, foco correcto en el skip link. */
   document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (event) => {
+      // Ctrl/Cmd/Shift/Alt+click debe poder abrir en otra pestaña: no se toca.
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+        return;
+      }
       const href = anchor.getAttribute("href");
       if (!href || href === "#") return;
       const target = document.querySelector<HTMLElement>(href);
@@ -136,6 +145,12 @@ function initMotion(): void {
         history.pushState(null, "", href);
       }
     });
+  });
+
+  window.addEventListener("popstate", () => {
+    const id = window.location.hash.slice(1);
+    const target = id ? document.getElementById(id) : null;
+    if (target) lenis.scrollTo(target, { offset: 0, immediate: true });
   });
 
   /* Marquesina: pausa real, no solo hover. */
@@ -278,24 +293,24 @@ function initMotion(): void {
   }
 
   /* 05: botón magnético sutil (±6 px), solo en punteros finos. */
-  if (copyLink && window.matchMedia("(pointer: fine)").matches) {
+  if (copyButton && !copyButton.hidden && window.matchMedia("(pointer: fine)").matches) {
     let magneticFrame = 0;
-    copyLink.addEventListener(
+    copyButton.addEventListener(
       "pointermove",
       (event) => {
-        const rect = copyLink.getBoundingClientRect();
+        const rect = copyButton.getBoundingClientRect();
         const x = ((event.clientX - rect.left) / rect.width - 0.5) * 12;
         const y = ((event.clientY - rect.top) / rect.height - 0.5) * 12;
         cancelAnimationFrame(magneticFrame);
         magneticFrame = requestAnimationFrame(() => {
-          gsap.to(copyLink, { x, y, duration: 0.3, ease: "power2.out" });
+          gsap.to(copyButton, { x, y, duration: 0.3, ease: "power2.out" });
         });
       },
       { passive: true }
     );
-    copyLink.addEventListener("pointerleave", () => {
+    copyButton.addEventListener("pointerleave", () => {
       cancelAnimationFrame(magneticFrame);
-      gsap.to(copyLink, { x: 0, y: 0, duration: 0.4, ease: "power2.out" });
+      gsap.to(copyButton, { x: 0, y: 0, duration: 0.4, ease: "power2.out" });
     });
   }
 

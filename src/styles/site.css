@@ -41,6 +41,10 @@ body {
   color: var(--tinta);
 }
 
+[hidden] {
+  display: none !important;
+}
+
 h1,
 h2,
 h3 {
@@ -48,6 +52,7 @@ h3 {
   line-height: var(--lh-title);
   letter-spacing: var(--track-tight);
   text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 p {
@@ -107,6 +112,9 @@ a {
 
 .skip:focus-visible {
   transform: translateY(0);
+  outline: 2px solid var(--papel);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--coral-700);
 }
 
 main:focus,
@@ -274,6 +282,7 @@ main:focus,
    ========================================================================== */
 .btn {
   --btn-fill: var(--verde);
+  cursor: pointer;
   --btn-ink: var(--papel);
   --btn-rim: var(--coral);
   position: relative;
@@ -488,7 +497,7 @@ main:focus,
 .hero__name {
   margin-top: clamp(20px, 3vw, 40px);
   color: var(--verde);
-  font-size: clamp(2.4rem, 16.3cqw, 9.5rem);
+  font-size: clamp(38px, 15.9cqw, 9.5rem);
   font-weight: 800;
   line-height: var(--lh-display);
   letter-spacing: var(--track-display);
@@ -549,12 +558,17 @@ main:focus,
 
 .hero__meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--s-4);
+  justify-content: flex-start;
+  gap: 4px 8px;
   margin-top: auto;
   padding-top: clamp(24px, 4vw, 56px);
   color: var(--mute);
+}
+
+.hero__meta-tz {
+  white-space: nowrap;
 }
 
 .hero__circles {
@@ -613,6 +627,7 @@ main:focus,
   color: var(--mute);
   font-size: var(--t-small);
   line-height: 1.35;
+  overflow-wrap: break-word;
 }
 
 .criterion__stage {
@@ -824,7 +839,7 @@ main:focus,
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--gutter);
-  align-items: end;
+  align-items: start;
 }
 
 .craft__head .shead {
@@ -832,8 +847,9 @@ main:focus,
 }
 
 .craft__line {
-  grid-column: 9 / span 4;
-  max-width: 30ch;
+  grid-column: 1 / span 7;
+  max-width: 40ch;
+  margin-top: clamp(20px, 2.4vw, 28px);
   color: var(--mute);
   font-size: var(--t-lead);
   line-height: 1.45;
@@ -871,6 +887,8 @@ main:focus,
   isolation: isolate;
   display: inline-flex;
   align-items: center;
+  max-width: 100%;
+  overflow-wrap: break-word;
   padding: 9px 17px;
   border-radius: var(--r-full);
   color: var(--verde);
@@ -1057,7 +1075,7 @@ main:focus,
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--gutter);
-  align-items: end;
+  align-items: start;
 }
 
 .work__head .shead {
@@ -1065,7 +1083,9 @@ main:focus,
 }
 
 .work__intro {
-  grid-column: 9 / span 4;
+  grid-column: 1 / span 7;
+  max-width: 52ch;
+  margin-top: clamp(20px, 2.4vw, 28px);
   color: var(--mute);
   font-size: var(--t-body);
   line-height: 1.6;
@@ -1123,7 +1143,8 @@ main:focus,
   transition: transform var(--d-3) var(--e-out);
 }
 
-.case:hover .case__cover::before {
+.case:hover .case__cover::before,
+.case:focus-within .case__cover::before {
   transform: translateY(-8px);
 }
 
@@ -1205,6 +1226,8 @@ main:focus,
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  max-width: 100%;
+  overflow-wrap: break-word;
   align-self: flex-start;
   margin-top: var(--s-2);
   padding-bottom: 4px;
@@ -1466,7 +1489,7 @@ main:focus,
    05 · CONTACTO · cierre coral a sangre
    ========================================================================== */
 .act--contact {
-  padding-block: var(--seccion) clamp(64px, 8vw, 112px);
+  padding-block: var(--seccion);
   background: var(--coral);
   color: var(--tinta);
 }
@@ -1492,7 +1515,7 @@ main:focus,
 .contact__title {
   margin-top: var(--s-6);
   color: var(--verde-900);
-  font-size: clamp(2.9rem, 16.7cqw, 13.5rem);
+  font-size: clamp(46px, 16.7cqw, 13.5rem);
   font-weight: 800;
   line-height: var(--lh-display);
   letter-spacing: -0.055em;
@@ -1528,6 +1551,15 @@ main:focus,
   grid-column: 8 / span 5;
 }
 
+/* A 200 % de zoom de texto el correo no cabe en una línea: se permite partir. */
+.contact__action .btn {
+  white-space: normal;
+}
+
+.contact__action .btn__label {
+  overflow-wrap: anywhere;
+}
+
 .contact__status {
   min-height: 1.2em;
   color: var(--tinta);
@@ -1540,8 +1572,8 @@ main:focus,
 .contact__meta {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--s-3) var(--s-8);
+  justify-content: flex-start;
+  gap: 6px 12px;
   margin-top: clamp(40px, 5vw, 72px);
   padding-top: var(--s-4);
   border-top: 1px solid color-mix(in srgb, var(--tinta) 22%, var(--coral));
@@ -1551,6 +1583,22 @@ main:focus,
   letter-spacing: 0.08em;
   line-height: 1.5;
   text-transform: uppercase;
+}
+
+.contact__sep {
+  opacity: 0.55;
+}
+
+.contact__handle {
+  text-transform: none;
+}
+
+@media (max-width: 380px) {
+  .contact__action .btn--lg {
+    padding-inline: 16px;
+    gap: 10px;
+    font-size: 0.9375rem;
+  }
 }
 
 /* ==========================================================================
@@ -1618,7 +1666,7 @@ main:focus,
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 10px;
   padding-left: 16px;
 }
 
@@ -1645,6 +1693,8 @@ main:focus,
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 24px;
+  min-height: 24px;
   color: var(--mute);
   font-family: var(--mono);
   font-size: 10px;
@@ -1706,6 +1756,35 @@ main:focus,
 
 .rail__link[aria-current="true"] .rail__dot {
   background: var(--coral-600);
+}
+
+/* Sobre el coral del cierre el riel invierte sus tintas para seguir legible. */
+.rail--on-coral .rail__link {
+  color: var(--tinta);
+}
+
+.rail--on-coral .rail__link[aria-current="true"] .rail__num {
+  color: var(--verde-900);
+}
+
+.rail--on-coral .rail__dot {
+  background: var(--tinta);
+}
+
+.rail--on-coral .rail__link[aria-current="true"] .rail__dot {
+  background: var(--verde-900);
+}
+
+.rail--on-coral .rail__track {
+  background: color-mix(in srgb, var(--tinta) 22%, var(--coral));
+}
+
+.rail--on-coral .rail__fill {
+  background: var(--verde-900);
+}
+
+.rail--on-coral .rail__link:focus-visible {
+  outline-color: var(--verde-900);
 }
 
 @media (max-width: 1199px) {
@@ -1819,7 +1898,7 @@ main:focus,
 
   .hero__name {
     margin-top: var(--s-6);
-    font-size: clamp(2.4rem, 16.3cqw, 8rem);
+    font-size: clamp(38px, 15.9cqw, 8rem);
   }
 
   .hero__headline {
