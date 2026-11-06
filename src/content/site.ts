@@ -155,8 +155,10 @@ export const site = {
         org: "Freelance",
         meta: "2021 — presente",
         points: [
-          "Identidades visuales, piezas gráficas digitales e interfaces centradas en el usuario con Figma.",
-          "Design Systems, flujos de navegación y prototipos de alta fidelidad listos para implementar en código.",
+          "Lideré y ejecuté briefs y directrices de diseño para más de 10 proyectos.",
+          "Gestioné las redes sociales de tres empresas con identidad corporativa propia, edición de vídeo y estrategia de retención de audiencia.",
+          "Creé identidades visuales, piezas gráficas digitales e interfaces centradas en el usuario en Figma.",
+          "Estructuré Design Systems, flujos de navegación y prototipos de alta fidelidad listos para implementar en código.",
         ],
       },
     ] satisfies readonly Milestone[],
