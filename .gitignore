@@ -2,7 +2,10 @@ node_modules/
 dist/
 .astro/
 .npm-cache/
-shots/probe-*.png
-explorations/_probe/
-explorations/agent-write-test.txt
 .DS_Store
+.audit/
+.debug/
+shots/debug-*
+shots/peek-*
+shots/probe-*
+shots/x-*

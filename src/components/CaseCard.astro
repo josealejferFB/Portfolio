@@ -1,0 +1,36 @@
+---
+import type { CaseSlot } from "../content/site";
+import { site, caseMailto } from "../content/site";
+import Cover from "./Cover.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  item: CaseSlot;
+}
+
+const { item } = Astro.props;
+const isProduction = item.status === "En producción";
+---
+
+<article class:list={["case", `case--${item.index}`]} data-reveal>
+  <div class="case__cover">
+    <Cover variant={item.cover} />
+  </div>
+  <div class="case__body">
+    <p class="case__meta mono">
+      <span>{item.index}</span>
+      <span class:list={["case__status", isProduction && "is-prod"]}>{item.status}</span>
+    </p>
+    <h3 class="case__title">{item.category}</h3>
+    {item.note && <p class="case__note">{item.note}</p>}
+    {item.stack.length > 0 && (
+      <ul class="case__stack">
+        {item.stack.map((tech) => <li>{tech}</li>)}
+      </ul>
+    )}
+    <a class="case__cta" href={caseMailto(item.category)}>
+      <span>{site.work.cta}</span>
+      <Icon name="arrowRight" size={16} />
+    </a>
+  </div>
+</article>

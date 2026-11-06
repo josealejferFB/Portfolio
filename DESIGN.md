@@ -64,8 +64,20 @@ nuevo. De C se toma solo una cosa: los círculos apilados y las capas que se cru
 siempre en esquinas, para que el scroll pueda separar el ribete del panel y volver a
 tocarlo. B se archiva porque su retícula fría diluía la firma del autor.
 
+De A se conserva también la firma del CV que casi se pierde: **JOSÉ en verde y
+FERNANDEZ en `--coral-700`**. El nombre entero es la tesis: dos capas, un criterio.
 Las tres exploraciones están en `explorations/`; la elegida se reconstruye en
 `src/` con el sistema real, no se copia el prototipo.
+
+## Accesibilidad del sistema
+
+El coral puro (2.78:1) no se usa como tinta. Sobre blanco, todo coral es `--coral-700`
+(4.89:1); sobre crema, 4.58:1; sobre coral, tinta (6.62:1) o verde-900 (5.18:1). El
+blanco al 72 % sobre verde queda en 4.90:1 para las etiquetas de 11 px. **Los discos de
+capítulo bajaron de `--coral-600` a `--coral-700`**: el numeral blanco de 12 px sobre
+coral-600 daba 3.64:1 y no pasaba AA; sobre coral-700 da 4.89:1. `--coral-600` queda
+reservado para puntos gráficos de 4–7 px (separadores, hitos), donde el requisito es
+3:1. Medición reproducible: `node scripts/audit-contrast.mjs` (18/18 pares).
 
 ## Tres decisiones explicadas
 

@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>José Fernandez — Portafolio 2026</title>
+  <link rel="stylesheet" href="../_shared/kit.css">
+  <style>
+    /* ==========================================================================
+       A · CARTEL EDITORIAL — hero
+       El CV como hoja: panel verde a sangre, ribete coral desplazado, nombre
+       a escala de cartel y el vacío del tercio superior como material.
+       ========================================================================== */
+
+    .hero {
+      --pie: clamp(24px, 4.4vw, 64px);
+      --rim-hero: calc(var(--rim) * 2);
+      display: grid;
+      grid-template-columns: 40.5% 1fr;
+      grid-template-rows: 1fr;
+      min-height: 100vh;
+      min-height: 100svh;
+      background: var(--papel);
+    }
+
+    /* ---------------------------------------------------------------------
+       Panel · a sangre por izquierda y pie; el ribete coral lo desborda arriba
+       --------------------------------------------------------------------- */
+    .panel {
+      grid-column: 1;
+      grid-row: 1;
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-top: var(--topbar);
+      padding: 0 clamp(24px, 4vw, 56px) var(--pie) var(--margen);
+      border-radius: 0 var(--r-panel) 0 0;
+      color: var(--papel);
+    }
+
+    .panel::before,
+    .panel::after {
+      content: "";
+      position: absolute;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    /* el ribete: misma forma, desplazada hacia arriba; asoma solo arriba y en la curva */
+    .panel::before {
+      inset: calc(-1 * var(--rim-hero)) 0 0 0;
+      background: var(--coral);
+    }
+
+    .panel::after {
+      inset: 0;
+      background: var(--verde);
+    }
+
+    .panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel__rule {
+      display: block;
+      inline-size: clamp(40px, 4vw, 56px);
+      block-size: 2px;
+      margin-bottom: clamp(20px, 3vh, 32px);
+      background: var(--coral);
+    }
+
+    .panel__tesis {
+      max-inline-size: 23ch;
+      font-size: clamp(1.375rem, 2.2vw, 2rem);
+      font-weight: 500;
+      line-height: 1.32;
+      letter-spacing: -0.02em;
+      color: var(--papel);
+    }
+
+    .panel__meta {
+      margin-top: clamp(32px, 5vh, 56px);
+      padding-top: 14px;
+      border-top: 1px solid var(--linea-oscura);
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 1.7;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--crema);
+    }
+
+    /* ---------------------------------------------------------------------
+       Columna de texto · empieza en el 44 %
+       --------------------------------------------------------------------- */
+    .main {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      padding: var(--topbar) var(--margen) var(--pie) 3.5vw;
+      container-type: inline-size;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.2vw, 16px);
+      font-size: var(--t-label);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: var(--track-label);
+      text-transform: uppercase;
+      color: var(--coral-700);
+    }
+
+    .kicker::before {
+      content: "";
+      flex: none;
+      inline-size: 8px;
+      block-size: 8px;
+      background: var(--coral);
+    }
+
+    .kicker__text {
+      white-space: nowrap;
+    }
+
+    .kicker__line {
+      flex: 1;
+      block-size: 1px;
+      background: var(--linea);
+    }
+
+    .name {
+      margin-top: clamp(22px, 3.2vh, 34px);
+      font-size: clamp(2.75rem, 15.7cqw, 9.25rem);
+      font-weight: 800;
+      line-height: var(--lh-display);
+      letter-spacing: var(--track-display);
+      text-transform: uppercase;
+      color: var(--verde);
+    }
+
+    .name__line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .name__line--fernandez {
+      color: var(--coral-700);
+    }
+
+    .role {
+      margin-top: clamp(18px, 2.6vh, 26px);
+      font-size: clamp(0.8125rem, 1.25vw, 1.1875rem);
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--verde);
+    }
+
+    .role span {
+      display: block;
+    }
+
+    .titular {
+      margin-top: clamp(26px, 5.2vh, 52px);
+      font-size: clamp(1.375rem, 2.8vw, 2.625rem);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--verde);
+    }
+
+    .titular span {
+      display: block;
+    }
+
+    .apoyo {
+      margin-top: clamp(16px, 2.4vh, 24px);
+      max-inline-size: 48ch;
+      font-size: clamp(0.9375rem, 1.35vw, 1.1875rem);
+      line-height: 1.55;
+      color: var(--mute);
+    }
+
+    /* ---------------------------------------------------------------------
+       Pie de la columna · la fila de CTA cierra el cartel por abajo
+       --------------------------------------------------------------------- */
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: clamp(18px, 2.4vw, 32px);
+      margin-top: auto;
+      padding-top: clamp(32px, 5vh, 56px);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-block-size: 48px;
+      padding: 0 22px;
+      border-radius: var(--r-xs);
+      background: var(--coral);
+      color: var(--tinta);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      line-height: 1;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background-color var(--d-1) var(--e-out);
+    }
+
+    .cta__arrow {
+      font-size: 15px;
+      line-height: 1;
+      letter-spacing: 0;
+      transition: transform var(--d-1) var(--e-out);
+    }
+
+    .cta:hover {
+      background: var(--coral-600);
+    }
+
+    .cta:hover .cta__arrow {
+      transform: translateX(3px);
+    }
+
+    .cta-alt {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 48px;
+      padding: 0 2px;
+      border-bottom: 2px solid var(--coral);
+      color: var(--verde);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color var(--d-1) var(--e-out);
+    }
+
+    .cta-alt:hover {
+      border-color: var(--coral-700);
+    }
+
+    /* ---------------------------------------------------------------------
+       Móvil · la hoja se apila: cartel arriba, panel verde al pie
+       --------------------------------------------------------------------- */
+    @media (max-width: 900px) {
+      .hero {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        min-height: 100svh;
+      }
+
+      .main {
+        padding: clamp(22px, 6vw, 32px) var(--margen) 0;
+      }
+
+      .name {
+        margin-top: clamp(22px, 4vh, 32px);
+      }
+
+      .titular {
+        margin-top: clamp(26px, 5vw, 40px);
+      }
+
+      .apoyo {
+        max-inline-size: 46ch;
+      }
+
+      .actions {
+        margin-top: clamp(26px, 5vh, 40px);
+        padding-top: 0;
+        justify-content: space-between;
+      }
+
+      .panel {
+        flex: 1 0 auto;
+        min-block-size: clamp(280px, 37svh, 360px);
+        margin-top: clamp(40px, 7vh, 56px);
+        padding: clamp(52px, 10vh, 88px) var(--margen) var(--pie);
+        border-radius: 0 max(var(--r-panel), 64px) 0 0;
+      }
+
+      .panel__tesis {
+        max-inline-size: 20ch;
+        font-size: clamp(1.375rem, 5.6vw, 1.75rem);
+      }
+    }
+
+    @media (max-width: 360px) {
+      .titular {
+        font-size: 1.25rem;
+      }
+
+      .cta {
+        padding: 0 16px;
+        gap: 10px;
+      }
+
+      .actions {
+        gap: 16px;
+      }
+
+      .panel__meta {
+        letter-spacing: 0.12em;
+        line-height: 1.9;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cta,
+      .cta__arrow,
+      .cta-alt {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="main">
+      <p class="kicker">
+        <span class="kicker__text">PORTAFOLIO — 2026</span>
+        <span class="kicker__line" aria-hidden="true"></span>
+      </p>
+
+      <h1 class="name">
+        <span class="name__line">JOSÉ</span>
+        <span class="name__line name__line--fernandez">FERNANDEZ</span>
+      </h1>
+
+      <p class="role">
+        <span>Desarrollador móvil &amp;</span>
+        <span>Diseñador UI/UX</span>
+      </p>
+
+      <p class="titular">
+        <span>Diseño la experiencia.</span>
+        <span>Escribo el código</span>
+        <span>que la sostiene.</span>
+      </p>
+
+      <p class="apoyo">Apps nativas y multiplataforma. Interfaces que se sienten antes de entenderse.</p>
+
+      <div class="actions">
+        <a class="cta" href="#trabajo">
+          Ver el trabajo
+          <span class="cta__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="cta-alt" href="#contacto">Hablemos</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <span class="panel__rule" aria-hidden="true"></span>
+      <p class="panel__tesis">Mantengo un equilibrio entre la lógica y la experiencia de usuario.</p>
+      <p class="panel__meta">San Juan de los Morros, VE · UTC−4</p>
+    </div>
+  </header>
+</body>
+</html>

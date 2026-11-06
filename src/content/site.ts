@@ -49,7 +49,6 @@ export const site = {
   roleDisplay: "DESARROLLADOR MÓVIL & DISEÑADOR UI/UX",
   email: "josealejfer@gmail.com",
   phone: "0412-442-0728",
-  phoneHref: "tel:+584124420728",
   handle: "@josealejfer",
   location: {
     city: "San Juan de los Morros",
@@ -63,7 +62,6 @@ export const site = {
     { name: "Español", level: "Nativo" },
     { name: "Inglés", level: "Intermedio · B2" },
   ],
-  profile: "+5 años en diseño · +7 meses en desarrollo móvil · +5 proyectos, 2 en producción",
   chapters: [
     { number: "01", id: "criterio", label: "El criterio" },
     { number: "02", id: "trayectoria", label: "Trayectoria" },
@@ -81,7 +79,6 @@ export const site = {
     ctaSecondary: { label: "Hablemos", href: "#contacto" },
     meta: "San Juan de los Morros, VE · UTC−4",
     panelKicker: "TESIS",
-    panelNote: "Diseño y código, en la misma persona. No en el mismo orden.",
   },
 
   criterion: {
@@ -94,16 +91,12 @@ export const site = {
       { value: "5", label: "proyectos, 2 en producción" },
     ] satisfies readonly Stat[],
     foot: "La capa verde es la lógica. El ribete coral es la empatía. Aquí se tocan.",
-    layers: {
-      green: "LÓGICA",
-      coral: "EMPATÍA",
-    },
+    layerLabel: "LÓGICA",
   },
 
   trajectory: {
     kicker: "TRAYECTORIA",
     title: "Lo que he hecho, sin adornos.",
-    note: "Experiencia y formación, en orden de lectura. Sin fechas que no estén en el CV.",
     experience: [
       {
         index: "01",
@@ -252,7 +245,8 @@ export const site = {
   footer: {
     madeBy: "Diseñado y construido por José Fernández.",
     system: "Montserrat, #215C50, #FF6D4D y demasiadas revisiones.",
-    copyright: "© 2026 · Volver arriba",
+    copyright: "© 2026",
+    backToTop: "Volver arriba",
   },
 
   seo: {

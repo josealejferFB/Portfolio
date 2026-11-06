@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>José Fernández — Portafolio 2026</title>
+  <link rel="stylesheet" href="../_shared/kit.css">
+  <style>
+    /* ------------------------------------------------------------------
+       B · LÁMINA SUIZA
+       Doce columnas. Siete de nombre, una vacía, cuatro de campo verde.
+       El coral no decora: es el ribete de la única forma.
+       ------------------------------------------------------------------ */
+
+    html { background: var(--papel); }
+
+    .sheet {
+      max-width: var(--ancho);
+      margin-inline: auto;
+      min-height: 100svh;
+      padding: var(--s-4) var(--margen) 0;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--gutter);
+      grid-template-rows: auto auto 1fr;
+    }
+
+    /* Ruler: one hairline per column, number under its left edge. */
+    .marks {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--gutter);
+    }
+
+    .marks span {
+      border-top: 1px solid var(--linea);
+      padding-top: var(--s-2);
+      font-family: var(--mono);
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: 0.06em;
+      color: var(--mute);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .masthead {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--s-2);
+      padding-block: 20px 14px;
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .kicker {
+      font-size: var(--t-label);
+      font-weight: 700;
+      letter-spacing: var(--track-label);
+      text-transform: uppercase;
+      color: var(--verde);
+      line-height: 1.4;
+    }
+
+    .meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--mute);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stage {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--gutter);
+      grid-template-rows: 1fr auto;
+      --stage-top: clamp(24px, 4.5vh, 40px);
+    }
+
+    .copy {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-block: var(--stage-top) var(--s-6);
+      min-width: 0;
+    }
+
+    .name-wrap {
+      container-type: inline-size;
+      width: 100%;
+    }
+
+    .name {
+      /* Fallback sin container queries: nunca desborda su columna. */
+      font-size: clamp(2.5rem, 8vw, 6.5rem);
+      font-size: 16cqw;
+      font-weight: 800;
+      line-height: var(--lh-display);
+      letter-spacing: var(--track-display);
+      text-transform: uppercase;
+      color: var(--verde);
+      white-space: nowrap;
+    }
+
+    .name span { display: block; }
+
+    .role {
+      margin-top: 20px;
+      font-size: clamp(0.6875rem, 1.2vw, 0.75rem);
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--verde);
+      max-width: 30ch;
+    }
+
+    .headline {
+      margin-top: var(--s-6);
+      font-size: clamp(1.375rem, 6.2vw, 2.375rem);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: var(--track-tight);
+      color: var(--tinta);
+      max-width: 24ch;
+      text-wrap: balance;
+    }
+
+    .support {
+      margin-top: var(--s-4);
+      font-size: clamp(1rem, 1.2vw, 1.0625rem);
+      line-height: 1.55;
+      letter-spacing: -0.005em;
+      color: var(--mute);
+      max-width: 40ch;
+    }
+
+    .actions {
+      width: 100%;
+      margin-top: var(--s-6);
+      padding-top: 14px;
+      border-top: 1px solid var(--verde);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 32px;
+    }
+
+    .action {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--verde);
+      padding-block: var(--s-1);
+      transition: color var(--d-1) var(--e-out);
+    }
+
+    .action:hover { color: var(--verde-700); }
+
+    .action-mark {
+      position: relative;
+      width: 22px;
+      height: 10px;
+      flex: none;
+      transition: transform var(--d-1) var(--e-out);
+    }
+
+    .action-mark::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 21px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .action-mark::after {
+      content: "";
+      position: absolute;
+      right: 1px;
+      top: 2px;
+      width: 6px;
+      height: 6px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .action:hover .action-mark { transform: translateX(4px); }
+
+    /* The only coral in the plate: a rim of the single green form. */
+    .panel {
+      position: relative;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      margin-top: var(--s-6);
+      min-height: clamp(230px, 30svh, 300px);
+      border-radius: var(--r-panel) var(--r-panel) 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--s-8) var(--s-6) var(--s-8);
+      color: var(--papel);
+    }
+
+    .panel::before,
+    .panel::after {
+      content: "";
+      position: absolute;
+      border-radius: inherit;
+    }
+
+    .panel::before {
+      inset: calc(-1 * var(--rim)) 0 0 0;
+      background: var(--coral);
+    }
+
+    .panel::after {
+      inset: 0;
+      background: var(--verde);
+    }
+
+    .panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-label {
+      display: flex;
+      align-items: center;
+      gap: var(--s-3);
+      margin-bottom: 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--papel);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .panel-label > span { opacity: 0.72; }
+
+    .panel-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--linea-oscura);
+    }
+
+    .panel-text {
+      font-size: clamp(1rem, 1.25vw, 1.125rem);
+      font-weight: 500;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      max-width: 30ch;
+      text-wrap: pretty;
+    }
+
+    @media (min-width: 1000px) {
+      .sheet {
+        padding-top: var(--s-6);
+      }
+
+      .masthead {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: var(--gutter);
+        align-items: baseline;
+        padding-block: var(--s-8) var(--s-4);
+      }
+
+      .kicker { grid-column: 1 / 6; }
+
+      .meta { grid-column: 9 / 13; }
+
+      .stage {
+        --stage-top: clamp(32px, 7vh, 64px);
+        grid-template-rows: 1fr;
+      }
+
+      .copy {
+        grid-column: 1 / 8;
+        grid-row: 1;
+        padding-block: var(--stage-top) clamp(32px, 5vh, 56px);
+      }
+
+      .role {
+        margin-top: var(--s-6);
+        font-size: 0.75rem;
+      }
+
+      .headline {
+        margin-top: clamp(40px, 6vh, 64px);
+        font-size: clamp(1.75rem, 2.6vw, 2.375rem);
+      }
+
+      .support {
+        margin-top: var(--s-6);
+        font-size: var(--t-body);
+      }
+
+      .actions {
+        margin-top: auto;
+        padding-top: var(--s-4);
+      }
+
+      .panel {
+        grid-column: 9 / 13;
+        grid-row: 1;
+        margin-top: var(--stage-top);
+        min-height: 0;
+        padding: clamp(32px, 3vw, 48px) clamp(24px, 2.5vw, 40px)
+          clamp(32px, 5vh, 56px);
+      }
+
+      .panel-text {
+        max-width: 26ch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="marks" aria-hidden="true">
+      <span>01</span><span>02</span><span>03</span><span>04</span>
+      <span>05</span><span>06</span><span>07</span><span>08</span>
+      <span>09</span><span>10</span><span>11</span><span>12</span>
+    </div>
+
+    <header class="masthead">
+      <p class="kicker">PORTAFOLIO — 2026</p>
+      <p class="meta">San Juan de los Morros, VE · UTC−4</p>
+    </header>
+
+    <main class="stage">
+      <div class="copy">
+        <div class="name-wrap">
+          <h1 class="name"><span>JOSÉ</span> <span>FERNANDEZ</span></h1>
+        </div>
+
+        <p class="role">DESARROLLADOR MÓVIL &amp;<br>DISEÑADOR UI/UX</p>
+
+        <p class="headline">Diseño la experiencia. Escribo el código que la sostiene.</p>
+
+        <p class="support">Apps nativas y multiplataforma. Interfaces que se sienten antes de entenderse.</p>
+
+        <div class="actions">
+          <a class="action" href="#trabajo">
+            <span class="action-label">Ver el trabajo</span>
+            <span class="action-mark" aria-hidden="true"></span>
+          </a>
+          <a class="action" href="#contacto">
+            <span class="action-label">Hablemos</span>
+            <span class="action-mark" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="Tesis">
+        <p class="panel-label"><span>TESIS</span></p>
+        <p class="panel-text">Mantengo un equilibrio entre la lógica y la experiencia de usuario.</p>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>

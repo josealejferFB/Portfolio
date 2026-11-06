@@ -1,0 +1,20 @@
+---
+import { site } from "../content/site";
+---
+
+<nav class="rail" aria-label="Capítulos del portafolio">
+  <ol class="rail__list">
+    {site.chapters.map((chapter) => (
+      <li class="rail__item">
+        <a class="rail__link" href={`#${chapter.id}`} data-rail-link={chapter.id}>
+          <span class="rail__dot" aria-hidden="true"></span>
+          <span class="rail__num">{chapter.number}</span>
+          <span class="rail__label">{chapter.label}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+  <span class="rail__track" aria-hidden="true">
+    <span class="rail__fill" data-rail-fill></span>
+  </span>
+</nav>

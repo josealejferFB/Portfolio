@@ -1,0 +1,24 @@
+---
+import type { Milestone } from "../content/site";
+
+interface Props {
+  milestone: Milestone;
+}
+
+const { milestone } = Astro.props;
+---
+
+<li class:list={["milestone", milestone.points.length > 0 && "milestone--exp"]} data-milestone data-index={milestone.index}>
+  <p class="milestone__meta mono">
+    <span class="milestone__index">{milestone.index}</span>
+    <span>{milestone.kind}</span>
+    <span class="milestone__when">{milestone.meta}</span>
+  </p>
+  <h3 class="milestone__title">{milestone.title}</h3>
+  <p class="milestone__org">{milestone.org}</p>
+  {milestone.points.length > 0 && (
+    <ul class="milestone__points">
+      {milestone.points.map((point) => <li>{point}</li>)}
+    </ul>
+  )}
+</li>

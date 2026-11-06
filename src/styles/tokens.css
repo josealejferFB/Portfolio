@@ -68,6 +68,7 @@
   --r-xl: 52px;
   --r-panel: clamp(40px, 12vw, 180px);
   --r-full: 999px;
+  --r-stage: clamp(48px, 7vw, 104px);
   --rim: clamp(10px, 1.1vw, 18px);
   --rim-tight: 5px;
 

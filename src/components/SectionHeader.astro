@@ -1,0 +1,22 @@
+---
+import Disc from "./Disc.astro";
+
+interface Props {
+  number: string;
+  kicker: string;
+  title: string;
+  id: string;
+  class?: string;
+}
+
+const { number, kicker, title, id, class: className } = Astro.props;
+---
+
+<header class:list={["shead", className]} data-reveal>
+  <div class="shead__meta">
+    <Disc number={number} />
+    <p class="shead__kicker label">{kicker}</p>
+  </div>
+  <h2 class="shead__title" id={id}>{title}</h2>
+  <slot />
+</header>

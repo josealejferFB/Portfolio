@@ -1,0 +1,18 @@
+---
+import { site } from "../content/site";
+import Icon from "./Icon.astro";
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__made">{site.footer.madeBy}</p>
+    <p class="footer__system">{site.footer.system}</p>
+    <p class="footer__end">
+      <span>{site.footer.copyright}</span>
+      <a class="footer__top" href="#inicio">
+        {site.footer.backToTop}
+        <Icon name="arrowUp" size={14} />
+      </a>
+    </p>
+  </div>
+</footer>
