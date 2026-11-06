@@ -66,6 +66,9 @@ tocarlo. B se archiva porque su retícula fría diluía la firma del autor.
 
 De A se conserva también la firma del CV que casi se pierde: **JOSÉ en verde y
 FERNANDEZ en `--coral-700`**. El nombre entero es la tesis: dos capas, un criterio.
+En Trabajo, NotiFast entra como caso destacado: la captura real de su landing en un marco
+neutro, con logo, métricas y enlace; las otras cinco fichas conservan las portadas
+abstractas para no mezclar el rojo/teal del producto con el sistema del sitio.
 Las tres exploraciones están en `explorations/`; la elegida se reconstruye en
 `src/` con el sistema real, no se copia el prototipo.
 
@@ -81,7 +84,9 @@ reservado para puntos gráficos de 4–7 px (separadores, hitos), donde el requi
 24×24 px, invierte sus tintas sobre el coral del cierre y su anillo de foco pasa a
 verde-900; el skip-link usa un anillo doble (blanco + coral) para no perderse ni sobre
 blanco ni sobre el panel verde. El email del cierre es un botón de copiar con nombre y
-rol correctos, y conserva un `mailto:` real como fallback sin JavaScript.
+rol correctos, y conserva un `mailto:` real como fallback sin JavaScript. La captura de
+NotiFast lleva alt descriptivo; su logo es decorativo junto al título; «Ver landing» y
+«notifast.pages.dev» avisan en su nombre accesible que abren pestaña nueva.
 
 ## Tres decisiones explicadas
 
@@ -94,12 +99,14 @@ rol correctos, y conserva un `mailto:` real como fallback sin JavaScript.
    del contenido; GSAP y Lenis solo añaden la capa de movimiento. Si el JS falla, no hay
    huecos ni texto invisible: la página se lee completa. Esto también protege el LCP y
    permite que el scroll sea siempre nativo.
-3. **Los cinco casos son slots honestos.** No hay capturas falsas ni nombres inventados:
-   la tarjeta muestra categoría, estado y el stack confirmado del CV —el del caso 01 sigue
-pendiente—, con una portada abstracta
-   compuesta en CSS. El CTA pide el caso completo por email y `CONTENT_TODO.md` dice
-   exactamente qué material falta. Prefiero cinco tarjetas honestas a cinco ficciones
-   bien maquetadas.
+3. **NotiFast es real; las otras cinco fichas son del CV, no inventadas.** NotiFast tiene
+   logo, captura de landing, métricas del CV y enlace público, y se presenta como caso
+   destacado con la captura en un marco neutro. Las otras cinco fichas usan títulos
+   descriptivos (Asistencia y geocercas, Asistencia Vial, Control de acceso, Robótica
+   educativa, Monitoreo atmosférico) y portadas abstractas en CSS hasta que José envíe los
+   nombres reales, estados, permisos y capturas. No hay capturas falsas ni clientes
+   inventados; el CTA pide el caso completo y `CONTENT_TODO.md` dice qué falta. Prefiero
+   una captura real y cinco fichas honestas a seis ficciones bien maquetadas.
 
 ## Antipatrones que este sistema evita
 

@@ -16,6 +16,15 @@ for (const width of viewports) {
   });
   await page.goto(URL, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
+  // Detenerse en Trabajo carga la imagen lazy de NotiFast antes de fotografiar.
+  await page.evaluate(() => {
+    const work = document.getElementById('trabajo');
+    if (work) window.scrollTo(0, work.offsetTop + 420);
+  });
+  await page.waitForTimeout(1500);
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(500);
   // Las capturas de página completa muestran el diseño en reposo: se fija el
   // estado final de la capa de movimiento para que el archivo sea determinista.
   await page.addStyleTag({
@@ -41,6 +50,13 @@ const reduced = await browser.newPage({
 });
 await reduced.goto(URL, { waitUntil: 'networkidle' });
 await reduced.evaluate(() => document.fonts.ready);
+await reduced.evaluate(() => {
+  const work = document.getElementById('trabajo');
+  if (work) window.scrollTo(0, work.offsetTop + 420);
+});
+await reduced.waitForTimeout(1500);
+await reduced.evaluate(() => window.scrollTo(0, 0));
+await reduced.waitForLoadState('networkidle');
 await reduced.waitForTimeout(500);
 await reduced.screenshot({ path: 'shots/reduced-motion.png', fullPage: true });
 await reduced.close();
@@ -67,7 +83,15 @@ const noJs = await browser.newPage({
   javaScriptEnabled: false,
 });
 await noJs.goto(URL, { waitUntil: 'networkidle' });
-await noJs.waitForTimeout(600);
+await noJs.waitForTimeout(400);
+// Sin JS se navega con teclado para disparar el lazy loading nativo.
+for (let i = 0; i < 8; i++) {
+  await noJs.keyboard.press('PageDown');
+  await noJs.waitForTimeout(240);
+}
+await noJs.waitForTimeout(900);
+await noJs.keyboard.press('Home');
+await noJs.waitForTimeout(500);
 await noJs.screenshot({ path: 'shots/no-js.png', fullPage: true });
 await noJs.close();
 

@@ -155,7 +155,7 @@ const noJsData = await noJs.evaluate(() => ({
   text: document.body.innerText.length,
   hasName: document.body.innerText.includes('FERNANDEZ'),
   hasContact: document.body.innerText.includes('HABLEMOS'),
-  hasExperience: document.body.innerText.includes('Desarrollador móvil multiplataforma'),
+  hasExperience: document.body.innerText.includes('Desarrollador móvil y diseñador UI/UX'),
   copyHref: document.querySelector('[data-copy-fallback]')?.getAttribute('href'),
   marqueeAnim: getComputedStyle(document.querySelector('[data-marquee-track]')).animationName,
   wordVisible: getComputedStyle(document.querySelector('[data-contact-word]')).clipPath,

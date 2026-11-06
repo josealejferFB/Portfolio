@@ -8,12 +8,14 @@ import StackedCircles from "../components/StackedCircles.astro";
 import TimelineItem from "../components/TimelineItem.astro";
 import Marquee from "../components/Marquee.astro";
 import CaseCard from "../components/CaseCard.astro";
+import NotiFastFeature from "../components/NotiFastFeature.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
 import { site, mailto } from "../content/site";
 
 const { hero, criterion, trajectory, craft, work, contact } = site;
 const milestones = [...trajectory.experience, ...trajectory.education];
+const milestoneTotal = String(milestones.length).padStart(2, "0");
 
 const person = {
   "@context": "https://schema.org",
@@ -136,7 +138,7 @@ const person = {
               />
               <div class="trajectory__counter" aria-hidden="true">
                 <span class="trajectory__current" data-traj-current>01</span>
-                <span class="trajectory__total mono">/ 05</span>
+                <span class="trajectory__total mono">/ {milestoneTotal}</span>
               </div>
               <p class="label trajectory__hint">{trajectory.counterHint}</p>
             </div>
@@ -204,6 +206,8 @@ const person = {
           <p class="work__intro" data-reveal>{work.body}</p>
         </div>
 
+        <NotiFastFeature item={work.featured} />
+
         <div class="cases">
           {work.cases.map((item) => <CaseCard item={item} />)}
         </div>
@@ -254,6 +258,14 @@ const person = {
             <span class="contact__handle">{site.handle}</span>
             <span class="contact__sep" aria-hidden="true">·</span>
             <span>{site.location.short}</span>
+            <span class="contact__sep" aria-hidden="true">·</span>
+            <a
+              class="contact__site"
+              href={site.website.href}
+              target="_blank"
+              aria-label={`Abrir ${site.website.label} en una pestaña nueva`}
+              rel="noopener noreferrer"
+            >{site.website.label}</a>
           </p>
         </div>
       </div>

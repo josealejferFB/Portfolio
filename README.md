@@ -1,8 +1,10 @@
 # José Fernández — Portafolio
 
-Sitio de una sola página para José Fernández, desarrollador móvil y diseñador UI/UX
-venezolano. El punto de partida no es una plantilla: es su currículum, usado como
-sistema de diseño.
+Sitio de una sola página para José Fernández, ingeniero de sistemas en último semestre,
+desarrollador móvil y diseñador UI/UX & gráfico venezolano. El punto de partida no es una
+plantilla: es su currículum 2026, usado como sistema de diseño. Incluye **NotiFast** —
+producto educativo propio con logo, captura de landing y enlace público— y cinco fichas
+más de proyectos del CV.
 
 > **La capa verde es la lógica. El ribete coral es la empatía.**
 > El scroll las separa y las vuelve a tocar.
@@ -40,24 +42,27 @@ El preview del entregable está levantado como job en segundo plano en
 
 ```
 /
-├── reference/                 # CV y recortes originales (no se tocan)
+├── reference/                 # CV original, CV 2026 y recortes (no se editan)
 ├── explorations/              # tres direcciones de arte + notas + capturas
 ├── src/
 │   ├── components/            # Panel, SectionHeader, Disc, Button, Chip, Marquee,
-│   │                          # TimelineItem, CaseCard, ChapterRail, Footer, Icon…
+│   │                          # TimelineItem, CaseCard, NotiFastFeature, ChapterRail,
+│   │                          # Footer, Icon…
 │   ├── layouts/Base.astro     # meta, fuentes, skip-link, OG
 │   ├── pages/index.astro      # los cinco actos + hero
 │   ├── content/site.ts        # fuente única de copy y datos
 │   ├── styles/tokens.css      # paleta, tipo, geometría, espacio, movimiento
 │   ├── styles/site.css        # sistema completo y responsive
 │   └── scripts/motion.ts      # capa GSAP + Lenis, aislada
-├── public/                    # favicon.svg, og.png, fonts/
+├── public/
+│   ├── projects/              # notifast-logo.webp, notifast-landing.jpg
+│   └── favicon.svg, og.png, fonts/
 ├── scripts/                   # shots, og, auditorías y captura de exploraciones
 ├── shots/                     # 320, 390, 768, 1024, 1440, 1920, reduced-motion,
-│                              # no-js, un acto por sección a 1440 y dos estados
-│                              # intermedios del scroll (hero y El criterio)
+│                              # no-js, un acto por sección a 1440, dos estados
+│                              # intermedios del scroll y tres capturas de zoom 200 %
 ├── DESIGN.md                  # las seis leyes, tokens y decisiones
-├── CONTENT_TODO.md            # lo que José debe enviar para cerrar los casos reales
+├── CONTENT_TODO.md            # fichas, permisos y capturas que faltan
 └── README.md
 ```
 
@@ -72,10 +77,13 @@ El preview del entregable está levantado como job en segundo plano en
    en HTML y CSS. GSAP y Lenis solo añaden movimiento: si el bundle no carga, los
    revelados no ocultan nada, la marquesina queda estática y el email sigue siendo un
    `mailto:`. `shots/no-js.png` lo demuestra.
-3. **Los cinco casos son slots honestos.** No hay nombres, clientes, capturas ni
-   métricas inventadas. Cada tarjeta muestra categoría, estado y stack reales del CV,
-   con una portada abstracta compuesta solo con CSS. El CTA pide el caso completo por
-   email y `CONTENT_TODO.md` dice exactamente qué falta.
+3. **NotiFast es el primer caso con material real; los otros cinco son fichas del CV.**
+   NotiFast tiene logo, captura de landing, métricas del CV y enlace público, y se
+   presenta como caso destacado. Las otras cinco fichas salen del CV 2026 con títulos
+   descriptivos —Asistencia y geocercas, Asistencia Vial, Control de acceso, Robótica
+   educativa, Monitoreo atmosférico— y portadas abstractas en CSS. No hay capturas
+   falsas: las métricas de NotiFast salen del CV y de su landing; lo que falta se pide
+   en `CONTENT_TODO.md`.
 
 ### Decisiones tomadas sin consultar
 
@@ -90,12 +98,25 @@ El preview del entregable está levantado como job en segundo plano en
   en las cinco; la diferencia la hace el contenido, no el padding.
 - **Sin selector de idioma ni modo oscuro a medias.** No hay segunda versión que traducir
   ni tema oscuro que mantener; añadirlos a medias sería peor que no tenerlos.
-- **El copy de Trabajo dice «categoría, estado y el stack confirmado», no «rol».** El
-  brief pedía «rol» en el párrafo pero las tarjetas muestran estado; se alineó la promesa
-  con lo que la tarjeta enseña, sin inventar roles ni stacks. El caso 01 no muestra stack
-  porque no está confirmado.
-- **Alcaraván aparece como «Empresa: …» en el caso 01, no como cliente.** Es el empleador
-  del CV; el nombre del proyecto/cliente queda pendiente de permiso en `CONTENT_TODO.md`.
+- **Trabajo pasa de cinco a seis proyectos y las fichas estrenan título, categoría,
+  estado, nota, stack y resumen.** NotiFast es el caso destacado; los otros cinco usan
+  los títulos descriptivos anteriores porque el CV no les da un nombre de producto. Se
+  cambian en `site.ts` cuando José los confirme.
+- **NotiFast se muestra con su captura real en un marco neutro.** La PNG original de la
+  landing (921 KB) se reencodeó a 1400×782 (109 KB, lazy); el rojo/teal del producto es
+  contenido, no una ampliación del sistema verde/coral.
+- **«En producción» en Asistencia y geocercas y en Control de acceso** viene del brief
+  anterior y de que Alcaraván es el empleo actual; queda por confirmar en
+  `CONTENT_TODO.md`. El resto usa los verbos del CV: «Desarrollada» / «Implementada».
+- **El rol visible y el SEO usan «Ingeniero de Sistemas · Desarrollador Móvil · Diseñador
+  UI/UX & Gráfico»**, tal como la cabecera del CV 2026. El 10.º semestre y el carácter de
+  estudiante aparecen en Criterio y Formación; si José prefiere «en formación», se cambia
+  en `site.ts`.
+- **Alcaraván aparece como «Empresa: …» en sus fichas, no como cliente.** Es el empleador
+  del CV; el nombre de cada producto y el permiso de publicación quedan pendientes.
+- **La web `notifast.pages.dev` entra en la ficha de NotiFast y en el pie de contacto.**
+  Es el único enlace externo además del email; ambos avisan en su nombre accesible que
+  abren pestaña nueva.
 - **El email es un botón real de copiar cuando existe Clipboard API.** Sin JavaScript (o si
   la API falla) el mismo hueco vuelve a ser un enlace `mailto:` real, no un botón inerte.
 - **El sitio se queda en local.** No hay dominio de producción todavía; `astro.config.mjs`
@@ -109,10 +130,11 @@ Con el build de producción servido en local:
 | Comprobación | Resultado | Límite |
 |---|---|---|
 | JS inicial gzip | **49.5 KB** | ≤ 110 KB |
-| CSS gzip | **8.6 KB** | ≤ 45 KB |
+| CSS gzip | **9.1 KB** | ≤ 45 KB |
 | Fuentes | **1 archivo, 37.1 KB** | ≤ 2 archivos, ≤ 70 KB |
-| HTML gzip | 4.7 KB | — |
-| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.76 s** | ≤ 2.0 s |
+| HTML gzip | 6.4 KB | — |
+| Imágenes | **2 archivos, 161 KB** (109 + 52), lazy y con `width`/`height` | no hay límite en §6 |
+| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.80 s** | ≤ 2.0 s |
 | CLS | **0.0009** | ≤ 0.02 |
 | Tareas largas durante el scroll | **ninguna** | ninguna > 80 ms |
 | Frames durante scroll programático | **p50 16.7 ms · p95 16.8 ms** | 60 fps |
@@ -121,13 +143,13 @@ Con el build de producción servido en local:
 | Zoom de texto 200 % | **0 px de desborde a 390/720/1440** | sin pérdida |
 | Errores de consola / red | **0** | 0 |
 | `prefers-reduced-motion` | sin marquesina, sin pinning, 0 revelados ocultos | — |
-| Sin JavaScript | nombre, contacto, experiencia y `mailto:` presentes | — |
+| Sin JavaScript | nombre, contacto, experiencia, NotiFast y `mailto:` presentes | — |
 
 El detalle reproducible está en `scripts/audit-contrast.mjs`,
 `scripts/audit-runtime.mjs` y `scripts/audit-zoom.mjs`. Dos matices honestos: el LCP
 mide el nombre aún recortado por su entrada de 720 ms (el nombre completo se pinta a
 ~1.25 s bajo 4G + CPU ×4, dentro del límite), y el arranque deja dos tareas de
-135–285 ms (≈35–70 ms en tiempo real). El presupuesto de §6 solo acota las tareas
+133–285 ms (≈33–71 ms en tiempo real). El presupuesto de §6 solo acota las tareas
 largas durante el scroll, donde no queda ninguna. Deuda conocida: con movimiento
 reducido el bundle de GSAP/Lenis (≈50 KB gzip) se descarga igualmente, aunque no se
 inicia ni anima nada.
@@ -148,22 +170,27 @@ inicia ni anima nada.
   en una región `aria-live="polite"` durante 1.2 s. Sin JavaScript (o sin Clipboard API)
   se renderiza un enlace `mailto:` con el nombre «Escribir a José Fernández», de modo que
   rol, nombre y acción coinciden en ambos modos.
+- NotiFast: la captura de la landing tiene alt descriptivo; el logo es decorativo junto
+  al título; «Ver landing» y «notifast.pages.dev» avisan en su nombre accesible que abren
+  una pestaña nueva.
 - Los números de los discos pasan AA después del cambio a coral-700; los puntos
   decorativos no comunican información por sí solos.
 - Cero texto blanco sobre coral. Sobre coral, tinta (6.62:1) o verde-900 (5.18:1).
 
 ## Cómo actualizar un caso real
 
-1. Edita el objeto `site.work.cases` en `src/content/site.ts`: nombre real, stack
-   confirmado, estado y (si existe) nota.
-2. En `src/components/Cover.astro`/`site.css`, la portada abstracta se mantiene salvo que
-   José envíe capturas reales con permiso; en ese caso se sustituye el arte, no se
-   inventan mockups.
-3. Actualiza `CONTENT_TODO.md` marcando lo recibido.
-4. `npm run build && npm run shots` y revisa las capturas antes de decir que está listo.
+1. Edita `site.work.featured` (NotiFast) o `site.work.cases` en `src/content/site.ts`:
+   título, categoría, estado, nota, resumen, stack, imagen/enlace.
+2. Para una captura real en una tarjeta, añade el campo `image` al `CaseSlot` y renderízalo
+   en `CaseCard` como hace `NotiFastFeature`; conserva `width`/`height` y `loading="lazy"`.
+3. Si cambia la landing de NotiFast, sustituye `public/projects/notifast-landing.jpg` por
+   otra de 1400×782 y reconstruye.
+4. Actualiza `CONTENT_TODO.md` marcando lo recibido.
+5. `npm run build && npm run shots` y revisa las capturas antes de decir que está listo.
 
 ## Créditos
 
 Diseñado y construido por José Fernández. Montserrat, `#215C50`, `#FF6D4D` y demasiadas
-revisiones. El copy y los datos provienen del CV y del brief aprobado; lo que falta está
-en `CONTENT_TODO.md`.
+revisiones. El copy y los datos provienen del CV 2026 (`reference/jose-cv-2026.txt`), del
+CV anterior y de la landing de NotiFast; el logo y la captura de NotiFast los aportó José.
+Lo que falta está en `CONTENT_TODO.md`.

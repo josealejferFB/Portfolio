@@ -9,7 +9,6 @@ interface Props {
 }
 
 const { item } = Astro.props;
-const isProduction = item.status === "En producción";
 ---
 
 <article class:list={["case", `case--${item.index}`]} data-reveal>
@@ -18,17 +17,18 @@ const isProduction = item.status === "En producción";
   </div>
   <div class="case__body">
     <p class="case__meta mono">
-      <span>{item.index}</span>
-      <span class:list={["case__status", isProduction && "is-prod"]}>{item.status}</span>
+      <span>{item.index} · {item.category}</span>
+      <span class:list={["case__status", item.live && "is-prod"]}>{item.status}</span>
     </p>
-    <h3 class="case__title">{item.category}</h3>
+    <h3 class="case__title">{item.title}</h3>
     {item.note && <p class="case__note">{item.note}</p>}
+    <p class="case__summary">{item.summary}</p>
     {item.stack.length > 0 && (
       <ul class="case__stack">
         {item.stack.map((tech) => <li>{tech}</li>)}
       </ul>
     )}
-    <a class="case__cta" href={caseMailto(item.category)}>
+    <a class="case__cta" href={caseMailto(item.title)}>
       <span>{site.work.cta}</span>
       <Icon name="arrowRight" size={16} />
     </a>

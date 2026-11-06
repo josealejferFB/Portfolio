@@ -30,7 +30,7 @@ body{width:1200px;height:630px;background:#fff;font-family:"Montserrat Variable"
 <div class="copy">
   <p class="kicker">PORTAFOLIO — 2026</p>
   <h1 class="name">JOSÉ<em>FERNANDEZ</em></h1>
-  <p class="role">Desarrollador móvil &amp; diseñador UI/UX</p>
+  <p class="role">Ingeniero de sistemas · Desarrollador móvil<br>Diseñador UI/UX &amp; gráfico</p>
   <p class="lead">Diseño la experiencia. Escribo el código que la sostiene.</p>
 </div>
 <p class="base">San Juan de los Morros, VE · UTC−4</p>

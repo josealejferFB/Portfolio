@@ -1,0 +1,45 @@
+JOSÉ FERNÁNDEZ
+Ingeniero de Sistemas | Desarrollador Móvil | Diseñador UI/UX & Gráfico
+San Juan de los Morros, Guárico, Venezuela • 0412-442-0728 • josealejfer@gmail.com • notifast.pages.dev
+
+RESUMEN PROFESIONAL
+Estudiante de último semestre de Ingeniería de Sistemas (10mo) con 5 años de trayectoria en Diseño Gráfico y UI/UX, y 9 meses de experiencia profesional dedicada al Desarrollo Móvil Nativo y Multiplataforma. Experiencia demostrada en la construcción de sistemas empresariales seguros (Zero Trust), soluciones de control de acceso IoT e innovaciones en tecnología educativa (NotiFast). Sólido enfoque en arquitectura limpia, sistemas de diseño escalables y optimización de ciclos de desarrollo mediante metodologías ágiles e integración de IA.
+
+HABILIDADES TÉCNICAS (STACK TECNOLÓGICO)
+- Desarrollo Móvil Nativo (Android): Kotlin (v2.0+), Jetpack Compose (Material 3), XML, Android SDK (minSdk 26 / targetSdk 36), Dagger Hilt, Room Database (SQLite local), Coroutines & Flow, Vico Charts.
+- Desarrollo Multiplataforma y Web: React Native, React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, despliegue en Cloudflare Pages.
+- IoT, Hardware y Conectividad: C++ (Firmware para ESP32), Arduino CLI, WebSockets, integración con ERP (Odoo), Firebase, Google Drive API.
+- Arquitectura, Testing y Metodologías: Clean Architecture, Patrón MVI Estricto, Arquitectura Offline-First, Zero Trust, Unit Testing (JUnit), Scrum, Gitflow, Desarrollo asistido por IA.
+- Diseño UI/UX y Gráfico (5 años de experiencia): Figma, Sistemas de Diseño (Design Systems), Prototipado Interactivo, Wireframing, Diseño de Interfaces Móviles, Identidad Visual.
+- Herramientas e IDEs: Android Studio, Git, GitHub.
+
+EXPERIENCIA PROFESIONAL
+Sistemas Tecnológicos Alcaraván — Desarrollador Móvil y Diseñador UI/UX
+San Juan de los Morros, Venezuela | Febrero 2026 – Presente
+- Arquitecturó y desarrolló una aplicación móvil multiplataforma (React Native) bajo esquema de seguridad Zero Trust, integrada con Odoo para la gestión y rastreo de asistencia mediante geocercas de más de 200 empleados a nivel nacional.
+- Construyó un sistema integral de control de acceso físico escalable, abarcando una aplicación administrativa, una app nativa Android para usuarios y el desarrollo de firmware en C++ (ESP32) para la apertura automatizada de compuertas.
+- Desarrolló una aplicación nativa en Android (Kotlin, Jetpack Compose) enfocada en robótica educativa para el Ministerio de Ciencia y Tecnología, implementando compilación y flasheo remoto en tiempo real vía WebSockets y Arduino CLI.
+- Implementó una solución móvil para monitoreo atmosférico IoT, integrando visualización precisa de telemetría (temperatura, humedad y presión) mediante la librería Vico.
+
+Diseñador Gráfico y UI/UX Independiente (Freelance) — Diseñador Gráfico & UI/UX
+Venezuela | 2021 – Presente (5 años)
+- Creación de identidades visuales, piezas gráficas digitales y diseño de interfaces centradas en el usuario (UI/UX) utilizando Figma para productos digitales y aplicaciones móviles.
+- Estructuración de sistemas de diseño (Design Systems), flujos de navegación y prototipos de alta fidelidad listos para su implementación en código.
+
+PROYECTOS DESTACADOS
+NotiFast – Hub Educativo y Cuaderno Académico Inteligente (Autoría Propia)
+Stack: Kotlin 2.0, Jetpack Compose (Material 3), Room SQLite, Hilt, Clean Architecture, MVI, Offline-First
+- Diseñó (Design System propio con 26 pantallas) y desarrolló de forma integral una aplicación móvil nativa para Android (100% Offline-First) orientada a la gestión académica estudiantil, respaldada por una suite de 805 pruebas unitarias con 100% de éxito.
+- Implementó un motor local de extracción de datos para importar horarios automáticamente desde comprobantes de inscripción en PDF (DACE UNERG), junto con un bloc de apuntes por bloques con soporte para ecuaciones en LaTeX, notas de voz y pizarra táctil.
+- Desarrolló un simulador y dashboard predictivo de calificaciones con soporte multipaís (escalas de 0-20, 0-10, porcentual y GPA), generador automatizado de portadas normativas (APA/IEEE) exportables a DOCX y compartición P2P mediante paquetes .notifast y códigos QR sin conexión.
+
+Ecosistema de Asistencia Vial
+Stack: Android Nativo, Kotlin, Diseño UI/UX (Figma)
+- Diseñó la experiencia de usuario y desarrolló una plataforma logística móvil para conectar en tiempo real a conductores varados con redes de proveedores de servicios y asistencia mecánica.
+
+EDUCACIÓN Y CERTIFICACIONES
+- Ingeniería de Sistemas (Último semestre - 10mo) | Universidad Nacional Experimental Rómulo Gallegos (UNERG) — Actualmente
+- Especialización y Desarrollo Móvil con React Native | Udemy — 2025 – 2026
+- Android, Kotlin y Jetpack Compose Avanzado | Udemy — 2026
+- React Native para Principiantes | Midudev — 2025
+- English B2 Full Route | Platzi — 2022

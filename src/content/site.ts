@@ -1,8 +1,8 @@
 /**
  * FUENTE ÚNICA DE COPY Y DATOS DE CONTENIDO.
- * Nada inventado: el texto proviene del brief aprobado y de reference/jose-cv.txt.
- * Lo que falta se marca en CONTENT_TODO.md, no se rellena. Las etiquetas de
- * control (saltar, capítulos, pausar) viven con su componente, no aquí.
+ * Actualizado con el CV 2026 y los activos reales de NotiFast. Nada inventado:
+ * lo que no está en reference/jose-cv-2026.txt se marca en CONTENT_TODO.md.
+ * Las etiquetas de control (saltar, capítulos, pausar) viven con su componente.
  */
 
 export interface Stat {
@@ -24,15 +24,49 @@ export interface SkillGroup {
   readonly skills: readonly string[];
 }
 
+export type CoverVariant = "plataforma" | "sistema" | "nativa" | "educativa" | "iot";
+
+export interface CaseMedia {
+  readonly src: string;
+  readonly alt: string;
+  readonly width: number;
+  readonly height: number;
+  readonly logo: { readonly src: string; readonly width: number; readonly height: number };
+}
+
+export interface CaseLink {
+  readonly label: string;
+  readonly href: string;
+  readonly external?: boolean;
+}
+
+export interface FeaturedCase {
+  readonly index: string;
+  readonly title: string;
+  readonly category: string;
+  readonly status: string;
+  readonly live: boolean;
+  readonly note: string;
+  readonly tagline: string;
+  readonly summary: string;
+  readonly facts: readonly Stat[];
+  readonly stack: readonly string[];
+  readonly media: CaseMedia;
+  readonly link: CaseLink;
+}
+
 export interface CaseSlot {
   readonly index: string;
+  readonly title: string;
   readonly category: string;
-  readonly status: "En producción" | "En desarrollo";
-  readonly stack: readonly string[];
+  readonly status: string;
+  readonly live: boolean;
   readonly note?: string;
-  readonly cover: "plataforma" | "nativa" | "educativa" | "iot" | "sistema";
-  /** Los cinco casos son slots honestos: José debe enviar el material real. */
-  readonly draft: true;
+  readonly summary: string;
+  readonly stack: readonly string[];
+  readonly cover: CoverVariant;
+  /** Marcado interno: los datos vienen del CV pero aún no hay capturas reales. */
+  readonly draft: boolean;
 }
 
 export interface Chapter {
@@ -45,11 +79,13 @@ export const site = {
   lang: "es",
   name: "José Fernández",
   nameDisplay: ["JOSÉ", "FERNANDEZ"],
-  role: "Desarrollador móvil & diseñador UI/UX",
-  roleDisplay: "DESARROLLADOR MÓVIL & DISEÑADOR UI/UX",
+  role: "Ingeniero de Sistemas · Desarrollador Móvil · Diseñador UI/UX & Gráfico",
+  roleDisplay:
+    "INGENIERO DE SISTEMAS · DESARROLLADOR MÓVIL\nDISEÑADOR UI/UX & GRÁFICO",
   email: "josealejfer@gmail.com",
   phone: "0412-442-0728",
   handle: "@josealejfer",
+  website: { label: "notifast.pages.dev", href: "https://notifast.pages.dev" },
   location: {
     city: "San Juan de los Morros",
     region: "Guárico",
@@ -84,11 +120,11 @@ export const site = {
   criterion: {
     kicker: "EL CRITERIO",
     title: "La lógica y la empatía no compiten: se afinan.",
-    body: "Más de cinco años diseñando y siete meses llevando ese diseño a código móvil nativo y multiplataforma. No elijo bando: la app tiene que sentirse bien y sostenerse. Cada pantalla que entrego tiene una razón, y cada razón tiene una pantalla.",
+    body: "Cinco años diseñando y nueve meses llevando ese diseño a código móvil nativo y multiplataforma. Estoy en el último semestre de Ingeniería de Sistemas. He construido sistemas Zero Trust, control de acceso IoT y una app educativa propia. No elijo bando: la app tiene que sentirse bien y sostenerse. Cada pantalla que entrego tiene una razón, y cada razón tiene una pantalla.",
     stats: [
       { value: "+5", label: "años diseñando" },
-      { value: "+7", label: "meses programando" },
-      { value: "5", label: "proyectos, 2 en producción" },
+      { value: "+9", label: "meses programando" },
+      { value: "10.º", label: "semestre en curso" },
     ] satisfies readonly Stat[],
     foot: "La capa verde es la lógica. El ribete coral es la empatía. Aquí se tocan.",
     layerLabel: "LÓGICA",
@@ -102,39 +138,43 @@ export const site = {
       {
         index: "01",
         kind: "Experiencia",
-        title: "Desarrollador móvil multiplataforma",
+        title: "Desarrollador móvil y diseñador UI/UX",
         org: "Sistemas Tecnológicos Alcaraván",
-        meta: "7 meses",
+        meta: "Feb 2026 — presente",
         points: [
-          "Diseño de imágenes y vectores para la página web.",
-          "Edición de vídeos de usabilidad.",
-          "Tutorías de matemática en aulas universitarias.",
+          "Arquitecté y desarrollé una app multiplataforma (React Native) con Zero Trust y Odoo: asistencia con geocercas para más de 200 empleados a nivel nacional.",
+          "Construí un sistema de control de acceso físico: app administrativa, app Android nativa y firmware ESP32 en C++ para la apertura automatizada de compuertas.",
+          "Desarrollé una app Android de robótica educativa para el Ministerio de Ciencia y Tecnología, con compilación y flasheo remoto en tiempo real vía WebSockets y Arduino CLI.",
+          "Implementé una solución móvil de monitoreo atmosférico IoT con telemetría de temperatura, humedad y presión visualizada con Vico.",
+        ],
+      },
+      {
+        index: "02",
+        kind: "Experiencia",
+        title: "Diseñador gráfico y UI/UX independiente",
+        org: "Freelance",
+        meta: "2021 — presente",
+        points: [
+          "Identidades visuales, piezas gráficas digitales e interfaces centradas en el usuario con Figma.",
+          "Design Systems, flujos de navegación y prototipos de alta fidelidad listos para implementar en código.",
         ],
       },
     ] satisfies readonly Milestone[],
     education: [
       {
-        index: "02",
-        kind: "Formación",
-        title: "Ingeniería en Informática",
-        org: "UNERG",
-        meta: "9.º semestre · en curso",
-        points: [],
-      },
-      {
         index: "03",
         kind: "Formación",
-        title: "English B2 Full Route",
-        org: "Platzi",
-        meta: "2022",
+        title: "Ingeniería de Sistemas",
+        org: "UNERG",
+        meta: "10.º semestre · en curso",
         points: [],
       },
       {
         index: "04",
         kind: "Formación",
-        title: "React Native para Principiantes",
-        org: "Midudev",
-        meta: "2025",
+        title: "Especialización y Desarrollo Móvil con React Native",
+        org: "Udemy",
+        meta: "2025 – 2026",
         points: [],
       },
       {
@@ -145,6 +185,22 @@ export const site = {
         meta: "2026",
         points: [],
       },
+      {
+        index: "06",
+        kind: "Formación",
+        title: "React Native para Principiantes",
+        org: "Midudev",
+        meta: "2025",
+        points: [],
+      },
+      {
+        index: "07",
+        kind: "Formación",
+        title: "English B2 Full Route",
+        org: "Platzi",
+        meta: "2022",
+        points: [],
+      },
     ] satisfies readonly Milestone[],
   },
 
@@ -152,85 +208,216 @@ export const site = {
     kicker: "CRAFT",
     title: "La caja de herramientas, en orden.",
     line: "No colecciono frameworks. Elijo la herramienta que el problema pide.",
-    strengthsLabel: "Fortalezas",
-    marqueeLabel: "HERRAMIENTAS",
     groups: [
-      { label: "Móvil", skills: ["Kotlin", "Jetpack Compose", "React Native", "XML"] },
-      { label: "Web", skills: ["HTML", "Tailwind", "JavaScript", "React"] },
-      { label: "Diseño", skills: ["Figma", "Inkscape"] },
-      { label: "Proceso", skills: ["Gitflow", "Planificación activa", "Prompt"] },
-      { label: "Extras", skills: ["Arduino", "C++"] },
+      {
+        label: "Móvil",
+        skills: [
+          "Kotlin 2.0+",
+          "Jetpack Compose",
+          "Material 3",
+          "XML",
+          "Android SDK 26–36",
+          "Dagger Hilt",
+          "Room",
+          "Coroutines & Flow",
+          "Vico Charts",
+        ],
+      },
+      {
+        label: "Web",
+        skills: [
+          "React Native",
+          "React",
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Tailwind",
+          "Cloudflare Pages",
+        ],
+      },
+      {
+        label: "IoT",
+        skills: [
+          "C++ · ESP32",
+          "Arduino CLI",
+          "WebSockets",
+          "Odoo",
+          "Firebase",
+          "Google Drive API",
+        ],
+      },
+      {
+        label: "Arquitectura",
+        skills: [
+          "Clean Architecture",
+          "MVI",
+          "Offline-First",
+          "Zero Trust",
+          "JUnit",
+          "Scrum",
+          "Gitflow",
+          "IA asistida",
+        ],
+      },
+      {
+        label: "Diseño",
+        skills: [
+          "Figma",
+          "Design Systems",
+          "Prototipado",
+          "Wireframing",
+          "UI móvil",
+          "Identidad visual",
+        ],
+      },
+      {
+        label: "Herramientas",
+        skills: ["Android Studio", "Git", "GitHub"],
+      },
     ] satisfies readonly SkillGroup[],
     strengths: [
       "Aplicaciones IoT",
       "Desarrollo móvil nativo",
       "Multiplataforma",
-      "Apps educativas",
-      "Gitflow y planificación activa",
+      "Sistemas Zero Trust",
+      "Clean Architecture",
+      "Design Systems",
+      "Producto educativo",
     ],
+    marqueeLabel: "HERRAMIENTAS",
     marquee: [
       "Kotlin",
       "Jetpack Compose",
       "React Native",
-      "XML",
-      "HTML",
+      "React",
       "Tailwind",
       "JavaScript",
-      "React",
-      "Figma",
-      "Inkscape",
-      "Gitflow",
-      "Prompt",
-      "Arduino",
       "C++",
+      "ESP32",
+      "Arduino CLI",
+      "WebSockets",
+      "Odoo",
+      "Firebase",
+      "Room",
+      "Hilt",
+      "Clean Architecture",
+      "Zero Trust",
+      "Figma",
+      "Design Systems",
+      "Cloudflare",
+      "Gitflow",
     ],
   },
 
   work: {
     kicker: "TRABAJO",
-    title: "Cinco proyectos. Dos en producción.",
-    body: "Cinco proyectos trabajados, dos ya viven en producción. Lo que sigue es el mapa: categoría, estado y el stack confirmado. Sin métricas que no pueda demostrar.",
+    title: "Seis proyectos. Del diseño al código.",
+    body: "Seis proyectos construidos: un producto educativo publicado, sistemas empresariales y soluciones IoT. Lo que sigue es el mapa: categoría, estado y el stack confirmado. Sin métricas que no pueda demostrar.",
     cta: "Pedir el caso completo",
+    featured: {
+      index: "01",
+      title: "NotiFast",
+      category: "App móvil nativa",
+      status: "Publicada · v1.0 RC",
+      live: true,
+      note: "Autoría propia",
+      tagline: "Hub educativo y cuaderno académico inteligente.",
+      summary:
+        "Diseñé y desarrollé la app completa: importación de horarios DACE desde PDF, apuntes con LaTeX, voz y pizarra, simulador de notas multipaís y portadas APA/IEEE.",
+      facts: [
+        { value: "26", label: "pantallas" },
+        { value: "805", label: "pruebas unitarias" },
+        { value: "100 %", label: "offline" },
+      ] satisfies readonly Stat[],
+      stack: [
+        "Kotlin 2.0",
+        "Jetpack Compose",
+        "Room",
+        "Hilt",
+        "Clean Architecture",
+        "MVI",
+        "Offline-First",
+      ],
+      media: {
+        src: "/projects/notifast-landing.jpg",
+        alt: "Landing de NotiFast con el titular «Todo tu semestre, en calma y sin conexión» y una vista de la app en Android.",
+        width: 1400,
+        height: 782,
+        logo: {
+          src: "/projects/notifast-logo.webp",
+          width: 750,
+          height: 750,
+        },
+      },
+      link: {
+        label: "Ver landing",
+        href: "https://notifast.pages.dev",
+        external: true,
+      },
+    } satisfies FeaturedCase,
     cases: [
       {
-        index: "01",
+        index: "02",
+        title: "Asistencia y geocercas",
         category: "App multiplataforma",
         status: "En producción",
-        stack: [],
+        live: true,
         note: "Empresa: Sistemas Tecnológicos Alcaraván",
+        summary:
+          "App React Native con seguridad Zero Trust e integración con Odoo: rastreo de asistencia con geocercas para más de 200 empleados a nivel nacional.",
+        stack: ["React Native", "Zero Trust", "Odoo", "Geocercas"],
         cover: "plataforma",
         draft: true,
       },
       {
-        index: "02",
-        category: "App móvil nativa",
-        status: "En producción",
-        stack: ["Kotlin", "Jetpack Compose", "XML"],
-        cover: "nativa",
-        draft: true,
-      },
-      {
         index: "03",
-        category: "Apps educativas",
-        status: "En desarrollo",
-        stack: ["React Native", "IoT"],
-        cover: "educativa",
+        title: "Asistencia Vial",
+        category: "App móvil nativa",
+        status: "Desarrollada",
+        live: false,
+        summary:
+          "Plataforma logística móvil que conecta en tiempo real a conductores varados con proveedores de asistencia mecánica.",
+        stack: ["Kotlin", "Android", "Figma"],
+        cover: "sistema",
         draft: true,
       },
       {
         index: "04",
-        category: "Aplicación IoT",
-        status: "En desarrollo",
-        stack: ["Arduino", "C++"],
-        cover: "iot",
+        title: "Control de acceso",
+        category: "Sistema IoT",
+        status: "En producción",
+        live: true,
+        note: "Empresa: Sistemas Tecnológicos Alcaraván",
+        summary:
+          "App administrativa, app Android y firmware ESP32 para la apertura automatizada de compuertas.",
+        stack: ["Kotlin", "ESP32", "C++", "WebSockets"],
+        cover: "nativa",
         draft: true,
       },
       {
         index: "05",
-        category: "Interfaz / sistema",
-        status: "En desarrollo",
-        stack: ["Figma", "Inkscape"],
-        cover: "sistema",
+        title: "Robótica educativa",
+        category: "App educativa",
+        status: "Desarrollada",
+        live: false,
+        note: "Empresa: Alcaraván · Ministerio de Ciencia y Tecnología",
+        summary:
+          "App Android para robótica educativa con compilación y flasheo remoto en tiempo real vía WebSockets y Arduino CLI.",
+        stack: ["Kotlin", "Jetpack Compose", "Arduino CLI", "WebSockets"],
+        cover: "educativa",
+        draft: true,
+      },
+      {
+        index: "06",
+        title: "Monitoreo atmosférico",
+        category: "Aplicación IoT",
+        status: "Implementada",
+        live: false,
+        note: "Empresa: Sistemas Tecnológicos Alcaraván",
+        summary:
+          "Telemetría IoT de temperatura, humedad y presión, visualizada con Vico Charts.",
+        stack: ["Kotlin", "Vico", "IoT"],
+        cover: "iot",
         draft: true,
       },
     ] satisfies readonly CaseSlot[],
@@ -252,19 +439,18 @@ export const site = {
   },
 
   seo: {
-    title: "José Fernández — Desarrollador Móvil & Diseñador UI/UX",
+    title:
+      "José Fernández — Ingeniero de Sistemas · Desarrollador Móvil · Diseñador UI/UX & Gráfico",
     description:
-      "Apps nativas y multiplataforma. Interfaces que se sienten antes de entenderse. Portafolio de José Fernández, desarrollador móvil y diseñador UI/UX venezolano.",
+      "Ingeniero de Sistemas en último semestre y desarrollador móvil. Apps nativas y multiplataforma, sistemas Zero Trust, IoT y NotiFast. Portafolio de José Fernández, San Juan de los Morros, Venezuela.",
   },
 } as const;
 
 export type Site = typeof site;
 
 /** mailto honesto: el asunto identifica el caso sin inventar su contenido. */
-export const caseMailto = (category: string): string =>
-  `mailto:${site.email}?subject=${encodeURIComponent(
-    `Caso completo — ${category}`
-  )}`;
+export const caseMailto = (subject: string): string =>
+  `mailto:${site.email}?subject=${encodeURIComponent(`Caso completo — ${subject}`)}`;
 
 export const mailto = `mailto:${site.email}?subject=${encodeURIComponent(
   "Hola José — hablemos de una app"

@@ -3,7 +3,8 @@
 > Léelo completo antes de escribir una línea. Es el ADN del proyecto en 40 líneas.
 
 ## Autor y tesis
-José Fernández · Desarrollador Móvil & Diseñador UI/UX · San Juan de los Morros, VE · UTC−4.
+José Fernández · Ingeniero de Sistemas · Desarrollador Móvil · Diseñador UI/UX & Gráfico
+San Juan de los Morros, VE · UTC−4 · Fuente de contenido: `reference/jose-cv-2026.txt` y NotiFast.
 Dos capas, un criterio: **la capa verde es la lógica; el ribete coral es la empatía**.
 Tono: primera persona, frases cortas, cero épica. Nada inventado.
 

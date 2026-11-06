@@ -1,142 +1,164 @@
-# CONTENT_TODO · lo que falta para cerrar el portafolio
+# CONTENT_TODO · actualización CV 2026 + NotiFast
 
-El sitio no inventa proyectos, clientes, métricas ni capturas. Los cinco casos de
-**Trabajo** son slots honestos marcados `draft: true` en `src/content/site.ts`; muestran
-categoría, estado y el stack confirmado del CV. Para convertirlos en casos reales, José debe
-enviar lo siguiente. Todo lo marcado como «confirmar» es un dato que hoy no está en el
-CV y que no se ha rellenado por suposición.
+El sitio ya usa el **CV 2026** (`reference/jose-cv-2026.txt`) y los activos reales de
+**NotiFast** (`public/projects/notifast-logo.webp` y `notifast-landing.jpg`). NotiFast es
+el caso destacado con logo, captura de landing, métricas del CV y enlace público. Los
+otros cinco proyectos salen del CV, pero varios usan **títulos descriptivos** y **portadas
+abstractas** hasta recibir el material definitivo. Nada de esto se inventa: lo que falta
+se pide aquí.
 
 ---
 
-## 1 · Los cinco casos
+## 1 · NotiFast · ya integrado, falta confirmar
 
-Para **cada** slot, enviar este bloque rellenado (copiar/pegar cinco veces):
+Recibido y publicado:
+
+- [x] Logo real → `public/projects/notifast-logo.webp` (750×750).
+- [x] Captura de la landing → `public/projects/notifast-landing.jpg` (1400×782, recortada
+      de la PNG original de 1836×1026; 921 KB → 109 KB).
+- [x] Stack, 26 pantallas, 805 pruebas unitarias, 100 % offline, autoría propia, APK v1.0 RC
+      y `notifast.pages.dev`, tomados del CV y de la propia landing.
+- [x] Enlace del proyecto a https://notifast.pages.dev.
+
+Confirmar:
+
+- [ ] ¿El logo y la captura son de tu autoría y se pueden publicar en el portafolio?
+      (Entiendo que sí: NotiFast es autoría propia).
+- [ ] ¿El estado correcto es **«Publicada · v1.0 RC»** o prefieres «En producción» /
+      «Beta» / «En desarrollo»?
+- [ ] ¿Las **26 pantallas**, las **805 pruebas** y el **100 % offline** siguen siendo
+      exactos? ¿Hay una versión posterior a la v1.0 RC?
+- [ ] ¿La URL `https://notifast.pages.dev` es la definitiva?
+- [ ] Si actualizas la landing, envíame una captura 1400×782 (o la PNG original) y la
+      sustituyo; el CSS ya está preparado.
+
+---
+
+## 2 · Los otros cinco proyectos
+
+Todos salen del CV 2026, pero algunos **no tienen nombre de producto** en el CV y usan un
+título descriptivo. No inventé nombres de cliente ni capturas. Completar por ficha:
 
 ```
-Caso 01 · App multiplataforma
-Nombre real del proyecto:
-Una frase de qué hace (máx. 140 caracteres):
+Proyecto:
+Nombre real del producto (o confirmar el descriptivo):
+Cliente / empresa / institución y permiso para nombrarlo:
+Una frase de qué hace:
 Rol exacto de José:
 Stack confirmado:
-Estado: en producción / en desarrollo / pausado
-Año o periodo (opcional, solo si es exacto):
+Estado: en producción / en desarrollo / entregado / implementado / pausado
 Enlace público o tienda (si existe):
+Capturas reales (2–3, 16:10 o 4:3, sin datos de terceros):
 Métricas demostrables (opcional; si no hay, se omite):
-Permiso para nombrar al cliente: sí / no
-Capturas reales (2–3, 16:10 o 4:3, sin contraseñas ni datos personales):
-¿Se puede usar el nombre «Sistemas Tecnológicos Alcaraván»? (solo caso 01):
 ```
 
-Estado actual de cada slot y lo que falta:
+| # | Título actual (descriptivo) | Categoría | Estado actual | Stack | Falta |
+|---|---|---|---|---|---|
+| 02 | Asistencia y geocercas | App multiplataforma | En producción* | React Native · Zero Trust · Odoo · Geocercas | Nombre real, confirmar estado, permiso Alcaraván, capturas |
+| 03 | Asistencia Vial | App móvil nativa | Desarrollada | Kotlin · Android · Figma | Confirmar «Ecosistema de Asistencia Vial», estado, capturas |
+| 04 | Control de acceso | Sistema IoT | En producción* | Kotlin · ESP32 · C++ · WebSockets | Nombre real, confirmar estado, permiso, capturas |
+| 05 | Robótica educativa | App educativa | Desarrollada | Kotlin · Jetpack Compose · Arduino CLI · WebSockets | Nombre real, confirmar estado, permiso del Ministerio, capturas |
+| 06 | Monitoreo atmosférico | Aplicación IoT | Implementada | Kotlin · Vico · IoT | Nombre real, confirmar estado, capturas |
 
-| # | Categoría | Estado actual | Stack actual | Falta |
-|---|---|---|---|---|
-| 01 | App multiplataforma | En producción | **Por confirmar** | Nombre, stack, descripción; confirmar la publicación de «Empresa: Sistemas Tecnológicos Alcaraván»; capturas |
-| 02 | App móvil nativa | En producción | Kotlin · Jetpack Compose · XML | Nombre, descripción, capturas |
-| 03 | Apps educativas | En desarrollo | React Native · IoT | Nombre, descripción, estado real, capturas |
-| 04 | Aplicación IoT | En desarrollo | Arduino · C++ | Nombre, descripción, estado real, capturas |
-| 05 | Interfaz / sistema | En desarrollo | Figma · Inkscape | Nombre, descripción, estado real, capturas |
+\* **«En producción»** en 02 y 04 viene del brief anterior y del hecho de que Alcaraván es
+tu empleo actual; el CV 2026 no lo dice con esas palabras. Confírmalo o cámbialo por
+«Desarrollada» / «Implementada». Los estados 03/05/06 usan los verbos del propio CV
+(«desarrolló», «implementó»).
 
-> **Caso 01:** el CV solo dice «Sistemas Tecnológicos Alcaraván · 7 meses». No hay stack,
-> nombre de producto ni descripción. Se dejó el stack vacío a propósito; no se inventó.
-> La tarjeta lo presenta como «Empresa: …» (dato del CV), no como cliente del proyecto.
-> Si no se puede publicar el nombre, se retira la nota.
-
-**Capturas:** si no hay capturas usables, se conserva la portada abstracta en CSS. Nunca
-se simulan pantallas de apps reales. Si hay capturas, que sean propias, sin datos de
-terceros y con permiso de publicación.
-
----
-
-## 2 · Trayectoria
-
-El CV solo da duraciones y años, no fechas exactas:
-
-- [ ] Experiencia en Sistemas Tecnológicos Alcaraván: mes/año de inicio y fin (hoy dice
-      «7 meses»). ¿Sigue activa?
-- [ ] Ingeniería en Informática (UNERG): ¿sigue en 9.º semestre? ¿Fecha estimada de
-      graduación? (hoy dice «9.º semestre · en curso»).
-- [ ] English B2 Full Route (Platzi, 2022), React Native para Principiantes (Midudev,
-      2025), Android/Kotlin/Jetpack Compose Avanzado (Udemy, 2026): confirmar años.
-- [ ] Semestre exacto si se quiere mostrar; hoy se usa el del CV.
-
-No se añadirán fechas, cargos ni empresas que no estén confirmados.
+- [ ] ¿Son **seis** los proyectos que quieres mostrar o hay más? El titular dice «Seis
+      proyectos. Del diseño al código.». Si hay más, se actualiza el titular.
+- [ ] ¿La nota «Empresa: Sistemas Tecnológicos Alcaraván» se puede mantener en 02, 04, 05
+      y 06? El nombre ya está en Trayectoria desde el CV; en las tarjetas identifica a la
+      empresa, no a un cliente.
+- [ ] ¿La nota «Empresa: Alcaraván · Ministerio de Ciencia y Tecnología» de 05 es correcta?
+      Si no hay permiso del Ministerio, se deja solo Alcaraván o se retira.
+- [ ] ¿Quieres que Asistencia Vial lleve alguna nota de autoría o cliente? Hoy no lleva.
 
 ---
 
-## 3 · Contacto y datos personales
+## 3 · Trayectoria, fechas y educación
 
-- [ ] Confirmar que el email `josealejfer@gmail.com` es el público y actual.
-- [ ] Confirmar que el teléfono `0412-442-0728` se puede publicar tal cual.
-- [ ] Confirmar el handle `@josealejfer` y, si hay, URL de LinkedIn/GitHub/Behance.
-- [ ] Confirmar la ubicación pública: «San Juan de los Morros, Guárico, Venezuela ·
-      UTC−4».
-- [ ] ¿Se quiere añadir una foto de retrato? El diseño actual no la necesita; si entra,
-      debe ser una foto propia con encuadre vertical y fondo neutro.
-
----
-
-## 4 · Producción y metadatos
-
-- [ ] **Dominio real** para el sitio. Hoy `astro.config.mjs` usa
-      `http://localhost:4321` como `site`, y por tanto el canonical y `og:image`
-      apuntan a localhost. Con el dominio se actualiza una línea.
-- [ ] ¿Se publica en Vercel/Netlify/GitHub Pages? El build es estático; solo hace falta
-      el destino.
-- [ ] Revisar `public/og.png` (1200×630). Si se cambia el copy del hero, se regenera con
-      `node scripts/og.mjs`.
-- [ ] Favicon: se usa el squircle verde/coral en `public/favicon.svg`. ¿Se quiere un
-      monograma «JF»?
+- [ ] **Alcaraván:** el CV dice «Febrero 2026 – Presente»; el resumen dice 9 meses. ¿Son
+      correctos? ¿La fecha de inicio es febrero de 2026?
+- [ ] **Freelance:** «2021 – Presente (5 años)». ¿Es correcto?
+- [ ] **Ingeniería de Sistemas (10.º semestre):** confirmar el nombre exacto del grado
+      (el CV anterior decía «Ingeniería en Informática») y si sigue en curso.
+- [ ] **«Ingeniero de Sistemas»** aparece en tu cabecera, pero el resumen te describe como
+      estudiante de último semestre. ¿Prefieres «Ingeniero de Sistemas en formación»,
+      «Estudiante de Ingeniería de Sistemas» o mantener el título tal cual?
+- [ ] **Especialización y Desarrollo Móvil con React Native (Udemy, 2025–2026):** ¿sigue
+      en curso o ya terminó?
+- [ ] Fechas de graduación estimadas, si quieres mostrarlas.
 
 ---
 
-## 5 · Copy y estilo
+## 4 · Contacto, sitio y foto
 
-- [ ] **FERNANDEZ sin tilde** en el hero: es la estilización del CV. Confirmar que se
-      mantiene; si se prefiere «FERNÁNDEZ», se cambia en `site.nameDisplay` (una línea)
-      y se regenera la OG.
-- [ ] Revisar que las palabras «Prompt» (herramienta) y «Gitflow» se mantengan tal cual
-      aparecen en el CV. Hoy sí.
-- [ ] ¿Se quiere una versión en inglés? Hoy no hay selector de idioma; añadirlo sin
-      traducir todo sería un antipatrón. Si hay versión inglesa completa, se integra.
-- [ ] ¿Testimonios? No se usan. Si existen, deben ser reales, con nombre, cargo, permiso
-      y cita textual; no se inventarán.
-- [ ] ¿Métricas de impacto? Solo si son demostrables y con contexto. Hoy no hay ninguna
-      y no se muestran contadores de humo.
-- [ ] ¿Son exactamente cinco proyectos o «+5»? El CV dice «+5 proyectos trabajados»; el
-      brief usa «5» y la página titula «Cinco proyectos. Dos en producción.». Si son más,
-      se corrige el titular y el stat.
-- [ ] ¿Las tutorías de matemática fueron parte del rol en Alcaraván o una actividad
-      independiente? El CV las agrupa en el mismo bloque; hoy se leen como parte del rol.
-      Si fueron independientes, se etiquetan aparte sin inventar fechas ni empresa.
+- [ ] El CV 2026 no incluye **@josealejfer**; el sitio lo conserva del CV anterior.
+      ¿Sigue activo? ¿Lo dejo, lo cambio o lo quito?
+- [ ] Confirmar que `josealejfer@gmail.com`, `0412-442-0728`, «San Juan de los Morros,
+      Guárico, Venezuela · UTC−4» y `notifast.pages.dev` son los datos públicos.
+- [ ] **Dominio propio** para el portafolio: hoy el canonical y el OG apuntan a
+      `http://localhost:4321`. Con el dominio se actualiza una línea de
+      `astro.config.mjs` y se regenera la OG.
+- [ ] ¿Se publica en Cloudflare Pages, Vercel, Netlify o GitHub Pages? El build es
+      estático.
+- [ ] ¿Quieres una **foto de retrato**? El diseño no la necesita; si entra, que sea propia,
+      vertical y con fondo neutro.
+- [ ] ¿LinkedIn, GitHub, Behance u otro enlace que quieras añadir junto al email?
 
 ---
 
-## 6 · Plantilla de email para enviarlo
+## 5 · Copy y coherencia
+
+- [ ] El titular de Trabajo pasó de «Cinco proyectos. Dos en producción.» a **«Seis
+      proyectos. Del diseño al código.»**. Confirmar el número y el tono.
+- [ ] El párrafo de Trabajo dice «categoría, estado y el stack confirmado» (el brief
+      anterior decía «rol»). Se alineó con lo que muestran las tarjetas; confirmar.
+- [ ] Las tarjetas 02–06 usan títulos descriptivos. Si tienes los nombres reales, se
+      sustituyen en `src/content/site.ts` sin tocar el diseño.
+- [ ] La ficha de NotiFast muestra **26 pantallas · 805 pruebas unitarias · 100 % offline**.
+      Son datos del CV; confirmar que se pueden publicar.
+- [ ] ¿Hay algún cliente, premio, certificación o testimonio que quieras añadir? Solo con
+      permiso y cita textual; no se inventará nada.
+- [ ] ¿Versión en inglés? Hoy no hay selector de idioma porque no hay traducción completa.
+
+---
+
+## 6 · Plantilla de email
 
 ```
-Asunto: Material para el portafolio — José Fernández
+Asunto: Material para el portafolio — CV 2026 y proyectos
 
 Hola José:
 
-Para cerrar los cinco casos del portafolio necesito esto, en el orden que puedas:
+El portafolio ya está actualizado con el CV 2026 y NotiFast (logo + landing). Para cerrar
+las otras cinco fichas necesito:
 
-1. Por cada proyecto: nombre real, una frase de qué hace, tu rol, stack confirmado,
-   estado, enlace si existe y 2–3 capturas propias (sin datos de terceros).
-2. El stack y el nombre del caso 01 (Alcaraván) y si puedo nombrar al cliente.
-3. Fechas exactas de la experiencia y de la formación (hoy solo tengo duraciones/años).
-4. Confirmación del email, teléfono, handle, ubicación y enlaces sociales.
-5. Dominio y destino de despliegue.
-6. Confirmación de «FERNANDEZ» sin tilde en el hero.
+1. Por cada proyecto: nombre real del producto, cliente/institución y permiso para
+   nombrarlo, una frase de qué hace, tu rol, stack confirmado, estado real, enlace si
+   existe y 2–3 capturas propias (sin datos de terceros).
+2. Confirmar si son seis proyectos o hay más.
+3. Confirmar fechas de Alcaraván (febrero 2026–presente) y del freelance (2021–presente).
+4. Confirmar el grado exacto, el 10.º semestre y si quieres el título «Ingeniero de
+   Sistemas» o «en formación».
+5. Confirmar @josealejfer, teléfono, email, ubicación, notifast.pages.dev y dominio propio.
+6. Confirmar que puedo publicar el logo y la landing de NotiFast, y las métricas 26 / 805 /
+   100 % offline.
 
-Lo que no llegue se queda como slot honesto o se omite; no se rellena con suposiciones.
+Lo que no llegue se queda como ficha con portada abstracta o se omite; no se rellena con
+suposiciones.
 ```
 
 ---
 
 ## Estado del repositorio
 
-- Los cinco casos siguen `draft: true`.
-- El sitio se entrega sin despliegue externo, en local.
-- `README.md` documenta stack, comandos, estructura y decisiones.
-- Las capturas de `shots/` son la evidencia visual de la entrega actual.
+- **NotiFast**: integrado con activos reales y enlace; `draft: false` en `site.ts`.
+- **02–06**: datos del CV 2026, títulos descriptivos y portadas abstractas; `draft: true`.
+- **Imágenes**: 2 archivos (109 KB + 52 KB), lazy, con `width`/`height` para no mover el
+  layout.
+- **Fuente de verdad**: `reference/jose-cv-2026.txt` y `src/content/site.ts`.
+- **Pendiente técnico**: dominio de producción, canonical/OG absolutos, foto opcional y
+  confirmaciones de esta lista.
+- Las capturas actualizadas están en `shots/`.
