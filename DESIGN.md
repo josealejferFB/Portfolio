@@ -1,0 +1,91 @@
+# DESIGN · Dos capas, un criterio
+
+El CV de José no se usa como referencia de contenido: se usa como sistema de diseño.
+Todo lo de este sitio tiene que poder reconocerse como el mismo autor.
+
+## Las seis leyes, con mis palabras
+
+1. **Duotono estricto.** Verde profundo y coral sobre blanco. No hay tercer color, ni
+   siquiera «casi negro azulado». El coral nunca decora: sostiene la estructura
+   (ribete, discos, capas). Cuando el coral tiene que decir algo, baja a `--coral-700`
+   para que se pueda leer.
+2. **El panel y su ribete.** Una forma de esquinas exageradas y, detrás, la misma forma
+   en coral desplazada hacia arriba. El ribete solo asoma arriba y en las curvas; si se
+   viera entero sería un borde, no un ribete. Es la firma.
+3. **Círculos apilados.** Dos círculos desfasados, coral detrás, verde delante. Siempre
+   en una esquina, siempre cortados por un borde. Nunca centrados, nunca simétricos.
+4. **Una sola tipografía.** Montserrat para todo. El contraste viene del tamaño y del
+   aire, no de mezclar familias. Mayúsculas y tracking cerrado en display; tracking
+   abierto solo en etiquetas pequeñas.
+5. **El aire es material.** Los bloques respiran y hay vacíos deliberados. El tercio
+   superior del panel verde está vacío porque es parte de la composición, no un hueco
+   por rellenar.
+6. **Asimetría editorial.** Panel a la izquierda, texto desplazado a la derecha, margen
+   derecho generoso. Nada centrado por defecto. La tensión entre las dos columnas es
+   el layout; si se centra, se pierde.
+
+## Tokens
+
+La paleta, la escala tipográfica, la geometría del ribete, el espacio y las curvas de
+movimiento viven en `src/styles/tokens.css`, y solo ahí. Regla operativa: `grep -n
+"#[0-9a-fA-F]\{3,6\}" src/styles --include=*.css` devuelve únicamente `tokens.css`.
+
+| Rol | Token | Uso |
+|---|---|---|
+| Verde de marca | `--verde` | Texto principal, panel, superficies |
+| Verde profundo | `--verde-900` | Cierre y profundidad |
+| Coral superficie | `--coral` | Ribete, capas, sección de cierre. Nunca texto |
+| Coral disco | `--coral-600` | Discos con glifo blanco (gráfico, 3.64:1) |
+| Coral tinta | `--coral-700` | Todo texto coral sobre claro (4.89:1) |
+| Tinta | `--tinta` | Párrafo; también sobre coral (6.62:1) |
+| Mute | `--mute` | Metadatos y pies (6.72:1) |
+| Papel / crema | `--papel`, `--crema` | Lienzo y alternancia |
+
+Geometría clave: `--r-panel` (radio del squircle), `--rim` (desplazamiento del ribete),
+`--panel` (ancho de la columna de color), `--seccion` (ritmo vertical), `--e-out` y
+`--stagger` (movimiento).
+
+## Tipografía
+
+Montserrat Variable, subset latin, auto-hospedada (37 KB, un archivo, `font-display:
+swap`, preload). Pesos 400/500/700/800. Display en mayúsculas con `line-height .86` y
+`letter-spacing -.045em`; el nombre del hero se dimensiona con `cqw` sobre su propia
+columna para que siempre llene el ancho disponible sin desbordar ni encoger de más.
+La mono solo aparece en etiquetas de 10–11 px (numeración, años, índices).
+
+## Dirección de arte
+
+**Elegida: A · Cartel editorial, sintetizada con el vocabulario de capas de C.**
+
+El CV ya es un cartel: una hoja con un panel de color a sangre y un nombre enorme. La
+web no lo reinterpreta: lo pone en movimiento. La dirección A gana porque conserva la
+proporción 40.5 / 46.5, el ribete y la jerarquía tipográfica sin añadir un lenguaje
+nuevo. De C se toma solo una cosa: los círculos apilados y las capas que se cruzan,
+siempre en esquinas, para que el scroll pueda separar el ribete del panel y volver a
+tocarlo. B se archiva porque su retícula fría diluía la firma del autor.
+
+Las tres exploraciones están en `explorations/`; la elegida se reconstruye en
+`src/` con el sistema real, no se copia el prototipo.
+
+## Tres decisiones explicadas
+
+1. **El ribete es el sistema de movimiento, no un adorno.** En el hero el panel verde se
+   comprime y el ribete se separa al hacer scroll; en «El criterio» las dos capas llegan
+   desde lados opuestos y terminan alineadas. El movimiento cuenta la tesis (lógica +
+   empatía) y se apaga por completo con `prefers-reduced-motion`. No hay animación que
+   no responda a esa relación.
+2. **El sitio funciona sin JavaScript.** El HTML y el CSS resuelven el 100 % del layout y
+   del contenido; GSAP y Lenis solo añaden la capa de movimiento. Si el JS falla, no hay
+   huecos ni texto invisible: la página se lee completa. Esto también protege el LCP y
+   permite que el scroll sea siempre nativo.
+3. **Los cinco casos son slots honestos.** No hay capturas falsas ni nombres inventados:
+   la tarjeta muestra categoría, estado y stack reales del CV, con una portada abstracta
+   compuesta en CSS. El CTA pide el caso completo por email y `CONTENT_TODO.md` dice
+   exactamente qué material falta. Prefiero cinco tarjetas honestas a cinco ficciones
+   bien maquetadas.
+
+## Antipatrones que este sistema evita
+
+Degradados y glassmorphism; coral como texto claro; emojis; dos familias; rejilla de
+tres tarjetas como página entera; contadores de métricas inventadas; scroll secuestrado;
+formularios que no envían; `href="#"`.
