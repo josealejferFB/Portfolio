@@ -44,5 +44,5 @@ EDUCACIÓN Y CERTIFICACIONES
 - Ingeniería de Sistemas (Último semestre - 10mo) | Universidad Nacional Experimental Rómulo Gallegos (UNERG) — Actualmente
 - Especialización y Desarrollo Móvil con React Native | Udemy — 2025 – 2026
 - Android, Kotlin y Jetpack Compose Avanzado | Udemy — 2026
-- React Native para Principiantes | Midudev — 2025
+- Curso de Front End Developer | freeCodeCamp — 2025
 - English B2 Full Route | Platzi — 2022

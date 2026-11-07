@@ -120,14 +120,11 @@ await page.waitForTimeout(150);
 const copy = await page.evaluate(() => ({ status: document.querySelector('[data-copy-status]')?.textContent, clip: document.querySelector('[data-copy-email]')?.style.transform }));
 await page.evaluate(() => document.querySelector('#craft')?.scrollIntoView());
 await page.waitForTimeout(800);
-const marqueeBefore = await page.evaluate(() => ({ paused: document.querySelector('[data-marquee]')?.className, state: getComputedStyle(document.querySelector('[data-marquee-track]')).animationPlayState }));
-await page.locator('[data-marquee-toggle]').click();
-const marqueeAfter = await page.evaluate(() => ({ pressed: document.querySelector('[data-marquee-toggle]')?.getAttribute('aria-pressed'), state: getComputedStyle(document.querySelector('[data-marquee-track]')).animationPlayState }));
 await page.goto(URL, { waitUntil: 'networkidle' });
 await page.locator('a[href="#trabajo"]').first().click();
 await page.waitForTimeout(1400);
 const anchor = await page.evaluate(() => ({ y: Math.round(window.scrollY), target: Math.round(document.getElementById('trabajo').offsetTop) }));
-console.log(JSON.stringify({ interactions: { copy, marqueeBefore, marqueeAfter, anchor } }, null, 1));
+console.log(JSON.stringify({ interactions: { copy, anchor } }, null, 1));
 
 /* --- Reduced motion ----------------------------------------------------- */
 const reduceContext = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
@@ -136,13 +133,11 @@ await reducePage.goto(URL, { waitUntil: 'networkidle' });
 await reducePage.evaluate(() => document.fonts.ready);
 await reducePage.waitForTimeout(700);
 const reduced = await reducePage.evaluate(() => {
-  const track = document.querySelector('[data-marquee-track]');
   const word = document.querySelector('[data-contact-word]');
   const name = document.querySelector('.hero__name .line__inner');
-  const toggle = document.querySelector('[data-marquee-toggle]');
   const progress = document.querySelector('[data-timeline-progress]');
   const revealsHidden = [...document.querySelectorAll('[data-reveal]')].filter((el) => parseFloat(getComputedStyle(el).opacity) < 0.99).length;
-  return { marqueeAnim: getComputedStyle(track).animationName, toggleDisplay: getComputedStyle(toggle).display, wordClip: getComputedStyle(word).clipPath, nameAnim: getComputedStyle(name).animationName, progressTransform: getComputedStyle(progress).transform, revealsHidden, htmlMotion: document.documentElement.classList.contains('motion') };
+  return { wordClip: getComputedStyle(word).clipPath, nameAnim: getComputedStyle(name).animationName, progressTransform: getComputedStyle(progress).transform, revealsHidden, htmlMotion: document.documentElement.classList.contains('motion') };
 });
 console.log(JSON.stringify({ reduced }, null, 1));
 
@@ -157,7 +152,6 @@ const noJsData = await noJs.evaluate(() => ({
   hasContact: document.body.innerText.includes('HABLEMOS'),
   hasExperience: document.body.innerText.includes('Desarrollador móvil y diseñador UI/UX'),
   copyHref: document.querySelector('[data-copy-fallback]')?.getAttribute('href'),
-  marqueeAnim: getComputedStyle(document.querySelector('[data-marquee-track]')).animationName,
   wordVisible: getComputedStyle(document.querySelector('[data-contact-word]')).clipPath,
 }));
 console.log(JSON.stringify({ noJs: noJsData }, null, 1));

@@ -154,22 +154,6 @@ function initMotion(): void {
   });
 
   /* Marquesina: pausa real, no solo hover. */
-  const marquee = document.querySelector<HTMLElement>("[data-marquee]");
-  const marqueeToggle = marquee?.querySelector<HTMLButtonElement>("[data-marquee-toggle]");
-  const marqueeLabel = marquee?.querySelector<HTMLElement>("[data-marquee-label]");
-  if (marquee && marqueeToggle) {
-    marqueeToggle.addEventListener("click", () => {
-      const paused = marqueeToggle.getAttribute("aria-pressed") !== "true";
-      marquee.classList.toggle("is-paused", paused);
-      marqueeToggle.setAttribute("aria-pressed", String(paused));
-      marqueeToggle.setAttribute(
-        "aria-label",
-        paused ? "Reanudar la marquesina de herramientas" : "Pausar la marquesina de herramientas"
-      );
-      if (marqueeLabel) marqueeLabel.textContent = paused ? "Reanudar" : "Pausar";
-    });
-  }
-
   /* Revelado estándar: una sola línea para todas las secciones. */
   const reveals = gsap.utils.toArray<HTMLElement>("[data-reveal]");
   if (reveals.length > 0) {

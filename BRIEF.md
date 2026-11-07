@@ -29,7 +29,7 @@ Rejilla 12 columnas · `max-width 1440` · margen `clamp(20px,5vw,80px)` · gutt
 `padding-block: clamp(80px,10vw,160px)` en todas las secciones. Escala 4: 4 8 12 16 24 32 48 64 96 128 160.
 
 ## Movimiento
-Solo `transform` y `opacity`. Scroll nativo. Máx. dos secciones pinned. `prefers-reduced-motion` elimina pinning, parallax y marquesina. Hover 160 ms; revelado 420 ms `cubic-bezier(.16,1,.3,1)`.
+Solo `transform` y `opacity`. Scroll nativo. Máx. dos secciones pinned. `prefers-reduced-motion` elimina pinning y parallax. Hover 160 ms; revelado 420 ms `cubic-bezier(.16,1,.3,1)`.
 
 ## Copy
 Español. Prohibidas: «apasionado», «sinergia», «soluciones innovadoras», «llevar al siguiente nivel», «transformar ideas en realidad».

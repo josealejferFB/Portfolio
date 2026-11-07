@@ -45,7 +45,7 @@ El preview del entregable está levantado como job en segundo plano en
 ├── reference/                 # CV original, CV 2026 y recortes (no se editan)
 ├── explorations/              # tres direcciones de arte + notas + capturas
 ├── src/
-│   ├── components/            # Panel, SectionHeader, Disc, Button, Chip, Marquee,
+│   ├── components/            # Panel, SectionHeader, Disc, Button, Chip,
 │   │                          # TimelineItem, CaseCard, FeaturedCase, ChapterRail,
 │   │                          # Footer, Icon…
 │   ├── layouts/Base.astro     # meta, fuentes, skip-link, OG
@@ -77,8 +77,7 @@ El preview del entregable está levantado como job en segundo plano en
    hero.
 2. **El sitio se lee completo sin JavaScript.** El 100 % del layout y del contenido está
    en HTML y CSS. GSAP y Lenis solo añaden movimiento: si el bundle no carga, los
-   revelados no ocultan nada, la marquesina queda estática y el email sigue siendo un
-   `mailto:`. `shots/no-js.png` lo demuestra.
+   revelados no ocultan nada y el email sigue siendo un `mailto:`. `shots/no-js.png` lo demuestra.
 3. **NotiFast, Krizo y tres fichas de Alcaraván tienen material real; Monitoreo
    atmosférico conserva la portada abstracta.** NotiFast tiene logo, captura de landing,
    métricas y enlace público. Krizo tiene logo, pieza publicitaria y copy de proyecto
@@ -147,11 +146,11 @@ Con el build de producción servido en local:
 | Comprobación | Resultado | Límite |
 |---|---|---|
 | JS inicial gzip | **49.5 KB** | ≤ 110 KB |
-| CSS gzip | **8.9 KB** | ≤ 45 KB |
+| CSS gzip | **8.6 KB** | ≤ 45 KB |
 | Fuentes | **1 archivo, 37.1 KB** | ≤ 2 archivos, ≤ 70 KB |
-| HTML gzip | 6.9 KB | — |
+| HTML gzip | 6.4 KB | — |
 | Imágenes | **7 archivos, 296 KB** (109 + 53 + 44 + 23 + 16 + 39 + 12), lazy y con `width`/`height` | no hay límite en §6 |
-| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.80 s** | ≤ 2.0 s |
+| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.76 s** | ≤ 2.0 s |
 | CLS | **0.0009** | ≤ 0.02 |
 | Tareas largas durante el scroll | **ninguna** | ninguna > 80 ms |
 | Frames durante scroll programático | **p50 16.7 ms · p95 16.8 ms** | 60 fps |
@@ -159,14 +158,14 @@ Con el build de producción servido en local:
 | Scroll horizontal | **0 px a 320/390/768/1024/1440/1920** | 0 |
 | Zoom de texto 200 % | **0 px de desborde a 390/720/1440** | sin pérdida |
 | Errores de consola / red | **0** | 0 |
-| `prefers-reduced-motion` | sin marquesina, sin pinning, 0 revelados ocultos | — |
+| `prefers-reduced-motion` | sin pinning, sin parallax, 0 revelados ocultos | — |
 | Sin JavaScript | nombre, contacto, experiencia, NotiFast, Krizo y `mailto:` presentes | — |
 
 El detalle reproducible está en `scripts/audit-contrast.mjs`,
 `scripts/audit-runtime.mjs` y `scripts/audit-zoom.mjs`. Dos matices honestos: el LCP
 mide el nombre aún recortado por su entrada de 720 ms (el nombre completo se pinta a
 ~1.25 s bajo 4G + CPU ×4, dentro del límite), y el arranque deja dos tareas de
-139–236 ms (≈35–59 ms en tiempo real). El presupuesto de §6 solo acota las tareas
+139–190 ms (≈35–48 ms en tiempo real). El presupuesto de §6 solo acota las tareas
 largas durante el scroll, donde no queda ninguna. Deuda conocida: con movimiento
 reducido el bundle de GSAP/Lenis (≈50 KB gzip) se descarga igualmente, aunque no se
 inicia ni anima nada.
@@ -181,8 +180,6 @@ inicia ni anima nada.
   sobre el coral del cierre, invierten sus tintas y su anillo a verde-900.
 - Zoom de texto 200 %: los nombres, HABLEMOS, las tarjetas y el email se reajustan sin
   scroll horizontal ni texto cortado.
-- La marquesina tiene botón real de pausa con `aria-pressed`; se detiene en hover y
-  desaparece por completo con movimiento reducido.
 - El copiado del email es un `<button>` real con nombre «Copiar email»; anuncia «Copiado»
   en una región `aria-live="polite"` durante 1.2 s. Sin JavaScript (o sin Clipboard API)
   se renderiza un enlace `mailto:` con el nombre «Escribir a José Fernández», de modo que
