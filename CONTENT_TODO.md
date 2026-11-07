@@ -2,9 +2,10 @@
 
 El sitio ya usa el **CV 2026** (`reference/jose-cv-2026.txt`). **NotiFast** y **Krizo**
 son los dos casos destacados con material real: logo, pieza publicitaria/landing, stack y
-copy. Las otras cuatro fichas salen del CV, pero varias usan **títulos descriptivos** y
-**portadas abstractas** hasta recibir el material definitivo. Nada de esto se inventa: lo
-que falta se pide aquí.
+copy. La ficha de **Asistencia y geocercas** ya usa la imagen real de su ficha en el App
+Store y no ofrece el caso por confidencialidad. Las otras tres fichas salen del CV con
+**títulos descriptivos** y **portadas abstractas** hasta recibir el material definitivo.
+Nada de esto se inventa: lo que falta se pide aquí.
 
 ---
 
@@ -89,7 +90,7 @@ Métricas demostrables (opcional; si no hay, se omite):
 
 | # | Título actual (descriptivo) | Categoría | Estado actual | Stack | Falta |
 |---|---|---|---|---|---|
-| 03 | Asistencia y geocercas | App multiplataforma | En producción* | React Native · Zero Trust · Odoo · Geocercas | Nombre real, confirmar estado, permiso Alcaraván, capturas |
+| 03 | Asistencia y geocercas | App multiplataforma | En producción* | React Native · Zero Trust · Odoo · Geocercas | **Imagen recibida** (ficha de App Store); nombre real, confirmar estado, permiso; **sin CTA por confidencialidad** |
 | 04 | Control de acceso | Sistema IoT | En producción* | Kotlin · ESP32 · C++ · WebSockets | Nombre real, confirmar estado, permiso, capturas |
 | 05 | Robótica educativa | App educativa | Desarrollada | Kotlin · Jetpack Compose · Arduino CLI · WebSockets | Nombre real, confirmar estado, permiso del Ministerio, capturas |
 | 06 | Monitoreo atmosférico | Aplicación IoT | Implementada | Kotlin · Vico · IoT | Nombre real, confirmar estado, capturas |
@@ -196,9 +197,12 @@ suposiciones.
 - **NotiFast (01)**: caso destacado con activos reales y enlace; `draft: false`.
 - **Krizo (02)**: caso destacado con logo, pieza publicitaria y copy universitario en
   React Native; sin enlace externo; `draft: false`.
-- **03–06**: datos del CV 2026, títulos descriptivos y portadas abstractas; `draft: true`.
-- **Imágenes**: 4 archivos (109 + 52 + 44 + 23 = 228 KB), lazy, con `width`/`height` para
-  no mover el layout.
+- **03**: datos del CV 2026 + imagen real del App Store, sin CTA por confidencialidad;
+  `draft: false`. **04–06**: datos del CV 2026, títulos descriptivos y portadas
+  abstractas; `draft: true`.
+- **Imágenes**: 5 archivos (109 + 52 + 44 + 23 + 15 = 244 KB), lazy, con `width`/`height`
+  para no mover el layout. La de Alcaraván salió de una PNG de 850×323 y se optimizó a
+  WebP de 15 KB.
 - **Fuente de verdad**: `reference/jose-cv-2026.txt` y `src/content/site.ts`.
 - **Pendiente técnico**: dominio de producción, canonical/OG absolutos, foto opcional y
   confirmaciones de esta lista.

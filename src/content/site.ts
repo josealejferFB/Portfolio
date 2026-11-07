@@ -24,7 +24,14 @@ export interface SkillGroup {
   readonly skills: readonly string[];
 }
 
-export type CoverVariant = "plataforma" | "nativa" | "educativa" | "iot";
+export type CoverVariant = "nativa" | "educativa" | "iot";
+
+export interface CaseImage {
+  readonly src: string;
+  readonly alt: string;
+  readonly width: number;
+  readonly height: number;
+}
 
 export interface CaseMedia {
   readonly src: string;
@@ -64,7 +71,10 @@ export interface CaseSlot {
   readonly note?: string;
   readonly summary: string;
   readonly stack: readonly string[];
-  readonly cover: CoverVariant;
+  readonly image?: CaseImage;
+  readonly cover?: CoverVariant;
+  /** Empresa: no se ofrece el caso completo. */
+  readonly confidential?: boolean;
   /** Marcado interno: los datos vienen del CV pero aún no hay capturas reales. */
   readonly draft: boolean;
 }
@@ -393,8 +403,14 @@ export const site = {
         summary:
           "App React Native con seguridad Zero Trust e integración con Odoo: rastreo de asistencia con geocercas para más de 200 empleados a nivel nacional.",
         stack: ["React Native", "Zero Trust", "Odoo", "Geocercas"],
-        cover: "plataforma",
-        draft: true,
+        image: {
+          src: "/projects/alcaravan-asistencia.webp",
+          alt: "Ficha de «Asistencia Alcaraván Vultur» en el App Store: icono av, categoría Business, solo para iPhone y gratis.",
+          width: 850,
+          height: 323,
+        },
+        confidential: true,
+        draft: false,
       },
       {
         index: "04",

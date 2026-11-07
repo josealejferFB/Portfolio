@@ -1299,6 +1299,19 @@ main:focus,
   transform: translateY(-8px);
 }
 
+.case__cover--image {
+  background: var(--verde-04);
+}
+
+.case__image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+}
+
 .case__body {
   display: flex;
   flex-direction: column;
@@ -1445,44 +1458,6 @@ main:focus,
 
 .cover span {
   position: absolute;
-}
-
-/* 01 · multiplataforma: panel verde con ribete + disco coral */
-.cover--plataforma .cover__a {
-  left: 6%;
-  bottom: 14%;
-  width: 64%;
-  height: 56%;
-  border-radius: var(--r-md);
-  background: var(--coral);
-}
-
-.cover--plataforma .cover__b {
-  left: 8%;
-  bottom: 11%;
-  width: 64%;
-  height: 56%;
-  border-radius: var(--r-md);
-  background: var(--verde);
-}
-
-.cover--plataforma .cover__c {
-  top: -12%;
-  right: -6%;
-  width: 42%;
-  aspect-ratio: 1;
-  border-radius: var(--r-full);
-  background: var(--coral);
-}
-
-.cover--plataforma::after {
-  content: "";
-  position: absolute;
-  right: 8%;
-  bottom: 8%;
-  left: 8%;
-  height: 1px;
-  background: var(--linea);
 }
 
 /* 02 · nativa: círculos apilados recortados */

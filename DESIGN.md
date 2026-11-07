@@ -68,9 +68,10 @@ De A se conserva también la firma del CV que casi se pierde: **JOSÉ en verde y
 FERNANDEZ en `--coral-700`**. El nombre entero es la tesis: dos capas, un criterio.
 En Trabajo, NotiFast y Krizo entran como casos destacados: la captura de la landing de
 NotiFast y la pieza publicitaria de Krizo, cada una en un marco neutro, con su logo y su
-copy. Las otras cuatro fichas conservan las portadas abstractas para no mezclar los
-colores de producto con el sistema del sitio. NotiFast alterna imagen izquierda/texto
-derecha; Krizo invierte el orden y usa su logo como título visible.
+copy. La ficha de Alcaraván usa la imagen real de su ficha en el App Store y no ofrece
+CTA por confidencialidad; las otras tres conservan las portadas abstractas para no
+mezclar los colores de producto con el sistema del sitio. NotiFast alterna imagen
+izquierda/texto derecha; Krizo invierte el orden y usa su logo como título visible.
 Las tres exploraciones están en `explorations/`; la elegida se reconstruye en
 `src/` con el sistema real, no se copia el prototipo.
 
@@ -90,7 +91,8 @@ rol correctos, y conserva un `mailto:` real como fallback sin JavaScript. La cap
 NotiFast lleva alt descriptivo; su logo es decorativo junto al título; «Ver landing» y
 «notifast.pages.dev» avisan en su nombre accesible que abren pestaña nueva. Krizo lleva
 alt en la pieza publicitaria y el logo es el título visible con alt «Krizo»; sin enlace
-público, su único CTA es el email.
+público, su único CTA es el email. La imagen de Alcaraván lleva alt descriptivo y su
+ficha, por confidencialidad, no ofrece CTA.
 
 ## Tres decisiones explicadas
 
@@ -103,15 +105,16 @@ público, su único CTA es el email.
    del contenido; GSAP y Lenis solo añaden la capa de movimiento. Si el JS falla, no hay
    huecos ni texto invisible: la página se lee completa. Esto también protege el LCP y
    permite que el scroll sea siempre nativo.
-3. **NotiFast y Krizo son reales; las otras cuatro fichas son del CV, no inventadas.**
-   NotiFast tiene logo, captura de landing, métricas del CV y enlace público. Krizo tiene
-   logo, pieza publicitaria y copy de proyecto universitario en React Native para grúas,
-   mecánicos y tiendas de repuesto. Las otras cuatro fichas usan títulos descriptivos
-   (Asistencia y geocercas, Control de acceso, Robótica educativa, Monitoreo atmosférico)
-   y portadas abstractas en CSS hasta que José envíe los nombres reales, estados, permisos
-   y capturas. No hay capturas falsas ni clientes inventados; el CTA pide el caso completo
-   y `CONTENT_TODO.md` dice qué falta. Prefiero dos casos reales y cuatro fichas honestas
-   a seis ficciones bien maquetadas.
+3. **NotiFast, Krizo y la ficha de Alcaraván son reales; las otras tres son del CV, no
+   inventadas.** NotiFast tiene logo, captura de landing, métricas del CV y enlace
+   público. Krizo tiene logo, pieza publicitaria y copy de proyecto universitario en
+   React Native para grúas, mecánicos y tiendas de repuesto. Asistencia y geocercas lleva
+   la imagen de su ficha en el App Store y, al ser de empresa, no ofrece CTA. Las otras
+   tres fichas usan títulos descriptivos (Control de acceso, Robótica educativa,
+   Monitoreo atmosférico) y portadas abstractas en CSS hasta que José envíe los nombres
+   reales, estados, permisos y capturas. No hay capturas falsas ni clientes inventados;
+   `CONTENT_TODO.md` dice qué falta. Prefiero tres materiales reales y tres portadas
+   honestas a seis ficciones bien maquetadas.
 
 ## Antipatrones que este sistema evita
 

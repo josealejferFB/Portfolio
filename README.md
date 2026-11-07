@@ -71,20 +71,21 @@ El preview del entregable está levantado como job en segundo plano en
 1. **El ribete es el sistema de movimiento.** El hero comprime el panel y separa el
    ribete al hacer scroll; «El criterio» hace que las dos capas lleguen desde lados
    opuestos y terminen alineadas. No hay animación que no cuente esa relación. El
-   ribete aparece en el hero, en el panel de El criterio y en las cuatro portadas
-   abstractas de Trabajo; NotiFast y Krizo llevan su propio material; los círculos
-   apilados, en la esquina superior derecha del hero.
+   ribete aparece en el hero, en el panel de El criterio y en las tres portadas
+   abstractas de Trabajo; NotiFast, Krizo y la ficha de Alcaraván llevan su propio
+   material; los círculos apilados, en la esquina superior derecha del hero.
 2. **El sitio se lee completo sin JavaScript.** El 100 % del layout y del contenido está
    en HTML y CSS. GSAP y Lenis solo añaden movimiento: si el bundle no carga, los
    revelados no ocultan nada, la marquesina queda estática y el email sigue siendo un
    `mailto:`. `shots/no-js.png` lo demuestra.
 3. **NotiFast y Krizo son los casos con material real; las otras cuatro son fichas del
    CV.** NotiFast tiene logo, captura de landing, métricas y enlace público. Krizo tiene
-   logo, pieza publicitaria y copy de proyecto universitario en React Native. Las otras
-   cuatro fichas —Asistencia y geocercas, Control de acceso, Robótica educativa,
-   Monitoreo atmosférico— salen del CV 2026 con títulos descriptivos y portadas
-   abstractas en CSS. No hay capturas falsas: las métricas de NotiFast salen del CV y de
-   su landing; lo que falta se pide en `CONTENT_TODO.md`.
+   logo, pieza publicitaria y copy de proyecto universitario en React Native. La ficha de
+   **Asistencia y geocercas** lleva la imagen real de su ficha en el App Store; las otras
+   tres —Control de acceso, Robótica educativa, Monitoreo atmosférico— salen del CV 2026
+   con títulos descriptivos y portadas abstractas en CSS. No hay capturas falsas: las
+   métricas de NotiFast salen del CV y de su landing; lo que falta se pide en
+   `CONTENT_TODO.md`.
 
 ### Decisiones tomadas sin consultar
 
@@ -122,6 +123,11 @@ El preview del entregable está levantado como job en segundo plano en
   en `site.ts`.
 - **Alcaraván aparece como «Empresa: …» en sus fichas, no como cliente.** Es el empleador
   del CV; el nombre de cada producto y el permiso de publicación quedan pendientes.
+- **La ficha de Asistencia y geocercas usa la imagen del App Store y no ofrece el caso.**
+  Es un encargo de empresa: se quitó «Pedir el caso completo» de esa ficha. La imagen
+  original (850×323) se optimizó a WebP (15 KB) y va lazy con `width`/`height`. Las otras
+  fichas de Alcaraván (04–06) todavía conservan el CTA; queda por decidir si también se
+  retira por confidencialidad.
 - **La web `notifast.pages.dev` entra en la ficha de NotiFast y en el pie de contacto.**
   Es el único enlace externo además del email; ambos avisan en su nombre accesible que
   abren pestaña nueva.
@@ -140,9 +146,9 @@ Con el build de producción servido en local:
 | JS inicial gzip | **49.5 KB** | ≤ 110 KB |
 | CSS gzip | **9.1 KB** | ≤ 45 KB |
 | Fuentes | **1 archivo, 37.1 KB** | ≤ 2 archivos, ≤ 70 KB |
-| HTML gzip | 6.7 KB | — |
-| Imágenes | **4 archivos, 228 KB** (109 + 52 + 44 + 23), lazy y con `width`/`height` | no hay límite en §6 |
-| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.90 s** | ≤ 2.0 s |
+| HTML gzip | 6.8 KB | — |
+| Imágenes | **5 archivos, 244 KB** (109 + 52 + 44 + 23 + 15), lazy y con `width`/`height` | no hay límite en §6 |
+| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.87 s** | ≤ 2.0 s |
 | CLS | **0.0009** | ≤ 0.02 |
 | Tareas largas durante el scroll | **ninguna** | ninguna > 80 ms |
 | Frames durante scroll programático | **p50 16.7 ms · p95 16.8 ms** | 60 fps |
@@ -157,7 +163,7 @@ El detalle reproducible está en `scripts/audit-contrast.mjs`,
 `scripts/audit-runtime.mjs` y `scripts/audit-zoom.mjs`. Dos matices honestos: el LCP
 mide el nombre aún recortado por su entrada de 720 ms (el nombre completo se pinta a
 ~1.25 s bajo 4G + CPU ×4, dentro del límite), y el arranque deja dos tareas de
-182–300 ms (≈45–75 ms en tiempo real). El presupuesto de §6 solo acota las tareas
+190–281 ms (≈48–70 ms en tiempo real). El presupuesto de §6 solo acota las tareas
 largas durante el scroll, donde no queda ninguna. Deuda conocida: con movimiento
 reducido el bundle de GSAP/Lenis (≈50 KB gzip) se descarga igualmente, aunque no se
 inicia ni anima nada.
@@ -184,6 +190,9 @@ inicia ni anima nada.
 - Krizo: la pieza publicitaria tiene alt descriptivo; el logo es el título visible y su
   alt es «Krizo», así que el encabezado conserva su nombre accesible. Como no hay enlace
   público, el único CTA es el email.
+- Asistencia y geocercas: la imagen del App Store tiene alt descriptivo y la ficha, al ser
+  de empresa, no ofrece CTA; la tarjeta sigue siendo un `article` con su título y su
+  resumen.
 - Los números de los discos pasan AA después del cambio a coral-700; los puntos
   decorativos no comunican información por sí solos.
 - Cero texto blanco sobre coral. Sobre coral, tinta (6.62:1) o verde-900 (5.18:1).
@@ -194,6 +203,7 @@ inicia ni anima nada.
    `src/content/site.ts`: título, categoría, estado, nota, resumen, stack, imagen/enlace.
 2. Para una captura real en una tarjeta, añade el campo `image` al `CaseSlot` y renderízalo
    en `CaseCard` como hace `FeaturedCase`; conserva `width`/`height` y `loading="lazy"`.
+   Para una ficha de empresa sin CTA, añade `confidential: true`.
 3. Si cambia la landing de NotiFast o la pieza de Krizo, sustituye el archivo por otro de
    la misma proporción (1400×782 y 774×259) y reconstruye.
 4. Actualiza `CONTENT_TODO.md` marcando lo recibido.
@@ -203,6 +213,6 @@ inicia ni anima nada.
 
 Diseñado y construido por José Fernández. Montserrat, `#215C50`, `#FF6D4D` y demasiadas
 revisiones. El copy y los datos provienen del CV 2026 (`reference/jose-cv-2026.txt`), del
-CV anterior, de la landing de NotiFast y de Krizo; el logo y la captura de NotiFast y el
-logo y la pieza publicitaria de Krizo los aportó José. Lo que falta está en
-`CONTENT_TODO.md`.
+CV anterior, de la landing de NotiFast y de Krizo; el logo y la captura de NotiFast, el
+logo y la pieza publicitaria de Krizo y la imagen de la ficha de Alcaraván los aportó
+José. Lo que falta está en `CONTENT_TODO.md`.

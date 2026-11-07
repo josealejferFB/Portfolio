@@ -12,9 +12,23 @@ const { item } = Astro.props;
 ---
 
 <article class:list={["case", `case--${item.index}`]} data-reveal>
-  <div class="case__cover">
-    <Cover variant={item.cover} />
-  </div>
+  {item.image ? (
+    <div class="case__cover case__cover--image">
+      <img
+        class="case__image"
+        src={item.image.src}
+        alt={item.image.alt}
+        width={item.image.width}
+        height={item.image.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  ) : (
+    <div class="case__cover">
+      {item.cover && <Cover variant={item.cover} />}
+    </div>
+  )}
   <div class="case__body">
     <p class="case__meta mono">
       <span>{item.index} · {item.category}</span>
@@ -28,9 +42,11 @@ const { item } = Astro.props;
         {item.stack.map((tech) => <li>{tech}</li>)}
       </ul>
     )}
-    <a class="case__cta" href={caseMailto(item.title)}>
-      <span>{site.work.cta}</span>
-      <Icon name="arrowRight" size={16} />
-    </a>
+    {!item.confidential && (
+      <a class="case__cta" href={caseMailto(item.title)}>
+        <span>{site.work.cta}</span>
+        <Icon name="arrowRight" size={16} />
+      </a>
+    )}
   </div>
 </article>
