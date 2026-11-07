@@ -142,11 +142,15 @@ fs.copyFileSync(path.join(rootDir, "package-lock.json"), path.join(deployTmpDir,
 // 4. Cambiar a o crear la rama despliegue
 console.log("\x1b[32m✔ 4. Sincronizando rama 'despliegue'...\x1b[0m");
 
-const branchExists = runSilent("git branch --list despliegue");
-if (!branchExists) {
-  run("git checkout --orphan despliegue");
-} else {
+const localBranchExists = runSilent("git branch --list despliegue");
+const remoteBranchExists = runSilent("git branch -r --list origin/despliegue");
+
+if (localBranchExists) {
   run("git checkout despliegue");
+} else if (remoteBranchExists) {
+  run("git checkout -B despliegue origin/despliegue");
+} else {
+  run("git checkout --orphan despliegue");
 }
 
 // Limpiar el índice y el árbol de trabajo actual en la rama despliegue
@@ -180,10 +184,25 @@ if (hasStagedChanges) {
   console.log("\x1b[33mℹ Rama 'despliegue' ya estaba al día.\x1b[0m");
 }
 
+const shouldPush = process.argv.includes("--push");
+
+if (shouldPush) {
+  console.log("\x1b[32m✔ 6. Subiendo rama 'despliegue' a GitHub...\x1b[0m");
+  run("git push origin despliegue");
+}
+
 // Volver a la rama original
 run(`git checkout ${currentBranch}`);
 
-console.log("\n\x1b[32;1m✨ ¡Rama 'despliegue' preparada y optimizada con éxito!\x1b[0m\n");
-console.log("Para subir ambas ramas a GitHub ejecuta:");
-console.log("  git push origin main");
-console.log("  git push origin despliegue\n");
+if (shouldPush) {
+  console.log(`\x1b[32m✔ 7. Subiendo rama '${currentBranch}' a GitHub...\x1b[0m`);
+  run(`git push origin ${currentBranch}`);
+}
+
+console.log("\n\x1b[32;1m✨ ¡Proceso completado con éxito!\x1b[0m\n");
+if (!shouldPush) {
+  console.log("Para subir ambas ramas a GitHub ejecuta:");
+  console.log("  git push origin main");
+  console.log("  git push origin despliegue\n");
+  console.log("O directamente ejecuta: npm run deploy\n");
+}

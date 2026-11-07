@@ -1,0 +1,59 @@
+name: CI/CD - Despliegue Automático
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'tsconfig.json'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'scripts/prepare-deploy.*'
+      - '.node-version'
+      - '.nvmrc'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Validar y Publicar en Despliegue
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Verificación estática y de tipos
+        run: npm run check
+
+      - name: Compilación de prueba
+        run: npm run build
+
+      - name: Configurar identidad de Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sincronizar rama de despliegue optimizada
+        run: node scripts/prepare-deploy.mjs
+
+      - name: Publicar rama despliegue
+        run: git push origin despliegue
