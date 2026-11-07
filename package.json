@@ -8,6 +8,7 @@
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "prepare:deploy": "node scripts/prepare-deploy.mjs",
     "shots": "node scripts/shots.mjs",
     "audit": "node scripts/audit-contrast.mjs && node scripts/audit-runtime.mjs"
   },
