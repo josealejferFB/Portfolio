@@ -29,14 +29,16 @@ Los cinco glifos SVG están dibujados a mano en `src/components/icon-paths.ts`.
 ```bash
 npm install                 # dependencias (en este entorno, npm + caché local)
 npm run dev                 # desarrollo en http://localhost:4321
+npm run check               # comprobación de tipos y sintaxis (0 errores)
 npm run build               # build de producción en dist/
 npm run preview             # sirve dist/ en http://localhost:4321
+npm run deploy              # validación y despliegue a Cloudflare Pages
 npm run shots               # capturas en shots/ (requiere preview levantado)
 npm run audit               # contraste + presupuesto/LCP/CLS/foco/no-JS
 ```
 
-El preview del entregable está levantado como job en segundo plano en
-**http://localhost:4321**.
+Consulta [DEPLOY.md](DEPLOY.md) para la guía completa de CI/CD y despliegue continuo en Cloudflare Pages (`https://josealejfer.pages.dev/`).
+
 
 ## Estructura
 
