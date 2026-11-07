@@ -6,9 +6,10 @@ import Icon from "./Icon.astro";
 interface Props {
   item: FeaturedCase;
   reverse?: boolean;
+  panel?: boolean;
 }
 
-const { item, reverse = false } = Astro.props;
+const { item, reverse = false, panel = false } = Astro.props;
 const headingId = `feature-title-${item.index}`;
 const logoWide = item.media.logo.width / item.media.logo.height > 1.2;
 const facts = item.facts ?? [];
@@ -17,7 +18,7 @@ const facts = item.facts ?? [];
 <article
   class:list={["feature", reverse && "feature--reverse"]}
   aria-labelledby={headingId}
-  data-reveal
+  data-reveal={panel ? undefined : true}
 >
   <div class="feature__media">
     <img

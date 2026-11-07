@@ -6,12 +6,13 @@ import Icon from "./Icon.astro";
 
 interface Props {
   item: CaseSlot;
+  panel?: boolean;
 }
 
-const { item } = Astro.props;
+const { item, panel = false } = Astro.props;
 ---
 
-<article class:list={["case", `case--${item.index}`]} data-reveal>
+<article class:list={["case", `case--${item.index}`]} data-reveal={panel ? undefined : true}>
   {item.image ? (
     <div class="case__cover case__cover--image">
       <img

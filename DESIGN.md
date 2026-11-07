@@ -121,3 +121,16 @@ fichas, por confidencialidad, no ofrecen CTA; Monitoreo atmosférico conserva el
 Degradados y glassmorphism; coral como texto claro; emojis; dos familias; rejilla de
 tres tarjetas como página entera; contadores de métricas inventadas; scroll secuestrado;
 formularios que no envían; `href="#"`.
+
+
+## Una pantalla por acto
+
+Hero, Craft y Contacto caben en 100svh (Contacto con su footer). Criterio cabe en
+escritorio y conserva su scrub de capas en móvil. Trayectoria mantiene el side sticky
+(cabecera + contador) con la timeline al lado, también ≤1024.
+
+Trabajo es un stage: `.work-stage` mide `100svh + 5 * 55svh`; `.work-stage__sticky`
+fija el side y el deck 7/5; el panel activo se calcula por progreso. En ≤960 el stage se
+apaga y el deck pasa a carril horizontal con `scroll-snap`. Sin JS o con
+`prefers-reduced-motion` los 6 paneles caen en flujo vertical. Los paneles no activos
+llevan `inert` y `aria-hidden`; puntos y flechas son botones reales con foco visible.

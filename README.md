@@ -105,6 +105,13 @@ El preview del entregable está levantado como job en segundo plano en
   categoría, estado, nota, stack y resumen.** NotiFast y Krizo son los destacados; las
   cuatro fichas usan los títulos descriptivos anteriores porque el CV no les da un
   nombre de producto. Se cambian en `site.ts` cuando José los confirme.
+- **Cada acto cabe en su pantalla o se cuenta con scrolltelling interno.** Hero, Craft y
+  Contacto caben en 100svh; Contacto incluye el footer. Criterio entra en una pantalla en
+  escritorio y conserva su scrub de capas en móvil; Trayectoria mantiene el side sticky
+  también ≤1024. Trabajo es un stage: side fijo con contador, progreso, índice y flechas,
+  y deck de 7 columnas con un caso a la vez. En ≤960 el stage se apaga y los 6 casos van
+  en un carril horizontal con snap. Sin JS o con movimiento reducido, los 6 paneles caen
+  en flujo vertical, sin progreso falso.
 - **Krizo sustituye la ficha «Asistencia Vial».** El nombre correcto es Krizo; es un
   proyecto universitario en React Native para grúas, mecánicos y tiendas de repuesto. El
   CV lo listaba como Android/Kotlin; manda la corrección de José y el CV de referencia ya
@@ -145,12 +152,12 @@ Con el build de producción servido en local:
 
 | Comprobación | Resultado | Límite |
 |---|---|---|
-| JS inicial gzip | **49.5 KB** | ≤ 110 KB |
-| CSS gzip | **8.6 KB** | ≤ 45 KB |
+| JS inicial gzip | **49.8 KB** | ≤ 110 KB |
+| CSS gzip | **9.5 KB** | ≤ 45 KB |
 | Fuentes | **1 archivo, 37.1 KB** | ≤ 2 archivos, ≤ 70 KB |
-| HTML gzip | 6.4 KB | — |
+| HTML gzip | 6.6 KB | — |
 | Imágenes | **7 archivos, 296 KB** (109 + 53 + 44 + 23 + 16 + 39 + 12), lazy y con `width`/`height` | no hay límite en §6 |
-| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.76 s** | ≤ 2.0 s |
+| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.78 s** | ≤ 2.0 s |
 | CLS | **0.0009** | ≤ 0.02 |
 | Tareas largas durante el scroll | **ninguna** | ninguna > 80 ms |
 | Frames durante scroll programático | **p50 16.7 ms · p95 16.8 ms** | 60 fps |
@@ -158,8 +165,8 @@ Con el build de producción servido en local:
 | Scroll horizontal | **0 px a 320/390/768/1024/1440/1920** | 0 |
 | Zoom de texto 200 % | **0 px de desborde a 390/720/1440** | sin pérdida |
 | Errores de consola / red | **0** | 0 |
-| `prefers-reduced-motion` | sin pinning, sin parallax, 0 revelados ocultos | — |
-| Sin JavaScript | nombre, contacto, experiencia, NotiFast, Krizo y `mailto:` presentes | — |
+| `prefers-reduced-motion` | sin pinning, sin parallax, 0 revelados ocultos; el stage de Trabajo cae a flujo vertical | — |
+| Sin JavaScript | nombre, contacto, experiencia, los 6 casos del stage y `mailto:` presentes | — |
 
 El detalle reproducible está en `scripts/audit-contrast.mjs`,
 `scripts/audit-runtime.mjs` y `scripts/audit-zoom.mjs`. Dos matices honestos: el LCP

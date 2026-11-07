@@ -28,6 +28,68 @@ const railFill = document.querySelector<HTMLElement>("[data-rail-fill]");
 const trajectoryCurrent = document.querySelector<HTMLElement>("[data-traj-current]");
 const milestones = Array.from(document.querySelectorAll<HTMLElement>("[data-milestone]"));
 
+/* 04: stage de casos */
+const stage = document.querySelector<HTMLElement>("[data-stage]");
+const stagePanels = Array.from(document.querySelectorAll<HTMLElement>("[data-stage-panel]"));
+const stageCurrent = document.querySelector<HTMLElement>("[data-stage-current]");
+const stageProgress = document.querySelector<HTMLElement>("[data-stage-progress]");
+const stageDots = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-stage-dot]"));
+const stagePrev = document.querySelector<HTMLButtonElement>("[data-stage-prev]");
+const stageNext = document.querySelector<HTMLButtonElement>("[data-stage-next]");
+const stageNarrow = window.matchMedia("(max-width: 960px)");
+let activeStage = 0;
+
+function setStage(index: number): void {
+  if (stagePanels.length === 0) return;
+  const idx = Math.min(stagePanels.length - 1, Math.max(0, index));
+  activeStage = idx;
+  stagePanels.forEach((panel, i) => {
+    const on = i === idx;
+    panel.classList.toggle("is-active", on);
+    if (on) {
+      panel.removeAttribute("inert");
+      panel.removeAttribute("aria-hidden");
+    } else {
+      panel.setAttribute("inert", "");
+      panel.setAttribute("aria-hidden", "true");
+    }
+  });
+  stageDots.forEach((dot, i) => dot.setAttribute("aria-current", String(i === idx)));
+  if (stageCurrent) stageCurrent.textContent = String(idx + 1).padStart(2, "0");
+  if (stageProgress) stageProgress.style.transform = `scaleX(${(idx + 1) / stagePanels.length})`;
+}
+
+function updateStage(): void {
+  if (!stage || stagePanels.length === 0) return;
+  if (stageNarrow.matches) {
+    stagePanels.forEach((panel) => {
+      panel.classList.remove("is-active");
+      panel.removeAttribute("inert");
+      panel.removeAttribute("aria-hidden");
+    });
+    return;
+  }
+  const rect = stage.getBoundingClientRect();
+  const total = stage.offsetHeight - window.innerHeight;
+  const progress = total > 0 ? clamp01(-rect.top / total) : 0;
+  const index = Math.min(stagePanels.length - 1, Math.floor(progress * stagePanels.length));
+  if (index !== activeStage) setStage(index);
+}
+
+function scrollToStage(index: number): void {
+  if (!stage) return;
+  const total = stage.offsetHeight - window.innerHeight;
+  const step = total > 0 && stagePanels.length > 1 ? total / (stagePanels.length - 1) : 0;
+  const target = stage.getBoundingClientRect().top + window.scrollY + index * step;
+  window.scrollTo({ top: target, behavior: "smooth" });
+}
+
+stagePrev?.addEventListener("click", () => scrollToStage(activeStage - 1));
+stageNext?.addEventListener("click", () => scrollToStage(activeStage + 1));
+stageDots.forEach((dot) => {
+  dot.addEventListener("click", () => scrollToStage(Number(dot.dataset.stageTarget ?? 0)));
+});
+
 let lastActive = -1;
 let frame = 0;
 
@@ -71,6 +133,8 @@ function updateScrollUi(): void {
     const text = String(index + 1).padStart(2, "0");
     if (trajectoryCurrent.textContent !== text) trajectoryCurrent.textContent = text;
   }
+
+  updateStage();
 }
 
 function requestScrollUi(): void {

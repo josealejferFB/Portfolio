@@ -157,6 +157,7 @@ main:focus,
 
 .act {
   position: relative;
+  min-height: 100svh;
   padding-block: var(--seccion);
 }
 
@@ -2054,4 +2055,186 @@ main:focus,
   .timeline__progress {
     transform: scaleY(1);
   }
+}
+
+
+/* ==========================================================================
+   AJUSTES DE UNA PANTALLA · móvil y zoom
+   ========================================================================== */
+@media (max-width: 480px) {
+  .craft__groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    border-top: 0;
+  }
+
+  .skills {
+    display: block;
+    padding-block: 0;
+    border-bottom: 0;
+  }
+
+  .skills__label {
+    margin-bottom: 6px;
+  }
+
+  .skills__list {
+    gap: 4px;
+    grid-column: auto;
+  }
+
+  .chip {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero__role {
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero__support {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .hero__cta {
+    gap: 8px;
+  }
+
+  .hero__meta {
+    margin-top: 16px;
+  }
+}
+
+/* El meta del 04 a 200 % no debe empujar el ancho */
+.feature .case__meta > span:first-child,
+.case .case__meta > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================================
+   04 · STAGE DE CASOS (scrolltelling interno)
+   ========================================================================== */
+.work-stage { position: relative; }
+.work-stage__side,
+.work-stage__deck { min-width: 0; }
+.work-stage__panel { display: block; }
+.work-stage__panel + .work-stage__panel { margin-top: clamp(40px, 6vw, 72px); }
+.work-stage__meter,
+.work-stage__dots,
+.work-stage__nav { display: none; }
+
+.motion .work-stage { height: calc(100svh + 5 * var(--stage-step, 55svh)); }
+.motion .work-stage__sticky {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: start;
+  align-content: center;
+  min-height: 100svh;
+  padding-block: clamp(24px, 3vw, 48px);
+}
+.motion .work-stage__side { grid-column: 1 / span 4; }
+.motion .work-stage__deck { grid-column: 6 / span 7; }
+.motion .work-stage__panel { display: none; }
+.motion .work-stage__panel + .work-stage__panel { margin-top: 0; }
+.motion .work-stage__panel.is-active { display: block; }
+.motion .work-stage__side .work__head { display: block; }
+.motion .work-stage__side .work__head .shead,
+.motion .work-stage__side .work__intro { grid-column: auto; }
+.motion .work-stage__side .work__intro { margin-top: clamp(14px, 1.6vw, 20px); }
+.motion .work-stage__meter { display: flex; align-items: center; gap: var(--s-3); margin-top: clamp(16px, 2vw, 24px); }
+.work-stage__count { color: var(--verde); font-size: var(--t-small); white-space: nowrap; }
+.work-stage__progress { flex: 1; height: 1px; background: var(--linea); overflow: hidden; }
+.work-stage__progress span { display: block; width: 100%; height: 100%; background: var(--coral-700); transform-origin: left center; transform: scaleX(0.1667); }
+.motion .work-stage__dots { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s-3); }
+.work-stage__dot { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid var(--linea); border-radius: var(--r-full); background: var(--papel); color: var(--mute); font-family: var(--mono); font-size: 10px; cursor: pointer; }
+.work-stage__dot[aria-current="true"] { border-color: var(--coral-700); color: var(--coral-700); }
+.work-stage__dot:focus-visible,
+.work-stage__arrow:focus-visible { outline: 2px solid var(--coral-700); outline-offset: 2px; }
+.motion .work-stage__nav { display: flex; gap: var(--s-2); margin-top: var(--s-3); }
+.work-stage__arrow { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--linea); border-radius: var(--r-full); background: var(--papel); color: var(--verde); font-size: 18px; cursor: pointer; }
+.motion .work-stage__panel .feature { margin-top: 0; padding-top: 0; border-top: 0; }
+.motion .work-stage__panel .case { gap: var(--s-3); }
+.motion .work-stage__panel .case__cover--image { max-height: 44svh; display: flex; align-items: center; justify-content: center; background: var(--crema); }
+.motion .work-stage__panel .case__image { width: auto; max-width: 100%; height: auto; max-height: 44svh; object-fit: contain; }
+.motion .work-stage__panel .cover { max-height: 44svh; }
+
+@media (max-width: 960px) {
+  .motion .work-stage { height: auto; }
+  .motion .work-stage__sticky { position: static; display: block; min-height: 0; padding-block: 0; }
+  .motion .work-stage__side { grid-column: auto; }
+  .motion .work-stage__deck { display: flex; gap: 16px; margin-top: clamp(20px, 4vw, 32px); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; }
+  .motion .work-stage__panel,
+  .motion .work-stage__panel.is-active { display: block; flex: 0 0 min(86vw, 440px); scroll-snap-align: start; }
+  .motion .work-stage__panel + .work-stage__panel { margin-top: 0; }
+  .motion .work-stage__panel .feature,
+  .motion .work-stage__panel .feature--reverse { grid-template-columns: minmax(0, 1fr); }
+  .motion .work-stage__panel .feature__media,
+  .motion .work-stage__panel .feature__body { grid-column: 1; grid-row: auto; }
+  .motion .work-stage__panel .feature__shot { max-height: 28svh; object-fit: contain; }
+  .motion .work-stage__panel .case__cover--image,
+  .motion .work-stage__panel .case__image,
+  .motion .work-stage__panel .cover { max-height: 32svh; }
+  .motion .work-stage__meter,
+  .motion .work-stage__dots,
+  .motion .work-stage__nav { display: none; }
+}
+
+/* 05: el cierre + footer caben juntos */
+.act--contact { min-height: 0; }
+
+/* 02: cabecera sticky también en tablet/móvil */
+@media (max-width: 1024px) {
+  .trajectory__sticky {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding-block: 10px;
+    background: var(--crema);
+  }
+}
+
+/* 03 y hero: 320 */
+@media (max-width: 360px) {
+  .craft__head .shead__title { font-size: clamp(1.6rem, 9vw, 2rem); }
+  .skills__label { font-size: 0.625rem; }
+  .chip { font-size: 0.6875rem; padding: 3px 7px; }
+  .craft__groups { gap: 8px; }
+  .hero__panel { min-height: 24svh; }
+  .hero__headline { font-size: clamp(2rem, 10vw, 2.5rem); }
+  .hero__support { margin-top: 10px; }
+  .hero__cta { margin-top: 16px; }
+}
+
+
+/* Ajuste final 390/320: 03 y hero en una pantalla */
+@media (max-width: 480px) {
+  .act--craft { padding-block: 44px; }
+}
+
+@media (max-width: 360px) {
+  .hero__panel { min-height: 20svh; }
+  .hero__role { font-size: 0.5625rem; line-height: 1.4; }
+  .hero__headline { font-size: clamp(1.7rem, 9vw, 2.15rem); }
+  .hero__support { font-size: 0.8125rem; line-height: 1.45; margin-top: 8px; }
+  .hero__cta { margin-top: 12px; gap: 8px; }
+  .hero__meta { margin-top: 8px; font-size: 0.625rem; }
+}
+
+
+/* Cierre 03 en 390/320 */
+@media (max-width: 480px) {
+  .act--craft { padding-block: 32px; }
+  .craft__head .shead__title { font-size: clamp(1.6rem, 8.5vw, 2rem); }
+  .craft__line { margin-top: 8px; }
+  .craft__groups { gap: 6px; margin-top: 18px; }
 }

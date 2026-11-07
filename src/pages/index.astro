@@ -184,22 +184,65 @@ const person = {
 
     <section class="act act--work" id="trabajo" aria-labelledby="trabajo-title">
       <div class="wrap">
-        <div class="work__head">
-          <SectionHeader
-            number="04"
-            kicker={work.kicker}
-            title={work.title}
-            id="trabajo-title"
-          />
-          <p class="work__intro" data-reveal>{work.body}</p>
-        </div>
+        <div class="work-stage" data-stage>
+          <div class="work-stage__sticky">
+            <div class="work-stage__side">
+              <div class="work__head">
+                <SectionHeader
+                  number="04"
+                  kicker={work.kicker}
+                  title={work.title}
+                  id="trabajo-title"
+                />
+                <p class="work__intro" data-reveal>{work.body}</p>
+              </div>
 
-        {work.featured.map((item, index) => (
-          <FeaturedCase item={item} reverse={index % 2 === 1} />
-        ))}
+              <div class="work-stage__meter">
+                <p class="work-stage__count mono" aria-hidden="true">
+                  <span data-stage-current>01</span> / 06
+                </p>
+                <div class="work-stage__progress" aria-hidden="true">
+                  <span data-stage-progress></span>
+                </div>
+              </div>
 
-        <div class="cases">
-          {work.cases.map((item) => <CaseCard item={item} />)}
+              <div class="work-stage__dots" role="group" aria-label="Proyectos">
+                {[...work.featured, ...work.cases].map((item, index) => (
+                  <button
+                    type="button"
+                    class="work-stage__dot"
+                    data-stage-dot
+                    data-stage-target={index}
+                    aria-label={`Ver ${item.title}`}
+                    aria-current={index === 0 ? "true" : "false"}
+                  >
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                  </button>
+                ))}
+              </div>
+
+              <div class="work-stage__nav">
+                <button type="button" class="work-stage__arrow" data-stage-prev aria-label="Proyecto anterior">←</button>
+                <button type="button" class="work-stage__arrow" data-stage-next aria-label="Proyecto siguiente">→</button>
+              </div>
+            </div>
+
+            <div class="work-stage__deck">
+              {[...work.featured, ...work.cases].map((item, index) => (
+                <div
+                  class:list={["work-stage__panel", index === 0 && "is-active"]}
+                  data-stage-panel
+                  data-stage-index={index}
+                >
+                  {"media" in item ? (
+                    <FeaturedCase item={item} reverse={index === 1} panel />
+                  ) : (
+                    <CaseCard item={item} panel />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
