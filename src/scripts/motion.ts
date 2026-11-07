@@ -90,6 +90,35 @@ stageDots.forEach((dot) => {
   dot.addEventListener("click", () => scrollToStage(Number(dot.dataset.stageTarget ?? 0)));
 });
 
+const stageDeck = document.querySelector<HTMLElement>(".work-stage__deck");
+if (stageDeck) {
+  let deckTicking = false;
+  stageDeck.addEventListener(
+    "scroll",
+    () => {
+      if (!deckTicking) {
+        window.requestAnimationFrame(() => {
+          if (stageNarrow.matches && stagePanels.length > 0) {
+            const firstPanel = stagePanels[0];
+            const panelWidth = (firstPanel ? firstPanel.offsetWidth : 1) + 16;
+            const scrollLeft = stageDeck.scrollLeft;
+            const index = Math.min(
+              stagePanels.length - 1,
+              Math.max(0, Math.round(scrollLeft / panelWidth))
+            );
+            if (stageCurrent) stageCurrent.textContent = String(index + 1).padStart(2, "0");
+            if (stageProgress)
+              stageProgress.style.transform = `scaleX(${(index + 1) / stagePanels.length})`;
+          }
+          deckTicking = false;
+        });
+        deckTicking = true;
+      }
+    },
+    { passive: true }
+  );
+}
+
 let lastActive = -1;
 let frame = 0;
 
