@@ -1,0 +1,15 @@
+---
+import type { CoverVariant } from "../content/site";
+
+interface Props {
+  variant: CoverVariant;
+}
+
+const { variant } = Astro.props;
+---
+
+<div class:list={["cover", `cover--${variant}`]} aria-hidden="true">
+  <span class="cover__a"></span>
+  <span class="cover__b"></span>
+  <span class="cover__c"></span>
+</div>

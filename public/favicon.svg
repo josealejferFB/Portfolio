@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="José Fernández">
+  <rect x="0" y="0" width="64" height="58" rx="18" fill="#FF6D4D"/>
+  <rect x="0" y="9" width="64" height="55" rx="18" fill="#215C50"/>
+  <circle cx="32" cy="40" r="7" fill="#FF6D4D"/>
+</svg>

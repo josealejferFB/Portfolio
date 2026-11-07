@@ -1,0 +1,314 @@
+---
+import Base from "../layouts/Base.astro";
+import ChapterRail from "../components/ChapterRail.astro";
+import Panel from "../components/Panel.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import Button from "../components/Button.astro";
+import StackedCircles from "../components/StackedCircles.astro";
+import TimelineItem from "../components/TimelineItem.astro";
+import CaseCard from "../components/CaseCard.astro";
+import FeaturedCase from "../components/FeaturedCase.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import { site, mailto } from "../content/site";
+
+const { hero, criterion, trajectory, craft, work, contact } = site;
+const milestones = [...trajectory.experience, ...trajectory.education];
+const milestoneTotal = String(milestones.length).padStart(2, "0");
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: site.role,
+  email: site.email,
+  telephone: site.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.location.city,
+    addressRegion: site.location.region,
+    addressCountry: site.location.country,
+  },
+  knowsLanguage: site.languages.map((language) => language.name),
+  knowsAbout: craft.strengths,
+};
+---
+
+<Base title={site.seo.title} description={site.seo.description}>
+  <ChapterRail />
+
+  <main id="contenido" tabindex="-1">
+    <div class="hero" id="inicio">
+      <StackedCircles class="hero__circles" />
+
+      <div class="hero__body">
+        <Panel shape="hero" class="hero__panel">
+          <p class="label label--on-dark hero__panel-label">{hero.panelKicker}</p>
+          <p class="hero__tesis">{site.tesis}</p>
+          <div class="hero__panel-foot">
+            <p class="label label--on-dark">{hero.languagesLabel}</p>
+            <ul class="hero__langs">
+              {site.languages.map((language) => (
+                <li>
+                  <span>{language.name}</span>
+                  <span>{language.level}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Panel>
+
+        <div class="hero__main">
+          <div class="hero__copy">
+            <p class="label hero__kicker"><span>{hero.kicker}</span></p>
+
+            <h1 class="hero__name" aria-label={site.name}>
+              {site.nameDisplay.map((line, index) => (
+                <span class:list={["line", index === 1 && "line--accent"]}>
+                  <span class="line__inner">{line}</span>
+                </span>
+              ))}
+            </h1>
+
+            <p class="hero__role">{site.roleDisplay}</p>
+            <p class="hero__headline">{hero.headline}</p>
+            <p class="hero__support">{hero.support}</p>
+
+            <div class="hero__actions">
+              <Button href={hero.ctaPrimary.href} icon="arrowRight">
+                {hero.ctaPrimary.label}
+              </Button>
+              <Button href={hero.ctaSecondary.href} variant="outline">
+                {hero.ctaSecondary.label}
+              </Button>
+            </div>
+
+            <p class="hero__meta">
+              <span>{site.location.short}</span>
+              <span class="hero__meta-tz"><span aria-hidden="true">·</span> {site.location.timezone}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="act act--criterion" id="criterio" aria-labelledby="criterio-title">
+      <div class="wrap">
+        <div class="criterion">
+          <div class="criterion__copy">
+            <SectionHeader
+              number="01"
+              kicker={criterion.kicker}
+              title={criterion.title}
+              id="criterio-title"
+            />
+            <p class="criterion__body" data-reveal>{criterion.body}</p>
+            <ul class="criterion__stats" data-reveal>
+              {criterion.stats.map((stat) => (
+                <li>
+                  <span class="stat__value">{stat.value}</span>
+                  <span class="stat__label">{stat.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="criterion__stage" data-criterion-stage>
+            <div class="layer layer--coral" aria-hidden="true" data-layer-coral></div>
+            <div class="layer layer--green" data-layer-green>
+              <p class="label layer__label">{criterion.layerLabel}</p>
+              <p class="layer__quote">{criterion.foot}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="act act--trajectory" id="trayectoria" aria-labelledby="trayectoria-title">
+      <div class="wrap">
+        <div class="trajectory">
+          <div class="trajectory__side">
+            <div class="trajectory__sticky">
+              <SectionHeader
+                number="02"
+                kicker={trajectory.kicker}
+                title={trajectory.title}
+                id="trayectoria-title"
+              />
+              <div class="trajectory__counter" aria-hidden="true">
+                <span class="trajectory__current" data-traj-current>01</span>
+                <span class="trajectory__total mono">/ {milestoneTotal}</span>
+              </div>
+              <p class="label trajectory__hint">{trajectory.counterHint}</p>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <span class="timeline__line" aria-hidden="true">
+              <span class="timeline__progress" data-timeline-progress></span>
+            </span>
+            <ol class="timeline__list">
+              {milestones.map((milestone) => (
+                <TimelineItem milestone={milestone} />
+              ))}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="act act--craft" id="craft" aria-labelledby="craft-title">
+      <div class="wrap">
+        <div class="craft__head">
+          <SectionHeader
+            number="03"
+            kicker={craft.kicker}
+            title={craft.title}
+            id="craft-title"
+          />
+          <p class="craft__line" data-reveal>{craft.line}</p>
+        </div>
+
+        <div class="craft__groups">
+          {craft.groups.map((group) => (
+            <div class="skills" data-reveal>
+              <p class="label skills__label">{group.label}</p>
+              <ul class="skills__list">
+                {group.skills.map((skill) => <li class="chip">{skill}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="act act--work" id="trabajo" aria-labelledby="trabajo-title">
+      <div class="wrap">
+        <div class="work-stage" data-stage>
+          <div class="work-stage__sticky">
+            <div class="work-stage__side">
+              <div class="work__head">
+                <SectionHeader
+                  number="04"
+                  kicker={work.kicker}
+                  title={work.title}
+                  id="trabajo-title"
+                />
+                <p class="work__intro" data-reveal>{work.body}</p>
+              </div>
+
+              <div class="work-stage__meter">
+                <p class="work-stage__count mono" aria-hidden="true">
+                  <span data-stage-current>01</span> / 06
+                </p>
+                <div class="work-stage__progress" aria-hidden="true">
+                  <span data-stage-progress></span>
+                </div>
+              </div>
+
+              <div class="work-stage__dots" role="group" aria-label="Proyectos">
+                {[...work.featured, ...work.cases].map((item, index) => (
+                  <button
+                    type="button"
+                    class="work-stage__dot"
+                    data-stage-dot
+                    data-stage-target={index}
+                    aria-label={`Ver ${item.title}`}
+                    aria-current={index === 0 ? "true" : "false"}
+                  >
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                  </button>
+                ))}
+              </div>
+
+              <div class="work-stage__nav">
+                <button type="button" class="work-stage__arrow" data-stage-prev aria-label="Proyecto anterior">←</button>
+                <button type="button" class="work-stage__arrow" data-stage-next aria-label="Proyecto siguiente">→</button>
+              </div>
+            </div>
+
+            <div class="work-stage__deck">
+              {[...work.featured, ...work.cases].map((item, index) => (
+                <div
+                  class:list={["work-stage__panel", index === 0 && "is-active"]}
+                  data-stage-panel
+                  data-stage-index={index}
+                >
+                  {"media" in item ? (
+                    <FeaturedCase item={item} reverse={index === 1} panel />
+                  ) : (
+                    <CaseCard item={item} panel />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="act act--contact" id="contacto" aria-labelledby="contacto-title">
+      <div class="wrap">
+        <div class="contact">
+          <div class="contact__head">
+            <p class="label contact__kicker" data-reveal>{contact.kicker}</p>
+            <h2 class="contact__title" id="contacto-title">
+              <span class="contact__word" data-contact-word>{contact.title}</span>
+            </h2>
+          </div>
+
+          <div class="contact__row">
+            <p class="contact__line" data-reveal>{contact.line}</p>
+            <div class="contact__action" data-reveal>
+              <a
+                class="btn btn--cream btn--lg"
+                href={mailto}
+                data-copy-fallback
+                aria-label={`Escribir a ${site.name}: ${site.email}`}
+              >
+                <span class="btn__label">{site.email}</span>
+                <Icon name="mail" size={20} />
+              </a>
+              <button
+                class="btn btn--cream btn--lg"
+                type="button"
+                hidden
+                data-copy-button
+                data-copy-email={site.email}
+                data-copy-confirm={contact.copied}
+                aria-label={`${contact.action}: ${site.email}`}
+              >
+                <span class="btn__label">{site.email}</span>
+                <Icon name="copy" size={20} />
+              </button>
+              <p class="contact__status" role="status" aria-live="polite" data-copy-status></p>
+            </div>
+          </div>
+
+          <p class="contact__meta" data-reveal>
+            <span>{site.phone}</span>
+            <span class="contact__sep" aria-hidden="true">·</span>
+            <span class="contact__handle">{site.handle}</span>
+            <span class="contact__sep" aria-hidden="true">·</span>
+            <span>{site.location.short}</span>
+            <span class="contact__sep" aria-hidden="true">·</span>
+            <a
+              class="contact__site"
+              href={site.website.href}
+              target="_blank"
+              aria-label={`Abrir ${site.website.label} en una pestaña nueva`}
+              rel="noopener noreferrer"
+            >{site.website.label}</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(person)} />
+  <script>
+    import "../scripts/motion";
+  </script>
+</Base>

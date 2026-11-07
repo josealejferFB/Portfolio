@@ -1,0 +1,131 @@
+/* ==========================================================================
+   TOKENS · José Fernández — portfolio
+   Única fuente de color, tipografía, espacio, geometría y movimiento.
+   Regla dura: ningún valor hexadecimal fuera de este archivo.
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------------
+     Marca · duotono estricto
+     El coral puro (2.78:1) NUNCA es tinta sobre blanco. Para texto coral
+     sobre claro se usa --coral-700. Sobre coral va --tinta, nunca blanco.
+     --------------------------------------------------------------------- */
+  --verde: #215c50; /* texto principal, superficies oscuras · 7.75:1 */
+  --verde-700: #17453b; /* presión, profundidad */
+  --verde-900: #0e2f28; /* cierre, capa más profunda · 14.4:1 */
+  --coral: #ff6d4d; /* solo forma o superficie grande — jamás texto */
+  --coral-600: #e8552f; /* discos con glifo blanco · 3.64:1 gráfico */
+  --coral-700: #cc3f1c; /* todo texto coral sobre claro · 4.89:1 AA */
+  --tinta: #141414; /* párrafo · 18.4:1 sobre blanco, 6.62:1 sobre coral */
+  --mute: #5c5c57; /* metadatos, años, pies · 6.72:1 */
+  --papel: #ffffff; /* lienzo base */
+  --crema: #fbf7f2; /* alternancia de secciones, nunca junto a blanco */
+  --linea: rgba(33, 92, 80, 0.14); /* regla de 1 px */
+  --linea-oscura: rgba(255, 255, 255, 0.16);
+  --linea-coral: rgba(255, 109, 77, 0.4);
+
+  /* Derivados: siempre color-mix sobre tokens, nunca hex nuevos. */
+  --verde-04: color-mix(in srgb, var(--verde) 4%, var(--papel));
+  --verde-08: color-mix(in srgb, var(--verde) 8%, var(--papel));
+  --verde-12: color-mix(in srgb, var(--verde) 12%, var(--papel));
+  --crema-verde: color-mix(in srgb, var(--verde) 5%, var(--crema));
+  --coral-12: color-mix(in srgb, var(--coral) 12%, var(--papel));
+  --coral-20: color-mix(in srgb, var(--coral) 20%, var(--papel));
+  --verde-88: color-mix(in srgb, var(--verde) 88%, var(--verde-900));
+
+  /* ---------------------------------------------------------------------
+     Tipografía · una sola familia. El contraste es escala y aire.
+     --------------------------------------------------------------------- */
+  --fuente: "Montserrat Variable", "Montserrat", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --t-display: clamp(3.25rem, 9.2vw, 8.5rem);
+  --t-h1: clamp(2.5rem, 5.2vw, 4.5rem);
+  --t-h2: clamp(1.5rem, 2.4vw, 2rem);
+  --t-h3: clamp(1.125rem, 1.5vw, 1.375rem);
+  --t-lead: clamp(1.0625rem, 1.35vw, 1.3125rem);
+  --t-body: 1.0625rem;
+  --t-small: 0.875rem;
+  --t-label: 0.6875rem;
+
+  --track-display: -0.045em;
+  --track-tight: -0.02em;
+  --track-label: 0.24em;
+
+  --lh-display: 0.86;
+  --lh-title: 1.02;
+  --lh-body: 1.65;
+
+  --max-text: 62ch;
+
+  /* ---------------------------------------------------------------------
+     Geometría · squircle + ribete
+     --------------------------------------------------------------------- */
+  --r-xs: 8px;
+  --r-sm: 14px;
+  --r-md: 22px;
+  --r-lg: 34px;
+  --r-xl: 52px;
+  --r-panel: clamp(40px, 12vw, 180px);
+  --r-full: 999px;
+  --r-stage: clamp(48px, 7vw, 104px);
+  --rim: clamp(10px, 1.1vw, 18px);
+  --rim-tight: 5px;
+
+  /* ---------------------------------------------------------------------
+     Espacio · escala base 4
+     --------------------------------------------------------------------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-24: 96px;
+  --s-32: 128px;
+  --s-40: 160px;
+  --seccion: clamp(80px, 10vw, 160px);
+
+  /* ---------------------------------------------------------------------
+     Layout · rejilla de 12 columnas
+     --------------------------------------------------------------------- */
+  --ancho: 1440px;
+  --margen: clamp(20px, 5vw, 80px);
+  --gutter: clamp(16px, 2vw, 32px);
+  --panel: clamp(320px, 34vw, 40.5%);
+  --rail: 3.25rem;
+  --topbar: 4.5rem;
+
+  /* ---------------------------------------------------------------------
+     Movimiento · curva, duración, stagger
+     --------------------------------------------------------------------- */
+  --e-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --e-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --d-1: 160ms;
+  --d-2: 240ms;
+  --d-3: 420ms;
+  --d-4: 720ms;
+  --d-5: 1100ms;
+  --stagger: 55ms;
+  --reveal-y: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   Movimiento reducido: modo de primera clase. Sin pinning, sin marquesina,
+   sin parallax, sin transiciones; el contenido aparece completo.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

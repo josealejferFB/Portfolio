@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["circles", className]} aria-hidden="true">
+  <span class="circles__back"></span>
+  <span class="circles__front"></span>
+</div>

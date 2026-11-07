@@ -1,0 +1,31 @@
+---
+import Icon from "./Icon.astro";
+import type { IconName } from "./icon-paths";
+
+interface Props {
+  href: string;
+  variant?: "solid" | "outline" | "cream";
+  size?: "md" | "lg";
+  icon?: IconName;
+  class?: string;
+  "aria-label"?: string;
+}
+
+const {
+  href,
+  variant = "solid",
+  size = "md",
+  icon,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={["btn", `btn--${variant}`, `btn--${size}`, className]}
+  {...rest}
+>
+  <span class="btn__label"><slot /></span>
+  {icon && <Icon name={icon} size={size === "lg" ? 20 : 16} />}
+</a>
