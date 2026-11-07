@@ -129,9 +129,9 @@ Esta rama (\`despliegue\`) contiene exclusivamente el código fuente optimizado 
 `;
 fs.writeFileSync(path.join(deployTmpDir, "README.md"), deployReadme, "utf-8");
 
-// Generar package-lock.json limpio en deployTmpDir
-console.log("\x1b[32m✔ 3. Generando lockfile optimizado para producción...\x1b[0m");
-execSync("npm install --package-lock-only", { cwd: deployTmpDir, stdio: "inherit" });
+// Usar el package-lock.json existente del proyecto
+console.log("\x1b[32m✔ 3. Copiando lockfile verificado...\x1b[0m");
+fs.copyFileSync(path.join(rootDir, "package-lock.json"), path.join(deployTmpDir, "package-lock.json"));
 
 // 4. Cambiar a o crear la rama despliegue
 console.log("\x1b[32m✔ 4. Sincronizando rama 'despliegue'...\x1b[0m");
