@@ -35,9 +35,10 @@ Stack: Kotlin 2.0, Jetpack Compose (Material 3), Room SQLite, Hilt, Clean Archit
 - Implementó un motor local de extracción de datos para importar horarios automáticamente desde comprobantes de inscripción en PDF (DACE UNERG), junto con un bloc de apuntes por bloques con soporte para ecuaciones en LaTeX, notas de voz y pizarra táctil.
 - Desarrolló un simulador y dashboard predictivo de calificaciones con soporte multipaís (escalas de 0-20, 0-10, porcentual y GPA), generador automatizado de portadas normativas (APA/IEEE) exportables a DOCX y compartición P2P mediante paquetes .notifast y códigos QR sin conexión.
 
-Ecosistema de Asistencia Vial
-Stack: Android Nativo, Kotlin, Diseño UI/UX (Figma)
-- Diseñó la experiencia de usuario y desarrolló una plataforma logística móvil para conectar en tiempo real a conductores varados con redes de proveedores de servicios y asistencia mecánica.
+Krizo — App de asistencia vial (Proyecto universitario)
+Stack: React Native, Diseño UI/UX (Figma), Identidad visual
+- Proyecto universitario. Diseñó y desarrolló una app móvil en React Native que conecta en tiempo real a conductores varados con grúas, mecánicos y tiendas de repuesto: tres tipos de aliado en una misma red de asistencia en carretera.
+- Diseñó la identidad visual —logo y pieza publicitaria— y la experiencia de usuario de la app, que conserva esa identidad.
 
 EDUCACIÓN Y CERTIFICACIONES
 - Ingeniería de Sistemas (Último semestre - 10mo) | Universidad Nacional Experimental Rómulo Gallegos (UNERG) — Actualmente

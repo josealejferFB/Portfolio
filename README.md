@@ -2,9 +2,9 @@
 
 Sitio de una sola página para José Fernández, ingeniero de sistemas en último semestre,
 desarrollador móvil y diseñador UI/UX & gráfico venezolano. El punto de partida no es una
-plantilla: es su currículum 2026, usado como sistema de diseño. Incluye **NotiFast** —
-producto educativo propio con logo, captura de landing y enlace público— y cinco fichas
-más de proyectos del CV.
+plantilla: es su currículum 2026, usado como sistema de diseño. Incluye **NotiFast** y
+**Krizo** —dos productos con logo, imágenes y copy propios— y cuatro fichas más de
+proyectos del CV.
 
 > **La capa verde es la lógica. El ribete coral es la empatía.**
 > El scroll las separa y las vuelve a tocar.
@@ -46,7 +46,7 @@ El preview del entregable está levantado como job en segundo plano en
 ├── explorations/              # tres direcciones de arte + notas + capturas
 ├── src/
 │   ├── components/            # Panel, SectionHeader, Disc, Button, Chip, Marquee,
-│   │                          # TimelineItem, CaseCard, NotiFastFeature, ChapterRail,
+│   │                          # TimelineItem, CaseCard, FeaturedCase, ChapterRail,
 │   │                          # Footer, Icon…
 │   ├── layouts/Base.astro     # meta, fuentes, skip-link, OG
 │   ├── pages/index.astro      # los cinco actos + hero
@@ -55,7 +55,7 @@ El preview del entregable está levantado como job en segundo plano en
 │   ├── styles/site.css        # sistema completo y responsive
 │   └── scripts/motion.ts      # capa GSAP + Lenis, aislada
 ├── public/
-│   ├── projects/              # notifast-logo.webp, notifast-landing.jpg
+│   ├── projects/              # NotiFast (logo + landing) y Krizo (logo + promo)
 │   └── favicon.svg, og.png, fonts/
 ├── scripts/                   # shots, og, auditorías y captura de exploraciones
 ├── shots/                     # 320, 390, 768, 1024, 1440, 1920, reduced-motion,
@@ -71,19 +71,20 @@ El preview del entregable está levantado como job en segundo plano en
 1. **El ribete es el sistema de movimiento.** El hero comprime el panel y separa el
    ribete al hacer scroll; «El criterio» hace que las dos capas lleguen desde lados
    opuestos y terminen alineadas. No hay animación que no cuente esa relación. El
-   ribete aparece en el hero, en el panel de El criterio y en las cinco portadas de
-   Trabajo; los círculos apilados, en la esquina superior derecha del hero.
+   ribete aparece en el hero, en el panel de El criterio y en las cuatro portadas
+   abstractas de Trabajo; NotiFast y Krizo llevan su propio material; los círculos
+   apilados, en la esquina superior derecha del hero.
 2. **El sitio se lee completo sin JavaScript.** El 100 % del layout y del contenido está
    en HTML y CSS. GSAP y Lenis solo añaden movimiento: si el bundle no carga, los
    revelados no ocultan nada, la marquesina queda estática y el email sigue siendo un
    `mailto:`. `shots/no-js.png` lo demuestra.
-3. **NotiFast es el primer caso con material real; los otros cinco son fichas del CV.**
-   NotiFast tiene logo, captura de landing, métricas del CV y enlace público, y se
-   presenta como caso destacado. Las otras cinco fichas salen del CV 2026 con títulos
-   descriptivos —Asistencia y geocercas, Asistencia Vial, Control de acceso, Robótica
-   educativa, Monitoreo atmosférico— y portadas abstractas en CSS. No hay capturas
-   falsas: las métricas de NotiFast salen del CV y de su landing; lo que falta se pide
-   en `CONTENT_TODO.md`.
+3. **NotiFast y Krizo son los casos con material real; las otras cuatro son fichas del
+   CV.** NotiFast tiene logo, captura de landing, métricas y enlace público. Krizo tiene
+   logo, pieza publicitaria y copy de proyecto universitario en React Native. Las otras
+   cuatro fichas —Asistencia y geocercas, Control de acceso, Robótica educativa,
+   Monitoreo atmosférico— salen del CV 2026 con títulos descriptivos y portadas
+   abstractas en CSS. No hay capturas falsas: las métricas de NotiFast salen del CV y de
+   su landing; lo que falta se pide en `CONTENT_TODO.md`.
 
 ### Decisiones tomadas sin consultar
 
@@ -98,16 +99,23 @@ El preview del entregable está levantado como job en segundo plano en
   en las cinco; la diferencia la hace el contenido, no el padding.
 - **Sin selector de idioma ni modo oscuro a medias.** No hay segunda versión que traducir
   ni tema oscuro que mantener; añadirlos a medias sería peor que no tenerlos.
-- **Trabajo pasa de cinco a seis proyectos y las fichas estrenan título, categoría,
-  estado, nota, stack y resumen.** NotiFast es el caso destacado; los otros cinco usan
-  los títulos descriptivos anteriores porque el CV no les da un nombre de producto. Se
-  cambian en `site.ts` cuando José los confirme.
+- **Trabajo pasa a dos casos destacados + cuatro fichas y estas estrenan título,
+  categoría, estado, nota, stack y resumen.** NotiFast y Krizo son los destacados; las
+  cuatro fichas usan los títulos descriptivos anteriores porque el CV no les da un
+  nombre de producto. Se cambian en `site.ts` cuando José los confirme.
+- **Krizo sustituye la ficha «Asistencia Vial».** El nombre correcto es Krizo; es un
+  proyecto universitario en React Native para grúas, mecánicos y tiendas de repuesto. El
+  CV lo listaba como Android/Kotlin; manda la corrección de José y el CV de referencia ya
+  está actualizado. Su logo es el título visible del caso y la pieza publicitaria la
+  imagen; no hay enlace público, así que el único CTA es el email.
 - **NotiFast se muestra con su captura real en un marco neutro.** La PNG original de la
   landing (921 KB) se reencodeó a 1400×782 (109 KB, lazy); el rojo/teal del producto es
-  contenido, no una ampliación del sistema verde/coral.
+  contenido, no una ampliación del sistema verde/coral. La pieza de Krizo (774×259, 44 KB)
+  y su logo (628×344, 23 KB) se usan tal cual, también lazy y con `width`/`height`.
 - **«En producción» en Asistencia y geocercas y en Control de acceso** viene del brief
   anterior y de que Alcaraván es el empleo actual; queda por confirmar en
-  `CONTENT_TODO.md`. El resto usa los verbos del CV: «Desarrollada» / «Implementada».
+  `CONTENT_TODO.md`. El resto usa los verbos del CV: «Desarrollada» / «Implementada», y
+  Krizo se queda como «Proyecto universitario».
 - **El rol visible y el SEO usan «Ingeniero de Sistemas · Desarrollador Móvil · Diseñador
   UI/UX & Gráfico»**, tal como la cabecera del CV 2026. El 10.º semestre y el carácter de
   estudiante aparecen en Criterio y Formación; si José prefiere «en formación», se cambia
@@ -132,9 +140,9 @@ Con el build de producción servido en local:
 | JS inicial gzip | **49.5 KB** | ≤ 110 KB |
 | CSS gzip | **9.1 KB** | ≤ 45 KB |
 | Fuentes | **1 archivo, 37.1 KB** | ≤ 2 archivos, ≤ 70 KB |
-| HTML gzip | 6.4 KB | — |
-| Imágenes | **2 archivos, 161 KB** (109 + 52), lazy y con `width`/`height` | no hay límite en §6 |
-| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.80 s** | ≤ 2.0 s |
+| HTML gzip | 6.7 KB | — |
+| Imágenes | **4 archivos, 228 KB** (109 + 52 + 44 + 23), lazy y con `width`/`height` | no hay límite en §6 |
+| LCP (4G 1.6 Mbps, RTT 150 ms, CPU ×4) | **0.90 s** | ≤ 2.0 s |
 | CLS | **0.0009** | ≤ 0.02 |
 | Tareas largas durante el scroll | **ninguna** | ninguna > 80 ms |
 | Frames durante scroll programático | **p50 16.7 ms · p95 16.8 ms** | 60 fps |
@@ -143,13 +151,13 @@ Con el build de producción servido en local:
 | Zoom de texto 200 % | **0 px de desborde a 390/720/1440** | sin pérdida |
 | Errores de consola / red | **0** | 0 |
 | `prefers-reduced-motion` | sin marquesina, sin pinning, 0 revelados ocultos | — |
-| Sin JavaScript | nombre, contacto, experiencia, NotiFast y `mailto:` presentes | — |
+| Sin JavaScript | nombre, contacto, experiencia, NotiFast, Krizo y `mailto:` presentes | — |
 
 El detalle reproducible está en `scripts/audit-contrast.mjs`,
 `scripts/audit-runtime.mjs` y `scripts/audit-zoom.mjs`. Dos matices honestos: el LCP
 mide el nombre aún recortado por su entrada de 720 ms (el nombre completo se pinta a
 ~1.25 s bajo 4G + CPU ×4, dentro del límite), y el arranque deja dos tareas de
-133–285 ms (≈33–71 ms en tiempo real). El presupuesto de §6 solo acota las tareas
+182–300 ms (≈45–75 ms en tiempo real). El presupuesto de §6 solo acota las tareas
 largas durante el scroll, donde no queda ninguna. Deuda conocida: con movimiento
 reducido el bundle de GSAP/Lenis (≈50 KB gzip) se descarga igualmente, aunque no se
 inicia ni anima nada.
@@ -173,18 +181,21 @@ inicia ni anima nada.
 - NotiFast: la captura de la landing tiene alt descriptivo; el logo es decorativo junto
   al título; «Ver landing» y «notifast.pages.dev» avisan en su nombre accesible que abren
   una pestaña nueva.
+- Krizo: la pieza publicitaria tiene alt descriptivo; el logo es el título visible y su
+  alt es «Krizo», así que el encabezado conserva su nombre accesible. Como no hay enlace
+  público, el único CTA es el email.
 - Los números de los discos pasan AA después del cambio a coral-700; los puntos
   decorativos no comunican información por sí solos.
 - Cero texto blanco sobre coral. Sobre coral, tinta (6.62:1) o verde-900 (5.18:1).
 
 ## Cómo actualizar un caso real
 
-1. Edita `site.work.featured` (NotiFast) o `site.work.cases` en `src/content/site.ts`:
-   título, categoría, estado, nota, resumen, stack, imagen/enlace.
+1. Edita `site.work.featured` (NotiFast, Krizo) o `site.work.cases` en
+   `src/content/site.ts`: título, categoría, estado, nota, resumen, stack, imagen/enlace.
 2. Para una captura real en una tarjeta, añade el campo `image` al `CaseSlot` y renderízalo
-   en `CaseCard` como hace `NotiFastFeature`; conserva `width`/`height` y `loading="lazy"`.
-3. Si cambia la landing de NotiFast, sustituye `public/projects/notifast-landing.jpg` por
-   otra de 1400×782 y reconstruye.
+   en `CaseCard` como hace `FeaturedCase`; conserva `width`/`height` y `loading="lazy"`.
+3. Si cambia la landing de NotiFast o la pieza de Krizo, sustituye el archivo por otro de
+   la misma proporción (1400×782 y 774×259) y reconstruye.
 4. Actualiza `CONTENT_TODO.md` marcando lo recibido.
 5. `npm run build && npm run shots` y revisa las capturas antes de decir que está listo.
 
@@ -192,5 +203,6 @@ inicia ni anima nada.
 
 Diseñado y construido por José Fernández. Montserrat, `#215C50`, `#FF6D4D` y demasiadas
 revisiones. El copy y los datos provienen del CV 2026 (`reference/jose-cv-2026.txt`), del
-CV anterior y de la landing de NotiFast; el logo y la captura de NotiFast los aportó José.
-Lo que falta está en `CONTENT_TODO.md`.
+CV anterior, de la landing de NotiFast y de Krizo; el logo y la captura de NotiFast y el
+logo y la pieza publicitaria de Krizo los aportó José. Lo que falta está en
+`CONTENT_TODO.md`.

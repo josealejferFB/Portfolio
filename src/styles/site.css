@@ -1109,6 +1109,20 @@ main:focus,
   border-top: 1px solid var(--linea);
 }
 
+.feature--reverse {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.feature--reverse .feature__media {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.feature--reverse .feature__body {
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .feature__media {
   overflow: hidden;
   border: 1px solid var(--linea);
@@ -1148,6 +1162,20 @@ main:focus,
   border-radius: var(--r-sm);
   background: var(--papel);
   object-fit: cover;
+}
+
+.feature__logo--wide {
+  display: block;
+  width: 120px;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  object-fit: contain;
+}
+
+.feature__title--logo {
+  line-height: 0;
 }
 
 .feature__title {
@@ -1234,27 +1262,22 @@ main:focus,
   min-width: 0;
 }
 
-.case--02 {
+.case--03 {
   grid-column: 1 / span 7;
 }
 
-.case--03 {
-  grid-column: 9 / span 4;
-  margin-top: clamp(40px, 6vw, 96px);
-}
-
 .case--04 {
-  grid-column: 1 / span 4;
+  grid-column: 9 / span 4;
+  margin-top: clamp(56px, 8vw, 112px);
 }
 
 .case--05 {
-  grid-column: 5 / span 4;
-  margin-top: clamp(24px, 3vw, 56px);
+  grid-column: 1 / span 4;
 }
 
 .case--06 {
-  grid-column: 9 / span 4;
-  margin-top: clamp(12px, 1.6vw, 28px);
+  grid-column: 5 / span 4;
+  margin-top: clamp(24px, 3vw, 56px);
 }
 
 .case__cover {
@@ -1586,45 +1609,6 @@ main:focus,
   aspect-ratio: 1;
   border-radius: 2px;
   background: var(--coral);
-}
-
-/* 05 · sistema: retícula y paneles */
-.cover--sistema .cover__a {
-  top: 16%;
-  left: 8%;
-  width: 48%;
-  height: 58%;
-  border: 1px solid var(--verde);
-  border-radius: var(--r-md);
-}
-
-.cover--sistema .cover__b {
-  right: 10%;
-  bottom: 12%;
-  width: 34%;
-  height: 46%;
-  border-radius: var(--r-sm);
-  background: var(--verde);
-}
-
-.cover--sistema .cover__c {
-  top: 0;
-  bottom: 0;
-  left: 62%;
-  width: 8%;
-  background: var(--coral);
-}
-
-.cover--sistema::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 1px solid var(--linea);
-  border-radius: var(--r-lg);
-  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -2097,9 +2081,16 @@ main:focus,
     max-width: 52ch;
   }
 
-  .feature {
-    grid-template-columns: 1fr;
+  .feature,
+  .feature--reverse {
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--s-6);
+  }
+
+  .feature--reverse .feature__media,
+  .feature--reverse .feature__body {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .cases {
@@ -2107,7 +2098,6 @@ main:focus,
     gap: clamp(40px, 7vw, 64px);
   }
 
-  .case--02,
   .case--03,
   .case--04,
   .case--05,

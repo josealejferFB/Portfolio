@@ -24,7 +24,7 @@ export interface SkillGroup {
   readonly skills: readonly string[];
 }
 
-export type CoverVariant = "plataforma" | "sistema" | "nativa" | "educativa" | "iot";
+export type CoverVariant = "plataforma" | "nativa" | "educativa" | "iot";
 
 export interface CaseMedia {
   readonly src: string;
@@ -49,10 +49,10 @@ export interface FeaturedCase {
   readonly note: string;
   readonly tagline: string;
   readonly summary: string;
-  readonly facts: readonly Stat[];
+  readonly facts?: readonly Stat[];
   readonly stack: readonly string[];
   readonly media: CaseMedia;
-  readonly link: CaseLink;
+  readonly link?: CaseLink;
 }
 
 export interface CaseSlot {
@@ -314,52 +314,77 @@ export const site = {
   work: {
     kicker: "TRABAJO",
     title: "Seis proyectos. Del diseño al código.",
-    body: "Seis proyectos construidos: un producto educativo publicado, sistemas empresariales y soluciones IoT. Lo que sigue es el mapa: categoría, estado y el stack confirmado. Sin métricas que no pueda demostrar.",
+    body: "Seis proyectos construidos: un producto educativo publicado, una app universitaria, sistemas empresariales y soluciones IoT. Lo que sigue es el mapa: categoría, estado y el stack confirmado. Sin métricas que no pueda demostrar.",
     cta: "Pedir el caso completo",
-    featured: {
-      index: "01",
-      title: "NotiFast",
-      category: "App móvil nativa",
-      status: "Publicada · v1.0 RC",
-      live: true,
-      note: "Autoría propia",
-      tagline: "Hub educativo y cuaderno académico inteligente.",
-      summary:
-        "Diseñé y desarrollé la app completa: importación de horarios DACE desde PDF, apuntes con LaTeX, voz y pizarra, simulador de notas multipaís y portadas APA/IEEE.",
-      facts: [
-        { value: "26", label: "pantallas" },
-        { value: "805", label: "pruebas unitarias" },
-        { value: "100 %", label: "offline" },
-      ] satisfies readonly Stat[],
-      stack: [
-        "Kotlin 2.0",
-        "Jetpack Compose",
-        "Room",
-        "Hilt",
-        "Clean Architecture",
-        "MVI",
-        "Offline-First",
-      ],
-      media: {
-        src: "/projects/notifast-landing.jpg",
-        alt: "Landing de NotiFast con el titular «Todo tu semestre, en calma y sin conexión» y una vista de la app en Android.",
-        width: 1400,
-        height: 782,
-        logo: {
-          src: "/projects/notifast-logo.webp",
-          width: 750,
-          height: 750,
+    featured: [
+      {
+        index: "01",
+        title: "NotiFast",
+        category: "App móvil nativa",
+        status: "Publicada · v1.0 RC",
+        live: true,
+        note: "Autoría propia",
+        tagline: "Hub educativo y cuaderno académico inteligente.",
+        summary:
+          "Diseñé y desarrollé la app completa: importación de horarios DACE desde PDF, apuntes con LaTeX, voz y pizarra, simulador de notas multipaís y portadas APA/IEEE.",
+        facts: [
+          { value: "26", label: "pantallas" },
+          { value: "805", label: "pruebas unitarias" },
+          { value: "100 %", label: "offline" },
+        ] satisfies readonly Stat[],
+        stack: [
+          "Kotlin 2.0",
+          "Jetpack Compose",
+          "Room",
+          "Hilt",
+          "Clean Architecture",
+          "MVI",
+          "Offline-First",
+        ],
+        media: {
+          src: "/projects/notifast-landing.jpg",
+          alt: "Landing de NotiFast con el titular «Todo tu semestre, en calma y sin conexión» y una vista de la app en Android.",
+          width: 1400,
+          height: 782,
+          logo: {
+            src: "/projects/notifast-logo.webp",
+            width: 750,
+            height: 750,
+          },
+        },
+        link: {
+          label: "Ver landing",
+          href: "https://notifast.pages.dev",
+          external: true,
         },
       },
-      link: {
-        label: "Ver landing",
-        href: "https://notifast.pages.dev",
-        external: true,
-      },
-    } satisfies FeaturedCase,
-    cases: [
       {
         index: "02",
+        title: "Krizo",
+        category: "App móvil en React Native",
+        status: "Proyecto universitario",
+        live: false,
+        note: "Diseño y desarrollo",
+        tagline: "Tu aliado en carretera.",
+        summary:
+          "Diseñé y desarrollé en React Native una app que conecta en tiempo real a conductores varados con grúas, mecánicos y tiendas de repuesto. Nació como proyecto universitario y conserva identidad propia.",
+        stack: ["React Native", "Figma", "Identidad visual"],
+        media: {
+          src: "/projects/krizo-promo.jpg",
+          alt: "Pieza publicitaria de Krizo: «¡No te quedes varado!» y «Tu aliado en carretera», con el logo, la app en Android y los servicios de grúas, mecánicos y repuestos.",
+          width: 774,
+          height: 259,
+          logo: {
+            src: "/projects/krizo-logo.webp",
+            width: 628,
+            height: 344,
+          },
+        },
+      },
+    ] satisfies readonly FeaturedCase[],
+    cases: [
+      {
+        index: "03",
         title: "Asistencia y geocercas",
         category: "App multiplataforma",
         status: "En producción",
@@ -369,18 +394,6 @@ export const site = {
           "App React Native con seguridad Zero Trust e integración con Odoo: rastreo de asistencia con geocercas para más de 200 empleados a nivel nacional.",
         stack: ["React Native", "Zero Trust", "Odoo", "Geocercas"],
         cover: "plataforma",
-        draft: true,
-      },
-      {
-        index: "03",
-        title: "Asistencia Vial",
-        category: "App móvil nativa",
-        status: "Desarrollada",
-        live: false,
-        summary:
-          "Plataforma logística móvil que conecta en tiempo real a conductores varados con proveedores de asistencia mecánica.",
-        stack: ["Kotlin", "Android", "Figma"],
-        cover: "sistema",
         draft: true,
       },
       {

@@ -1,0 +1,112 @@
+---
+import type { FeaturedCase } from "../content/site";
+import { site, caseMailto } from "../content/site";
+import Icon from "./Icon.astro";
+
+interface Props {
+  item: FeaturedCase;
+  reverse?: boolean;
+}
+
+const { item, reverse = false } = Astro.props;
+const headingId = `feature-title-${item.index}`;
+const logoWide = item.media.logo.width / item.media.logo.height > 1.2;
+const facts = item.facts ?? [];
+---
+
+<article
+  class:list={["feature", reverse && "feature--reverse"]}
+  aria-labelledby={headingId}
+  data-reveal
+>
+  <div class="feature__media">
+    <img
+      class="feature__shot"
+      src={item.media.src}
+      alt={item.media.alt}
+      width={item.media.width}
+      height={item.media.height}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <div class="feature__body">
+    <p class="case__meta mono">
+      <span>{item.index} · {item.category}</span>
+      <span class:list={["case__status", item.live && "is-prod"]}>{item.status}</span>
+    </p>
+
+    <div class="feature__brand">
+      {logoWide ? (
+        <div>
+          <h3 class="feature__title feature__title--logo" id={headingId}>
+            <img
+              class="feature__logo feature__logo--wide"
+              src={item.media.logo.src}
+              alt={item.title}
+              width={item.media.logo.width}
+              height={item.media.logo.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </h3>
+          <p class="feature__tagline">{item.tagline}</p>
+        </div>
+      ) : (
+        <>
+          <img
+            class="feature__logo"
+            src={item.media.logo.src}
+            alt=""
+            width={item.media.logo.width}
+            height={item.media.logo.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <h3 class="feature__title" id={headingId}>{item.title}</h3>
+            <p class="feature__tagline">{item.tagline}</p>
+          </div>
+        </>
+      )}
+    </div>
+    <p class="feature__note label">{item.note}</p>
+
+    <p class="feature__summary">{item.summary}</p>
+
+    {facts.length > 0 && (
+      <ul class="feature__facts">
+        {facts.map((fact) => (
+          <li>
+            <span class="feature__fact-value">{fact.value}</span>
+            <span class="feature__fact-label">{fact.label}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <ul class="case__stack">
+      {item.stack.map((tech) => <li>{tech}</li>)}
+    </ul>
+
+    <div class="feature__links">
+      {item.link && (
+        <a
+          class="btn btn--solid btn--md"
+          href={item.link.href}
+          target="_blank"
+          aria-label={`${item.link.label} de ${item.title} (se abre en una pestaña nueva)`}
+          rel="noopener noreferrer"
+        >
+          <span class="btn__label">{item.link.label}</span>
+          <Icon name="arrowRight" size={16} />
+        </a>
+      )}
+      <a class="case__cta" href={caseMailto(item.title)}>
+        <span>{site.work.cta}</span>
+        <Icon name="arrowRight" size={16} />
+      </a>
+    </div>
+  </div>
+</article>

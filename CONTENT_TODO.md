@@ -1,11 +1,10 @@
-# CONTENT_TODO · actualización CV 2026 + NotiFast
+# CONTENT_TODO · CV 2026 + NotiFast + Krizo
 
-El sitio ya usa el **CV 2026** (`reference/jose-cv-2026.txt`) y los activos reales de
-**NotiFast** (`public/projects/notifast-logo.webp` y `notifast-landing.jpg`). NotiFast es
-el caso destacado con logo, captura de landing, métricas del CV y enlace público. Los
-otros cinco proyectos salen del CV, pero varios usan **títulos descriptivos** y **portadas
-abstractas** hasta recibir el material definitivo. Nada de esto se inventa: lo que falta
-se pide aquí.
+El sitio ya usa el **CV 2026** (`reference/jose-cv-2026.txt`). **NotiFast** y **Krizo**
+son los dos casos destacados con material real: logo, pieza publicitaria/landing, stack y
+copy. Las otras cuatro fichas salen del CV, pero varias usan **títulos descriptivos** y
+**portadas abstractas** hasta recibir el material definitivo. Nada de esto se inventa: lo
+que falta se pide aquí.
 
 ---
 
@@ -13,7 +12,7 @@ se pide aquí.
 
 Recibido y publicado:
 
-- [x] Logo real → `public/projects/notifast-logo.webp` (750×750).
+- [x] Logo real → `public/projects/notifast-logo.webp` (750×750, 52 KB).
 - [x] Captura de la landing → `public/projects/notifast-landing.jpg` (1400×782, recortada
       de la PNG original de 1836×1026; 921 KB → 109 KB).
 - [x] Stack, 26 pantallas, 805 pruebas unitarias, 100 % offline, autoría propia, APK v1.0 RC
@@ -34,7 +33,43 @@ Confirmar:
 
 ---
 
-## 2 · Los otros cinco proyectos
+## 2 · Krizo · ya integrado, falta confirmar
+
+Recibido y publicado:
+
+- [x] Logo real → `public/projects/krizo-logo.webp` (628×344, 23 KB).
+- [x] Pieza publicitaria → `public/projects/krizo-promo.jpg` (774×259, 44 KB).
+- [x] Caso destacado 02: el logo es el título visible y la pieza publicitaria la imagen
+      del caso, al lado del copy.
+- [x] Copy: **proyecto universitario**, app móvil en **React Native** que conecta en
+      tiempo real a conductores varados con **grúas, mecánicos y tiendas de repuesto**.
+- [x] El CV quedó corregido: el proyecto se llama **Krizo** (antes figuraba como
+      «Ecosistema de Asistencia Vial») y usa React Native, no Kotlin/Android nativo.
+- [x] Sin enlace externo: el único CTA es «Pedir el caso completo» por email. La pieza
+      muestra `krizoweb.com.ve` y Google Play, pero no los di por públicos.
+
+Confirmar:
+
+- [ ] ¿La universidad, la materia y el año? Hoy solo dice «Proyecto universitario».
+      ¿Fue proyecto de curso, trabajo de grado o ambos?
+- [ ] ¿El estado real de la app? La ficha dice «Proyecto universitario»; ¿sigue
+      disponible, se entregó y se cerró, o evolucionó a otra cosa?
+- [ ] ¿La web `krizoweb.com.ve` y la ficha de Google Play que aparecen en la pieza son
+      públicas? Si lo son, añado el botón «Ver proyecto».
+- [ ] ¿El logo, la pieza publicitaria y la identidad son de tu autoría y se pueden
+      publicar? ¿Hay permiso de la universidad o de terceros por los logos de la pieza?
+- [ ] ¿Tienes más capturas de la app (vista de grúas, mecánicos, tiendas) para acompañar
+      la pieza? La pieza ya funciona como imagen principal.
+- [ ] ¿«Krizo» es el nombre definitivo del proyecto? El CV ya lo usa; si tuvo otro nombre,
+      lo aclaro en una nota.
+- [ ] ¿La app fue solo React Native o también hubo una parte nativa? El CV anterior decía
+      Kotlin/Android; la corrección manda React Native.
+- [ ] ¿Confirmas los **tres tipos de aliado** (grúas, mecánicos y tiendas) y el «en tiempo
+      real»? Es lo que dice la ficha.
+
+---
+
+## 3 · Los otros cuatro proyectos
 
 Todos salen del CV 2026, pero algunos **no tienen nombre de producto** en el CV y usan un
 título descriptivo. No inventé nombres de cliente ni capturas. Completar por ficha:
@@ -54,33 +89,32 @@ Métricas demostrables (opcional; si no hay, se omite):
 
 | # | Título actual (descriptivo) | Categoría | Estado actual | Stack | Falta |
 |---|---|---|---|---|---|
-| 02 | Asistencia y geocercas | App multiplataforma | En producción* | React Native · Zero Trust · Odoo · Geocercas | Nombre real, confirmar estado, permiso Alcaraván, capturas |
-| 03 | Asistencia Vial | App móvil nativa | Desarrollada | Kotlin · Android · Figma | Confirmar «Ecosistema de Asistencia Vial», estado, capturas |
+| 03 | Asistencia y geocercas | App multiplataforma | En producción* | React Native · Zero Trust · Odoo · Geocercas | Nombre real, confirmar estado, permiso Alcaraván, capturas |
 | 04 | Control de acceso | Sistema IoT | En producción* | Kotlin · ESP32 · C++ · WebSockets | Nombre real, confirmar estado, permiso, capturas |
 | 05 | Robótica educativa | App educativa | Desarrollada | Kotlin · Jetpack Compose · Arduino CLI · WebSockets | Nombre real, confirmar estado, permiso del Ministerio, capturas |
 | 06 | Monitoreo atmosférico | Aplicación IoT | Implementada | Kotlin · Vico · IoT | Nombre real, confirmar estado, capturas |
 
-\* **«En producción»** en 02 y 04 viene del brief anterior y del hecho de que Alcaraván es
+\* **«En producción»** en 03 y 04 viene del brief anterior y del hecho de que Alcaraván es
 tu empleo actual; el CV 2026 no lo dice con esas palabras. Confírmalo o cámbialo por
-«Desarrollada» / «Implementada». Los estados 03/05/06 usan los verbos del propio CV
+«Desarrollada» / «Implementada». Los estados 05/06 usan los verbos del propio CV
 («desarrolló», «implementó»).
 
-- [ ] ¿Son **seis** los proyectos que quieres mostrar o hay más? El titular dice «Seis
-      proyectos. Del diseño al código.». Si hay más, se actualiza el titular.
-- [ ] ¿La nota «Empresa: Sistemas Tecnológicos Alcaraván» se puede mantener en 02, 04, 05
+- [ ] ¿Son **seis** los proyectos que quieres mostrar (NotiFast + Krizo + estas cuatro
+      fichas) o hay más? El titular dice «Seis proyectos. Del diseño al código.».
+- [ ] ¿La nota «Empresa: Sistemas Tecnológicos Alcaraván» se puede mantener en 03, 04, 05
       y 06? El nombre ya está en Trayectoria desde el CV; en las tarjetas identifica a la
       empresa, no a un cliente.
 - [ ] ¿La nota «Empresa: Alcaraván · Ministerio de Ciencia y Tecnología» de 05 es correcta?
       Si no hay permiso del Ministerio, se deja solo Alcaraván o se retira.
-- [ ] ¿Quieres que Asistencia Vial lleve alguna nota de autoría o cliente? Hoy no lleva.
 
 ---
 
-## 3 · Trayectoria, fechas y educación
+## 4 · Trayectoria, fechas y educación
 
 - [ ] **Alcaraván:** el CV dice «Febrero 2026 – Presente»; el resumen dice 9 meses. ¿Son
       correctos? ¿La fecha de inicio es febrero de 2026?
-- [ ] **Freelance:** «2021 – Presente (5 años)». ¿Es correcto?
+- [ ] **Freelance:** «2021 – Presente (5 años)». ¿Es correcto? El bloque ya incluye los
+      +10 proyectos de diseño y las 3 empresas de redes sociales que enviaste.
 - [ ] **Ingeniería de Sistemas (10.º semestre):** confirmar el nombre exacto del grado
       (el CV anterior decía «Ingeniería en Informática») y si sigue en curso.
 - [ ] **«Ingeniero de Sistemas»** aparece en tu cabecera, pero el resumen te describe como
@@ -92,7 +126,7 @@ tu empleo actual; el CV 2026 no lo dice con esas palabras. Confírmalo o cámbia
 
 ---
 
-## 4 · Contacto, sitio y foto
+## 5 · Contacto, sitio y foto
 
 - [ ] El CV 2026 no incluye **@josealejfer**; el sitio lo conserva del CV anterior.
       ¿Sigue activo? ¿Lo dejo, lo cambio o lo quito?
@@ -109,31 +143,34 @@ tu empleo actual; el CV 2026 no lo dice con esas palabras. Confírmalo o cámbia
 
 ---
 
-## 5 · Copy y coherencia
+## 6 · Copy y coherencia
 
 - [ ] El titular de Trabajo pasó de «Cinco proyectos. Dos en producción.» a **«Seis
-      proyectos. Del diseño al código.»**. Confirmar el número y el tono.
-- [ ] El párrafo de Trabajo dice «categoría, estado y el stack confirmado» (el brief
-      anterior decía «rol»). Se alineó con lo que muestran las tarjetas; confirmar.
-- [ ] Las tarjetas 02–06 usan títulos descriptivos. Si tienes los nombres reales, se
+      proyectos. Del diseño al código.»**: NotiFast y Krizo como casos destacados más
+      cuatro fichas. Confirmar el número y el tono.
+- [ ] El párrafo de Trabajo habla de «un producto educativo publicado, una app
+      universitaria, sistemas empresariales y soluciones IoT». La «app universitaria» es
+      Krizo; confirmar que ese es el ángulo que quieres.
+- [ ] Las fichas 03–06 usan títulos descriptivos. Si tienes los nombres reales, se
       sustituyen en `src/content/site.ts` sin tocar el diseño.
-- [ ] La ficha de NotiFast muestra **26 pantallas · 805 pruebas unitarias · 100 % offline**.
-      Son datos del CV; confirmar que se pueden publicar.
+- [ ] NotiFast muestra **26 pantallas · 805 pruebas unitarias · 100 % offline**; Krizo no
+      lleva métricas porque no las diste. ¿Quieres añadir alguna (número de aliados,
+      descargas, usuarios)?
 - [ ] ¿Hay algún cliente, premio, certificación o testimonio que quieras añadir? Solo con
       permiso y cita textual; no se inventará nada.
 - [ ] ¿Versión en inglés? Hoy no hay selector de idioma porque no hay traducción completa.
 
 ---
 
-## 6 · Plantilla de email
+## 7 · Plantilla de email
 
 ```
-Asunto: Material para el portafolio — CV 2026 y proyectos
+Asunto: Material para el portafolio — CV 2026, NotiFast y Krizo
 
 Hola José:
 
-El portafolio ya está actualizado con el CV 2026 y NotiFast (logo + landing). Para cerrar
-las otras cinco fichas necesito:
+El portafolio ya está actualizado con el CV 2026, NotiFast (logo + landing) y Krizo
+(logo + pieza publicitaria). Para cerrar las cuatro fichas restantes necesito:
 
 1. Por cada proyecto: nombre real del producto, cliente/institución y permiso para
    nombrarlo, una frase de qué hace, tu rol, stack confirmado, estado real, enlace si
@@ -143,7 +180,9 @@ las otras cinco fichas necesito:
 4. Confirmar el grado exacto, el 10.º semestre y si quieres el título «Ingeniero de
    Sistemas» o «en formación».
 5. Confirmar @josealejfer, teléfono, email, ubicación, notifast.pages.dev y dominio propio.
-6. Confirmar que puedo publicar el logo y la landing de NotiFast, y las métricas 26 / 805 /
+6. Confirmar universidad, año y estado de Krizo; si krizoweb.com.ve y Google Play son
+   públicos; y si puedo publicar su logo y su pieza publicitaria.
+7. Confirmar que puedo publicar el logo y la landing de NotiFast, y las métricas 26 / 805 /
    100 % offline.
 
 Lo que no llegue se queda como ficha con portada abstracta o se omite; no se rellena con
@@ -154,10 +193,12 @@ suposiciones.
 
 ## Estado del repositorio
 
-- **NotiFast**: integrado con activos reales y enlace; `draft: false` en `site.ts`.
-- **02–06**: datos del CV 2026, títulos descriptivos y portadas abstractas; `draft: true`.
-- **Imágenes**: 2 archivos (109 KB + 52 KB), lazy, con `width`/`height` para no mover el
-  layout.
+- **NotiFast (01)**: caso destacado con activos reales y enlace; `draft: false`.
+- **Krizo (02)**: caso destacado con logo, pieza publicitaria y copy universitario en
+  React Native; sin enlace externo; `draft: false`.
+- **03–06**: datos del CV 2026, títulos descriptivos y portadas abstractas; `draft: true`.
+- **Imágenes**: 4 archivos (109 + 52 + 44 + 23 = 228 KB), lazy, con `width`/`height` para
+  no mover el layout.
 - **Fuente de verdad**: `reference/jose-cv-2026.txt` y `src/content/site.ts`.
 - **Pendiente técnico**: dominio de producción, canonical/OG absolutos, foto opcional y
   confirmaciones de esta lista.
