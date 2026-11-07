@@ -68,6 +68,12 @@ fs.cpSync(path.join(rootDir, "public"), path.join(deployTmpDir, "public"), { rec
 // Copiar configs
 fs.copyFileSync(path.join(rootDir, "astro.config.mjs"), path.join(deployTmpDir, "astro.config.mjs"));
 fs.copyFileSync(path.join(rootDir, "tsconfig.json"), path.join(deployTmpDir, "tsconfig.json"));
+if (fs.existsSync(path.join(rootDir, ".node-version"))) {
+  fs.copyFileSync(path.join(rootDir, ".node-version"), path.join(deployTmpDir, ".node-version"));
+}
+if (fs.existsSync(path.join(rootDir, ".nvmrc"))) {
+  fs.copyFileSync(path.join(rootDir, ".nvmrc"), path.join(deployTmpDir, ".nvmrc"));
+}
 
 // .gitignore para despliegue
 const deployGitignore = `node_modules/
