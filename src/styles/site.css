@@ -944,6 +944,16 @@ main:focus,
   border: 1px solid var(--linea);
 }
 
+.chip--core {
+  color: var(--verde-900);
+  font-weight: 700;
+}
+
+.chip--core::after {
+  background: var(--crema);
+  border-color: var(--coral-700);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .chip:hover::before {
     opacity: 1;

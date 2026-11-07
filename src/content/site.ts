@@ -287,6 +287,15 @@ export const site = {
         skills: ["Android Studio", "Git", "GitHub"],
       },
     ] satisfies readonly SkillGroup[],
+    coreSkills: [
+      "Kotlin 2.0+",
+      "Jetpack Compose",
+      "React Native",
+      "C++ · ESP32",
+      "Clean Architecture",
+      "Figma",
+      "Design Systems",
+    ] as readonly string[],
     strengths: [
       "Aplicaciones IoT",
       "Desarrollo móvil nativo",
