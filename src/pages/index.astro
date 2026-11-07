@@ -213,10 +213,12 @@ const person = {
                     class="work-stage__dot"
                     data-stage-dot
                     data-stage-target={index}
+                    title={`Proyecto ${String(index + 1).padStart(2, "0")}: ${item.title}`}
                     aria-label={`Ver ${item.title}`}
                     aria-current={index === 0 ? "true" : "false"}
                   >
                     <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span class="work-stage__dot-label" aria-hidden="true">{item.title}</span>
                   </button>
                 ))}
               </div>

@@ -42,10 +42,12 @@ const facts = item.facts ?? [];
       {logoWide ? (
         <div>
           <h3 class="feature__title feature__title--logo" id={headingId}>
+            <span class="sr-only">{item.title}</span>
             <img
               class="feature__logo feature__logo--wide"
               src={item.media.logo.src}
-              alt={item.title}
+              alt=""
+              aria-hidden="true"
               width={item.media.logo.width}
               height={item.media.logo.height}
               loading="lazy"

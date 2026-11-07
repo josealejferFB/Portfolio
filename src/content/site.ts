@@ -226,6 +226,7 @@ export const site = {
         skills: [
           "Kotlin 2.0+",
           "Jetpack Compose",
+          "React Native",
           "Material 3",
           "XML",
           "Android SDK 26–36",
@@ -238,7 +239,6 @@ export const site = {
       {
         label: "Web",
         skills: [
-          "React Native",
           "React",
           "JavaScript",
           "HTML",
@@ -303,6 +303,7 @@ export const site = {
     title: "Seis proyectos. Del diseño al código.",
     body: "Seis proyectos construidos: un producto educativo publicado, una app universitaria, sistemas empresariales y soluciones IoT. Lo que sigue es el mapa: categoría, estado y el stack confirmado. Sin métricas que no pueda demostrar.",
     cta: "Pedir el caso completo",
+    ctaConfidential: "Consultar detalles bajo NDA",
     featured: [
       {
         index: "01",

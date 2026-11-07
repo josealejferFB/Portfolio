@@ -43,7 +43,12 @@ const { item, panel = false } = Astro.props;
         {item.stack.map((tech) => <li>{tech}</li>)}
       </ul>
     )}
-    {!item.confidential && (
+    {item.confidential ? (
+      <a class="case__cta case__cta--confidential" href={caseMailto(`${item.title} (NDA)`)}>
+        <span>{site.work.ctaConfidential}</span>
+        <Icon name="arrowRight" size={16} />
+      </a>
+    ) : (
       <a class="case__cta" href={caseMailto(item.title)}>
         <span>{site.work.cta}</span>
         <Icon name="arrowRight" size={16} />
