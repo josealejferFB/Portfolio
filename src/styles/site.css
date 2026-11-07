@@ -2238,3 +2238,19 @@ main:focus,
   .craft__line { margin-top: 8px; }
   .craft__groups { gap: 6px; margin-top: 18px; }
 }
+
+
+/* El side de Trabajo no se recentra según la altura del panel activo */
+.motion .work-stage__sticky {
+  height: 100svh;
+  min-height: 0;
+  align-content: stretch;
+  grid-template-rows: minmax(0, 1fr);
+  align-items: center;
+}
+.motion .work-stage__side { align-self: center; }
+.motion .work-stage__deck { align-self: start; }
+
+@media (max-width: 960px) {
+  .motion .work-stage__sticky { height: auto; }
+}
