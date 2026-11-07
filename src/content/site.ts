@@ -24,7 +24,7 @@ export interface SkillGroup {
   readonly skills: readonly string[];
 }
 
-export type CoverVariant = "nativa" | "educativa" | "iot";
+export type CoverVariant = "iot";
 
 export interface CaseImage {
   readonly src: string;
@@ -422,8 +422,14 @@ export const site = {
         summary:
           "App administrativa, app Android y firmware ESP32 para la apertura automatizada de compuertas.",
         stack: ["Kotlin", "ESP32", "C++", "WebSockets"],
-        cover: "nativa",
-        draft: true,
+        image: {
+          src: "/projects/alcaravan-control-acceso.webp",
+          alt: "Ficha de «Control de Acceso Alcaraván», sistema de control: icono de puerta y ojo sobre fondo negro.",
+          width: 850,
+          height: 742,
+        },
+        confidential: true,
+        draft: false,
       },
       {
         index: "05",
@@ -435,8 +441,14 @@ export const site = {
         summary:
           "App Android para robótica educativa con compilación y flasheo remoto en tiempo real vía WebSockets y Arduino CLI.",
         stack: ["Kotlin", "Jetpack Compose", "Arduino CLI", "WebSockets"],
-        cover: "educativa",
-        draft: true,
+        image: {
+          src: "/projects/alcaravan-autana-flash.webp",
+          alt: "Portada de «Autana Flash», programación por bloques para robótica educativa, sobre un fondo azul de circuitos.",
+          width: 850,
+          height: 638,
+        },
+        confidential: true,
+        draft: false,
       },
       {
         index: "06",

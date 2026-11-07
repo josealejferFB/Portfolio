@@ -2,10 +2,10 @@
 
 El sitio ya usa el **CV 2026** (`reference/jose-cv-2026.txt`). **NotiFast** y **Krizo**
 son los dos casos destacados con material real: logo, pieza publicitaria/landing, stack y
-copy. La ficha de **Asistencia y geocercas** ya usa la imagen real de su ficha en el App
-Store y no ofrece el caso por confidencialidad. Las otras tres fichas salen del CV con
-**títulos descriptivos** y **portadas abstractas** hasta recibir el material definitivo.
-Nada de esto se inventa: lo que falta se pide aquí.
+copy. Las fichas de **Asistencia y geocercas**, **Control de acceso** y **Robótica
+educativa** ya usan sus imágenes reales y no ofrecen el caso por confidencialidad.
+**Monitoreo atmosférico** conserva título descriptivo, portada abstracta y CTA hasta
+recibir su imagen y el permiso. Nada de esto se inventa: lo que falta se pide aquí.
 
 ---
 
@@ -91,9 +91,9 @@ Métricas demostrables (opcional; si no hay, se omite):
 | # | Título actual (descriptivo) | Categoría | Estado actual | Stack | Falta |
 |---|---|---|---|---|---|
 | 03 | Asistencia y geocercas | App multiplataforma | En producción* | React Native · Zero Trust · Odoo · Geocercas | **Imagen recibida** (ficha de App Store); nombre real, confirmar estado, permiso; **sin CTA por confidencialidad** |
-| 04 | Control de acceso | Sistema IoT | En producción* | Kotlin · ESP32 · C++ · WebSockets | Nombre real, confirmar estado, permiso, capturas |
-| 05 | Robótica educativa | App educativa | Desarrollada | Kotlin · Jetpack Compose · Arduino CLI · WebSockets | Nombre real, confirmar estado, permiso del Ministerio, capturas |
-| 06 | Monitoreo atmosférico | Aplicación IoT | Implementada | Kotlin · Vico · IoT | Nombre real, confirmar estado, capturas |
+| 04 | Control de acceso | Sistema IoT | En producción* | Kotlin · ESP32 · C++ · WebSockets | **Imagen recibida** («Control de Acceso Alcaraván»); nombre real, confirmar estado, permiso; **sin CTA por confidencialidad** |
+| 05 | Robótica educativa | App educativa | Desarrollada | Kotlin · Jetpack Compose · Arduino CLI · WebSockets | **Imagen recibida** («Autana Flash»); nombre real, confirmar estado, permiso del Ministerio; **sin CTA por confidencialidad** |
+| 06 | Monitoreo atmosférico | Aplicación IoT | Implementada | Kotlin · Vico · IoT | Nombre real, estado, permiso, imagen; **sigue con CTA y portada abstracta** |
 
 \* **«En producción»** en 03 y 04 viene del brief anterior y del hecho de que Alcaraván es
 tu empleo actual; el CV 2026 no lo dice con esas palabras. Confírmalo o cámbialo por
@@ -197,12 +197,11 @@ suposiciones.
 - **NotiFast (01)**: caso destacado con activos reales y enlace; `draft: false`.
 - **Krizo (02)**: caso destacado con logo, pieza publicitaria y copy universitario en
   React Native; sin enlace externo; `draft: false`.
-- **03**: datos del CV 2026 + imagen real del App Store, sin CTA por confidencialidad;
-  `draft: false`. **04–06**: datos del CV 2026, títulos descriptivos y portadas
-  abstractas; `draft: true`.
-- **Imágenes**: 5 archivos (109 + 52 + 44 + 23 + 15 = 244 KB), lazy, con `width`/`height`
-  para no mover el layout. La de Alcaraván salió de una PNG de 850×323 y se optimizó a
-  WebP de 15 KB.
+- **03, 04 y 05**: datos del CV 2026 + imágenes reales, sin CTA por confidencialidad;
+  `draft: false`. **06**: datos del CV 2026, portada abstracta y CTA; `draft: true`.
+- **Imágenes**: 7 archivos (109 + 53 + 44 + 23 + 16 + 39 + 12 = 296 KB), lazy, con
+  `width`/`height` para no mover el layout. Las tres nuevas salieron de PNG/JPEG de
+  1268 px y se optimizaron a WebP (16 + 39 + 12 KB) a 850 px de ancho.
 - **Fuente de verdad**: `reference/jose-cv-2026.txt` y `src/content/site.ts`.
 - **Pendiente técnico**: dominio de producción, canonical/OG absolutos, foto opcional y
   confirmaciones de esta lista.

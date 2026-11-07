@@ -16,12 +16,17 @@ for (const width of viewports) {
   });
   await page.goto(URL, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
-  // Detenerse en Trabajo carga la imagen lazy de NotiFast antes de fotografiar.
+  // Detenerse en los casos carga todas las imágenes lazy antes de fotografiar.
   await page.evaluate(() => {
     const work = document.getElementById('trabajo');
     if (work) window.scrollTo(0, work.offsetTop + 420);
   });
-  await page.waitForTimeout(1500);
+  await page.waitForTimeout(1200);
+  await page.evaluate(() => {
+    const cases = document.querySelector('.cases');
+    if (cases) window.scrollTo(0, cases.getBoundingClientRect().top + window.scrollY - 120);
+  });
+  await page.waitForTimeout(1600);
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(500);
@@ -54,7 +59,12 @@ await reduced.evaluate(() => {
   const work = document.getElementById('trabajo');
   if (work) window.scrollTo(0, work.offsetTop + 420);
 });
-await reduced.waitForTimeout(1500);
+await reduced.waitForTimeout(1200);
+await reduced.evaluate(() => {
+  const cases = document.querySelector('.cases');
+  if (cases) window.scrollTo(0, cases.getBoundingClientRect().top + window.scrollY - 120);
+});
+await reduced.waitForTimeout(1600);
 await reduced.evaluate(() => window.scrollTo(0, 0));
 await reduced.waitForLoadState('networkidle');
 await reduced.waitForTimeout(500);
