@@ -5,6 +5,12 @@ dist/
 .DS_Store
 .audit/
 .debug/
+.superpowers/
+*.log
+.env
+.env.local
+.env.*.local
+
 shots/debug-*
 shots/peek-*
 shots/probe-*
